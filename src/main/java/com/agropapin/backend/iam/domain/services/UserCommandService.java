@@ -1,9 +1,9 @@
 package com.agropapin.backend.iam.domain.services;
 
-import com.fromzero.backend.iam.domain.model.aggregates.User;
-import com.fromzero.backend.iam.domain.model.commands.SignInCommand;
-import com.fromzero.backend.iam.domain.model.commands.SignUpDeveloperCommand;
-import com.fromzero.backend.iam.domain.model.commands.SignUpEnterpriseCommand;
+import com.agropapin.backend.iam.domain.model.aggregates.User;
+import com.agropapin.backend.iam.domain.model.commands.SignInCommand;
+import com.agropapin.backend.iam.domain.model.commands.SignUpDeveloperCommand;
+import com.agropapin.backend.iam.domain.model.commands.SignUpEnterpriseCommand;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.Optional;

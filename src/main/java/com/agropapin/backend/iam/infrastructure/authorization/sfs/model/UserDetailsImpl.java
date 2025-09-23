@@ -1,7 +1,7 @@
 package com.agropapin.backend.iam.infrastructure.authorization.sfs.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fromzero.backend.iam.domain.model.aggregates.User;
+import com.agropapin.backend.iam.domain.model.aggregates.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;

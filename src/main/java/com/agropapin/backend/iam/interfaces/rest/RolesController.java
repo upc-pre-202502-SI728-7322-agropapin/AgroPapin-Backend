@@ -1,9 +1,9 @@
 package com.agropapin.backend.iam.interfaces.rest;
 
-import com.fromzero.backend.iam.domain.model.queries.GetAllRolesQuery;
-import com.fromzero.backend.iam.domain.services.RoleQueryService;
-import com.fromzero.backend.iam.interfaces.rest.resources.RoleResource;
-import com.fromzero.backend.iam.interfaces.rest.transform.RoleResourceFromEntityAssembler;
+import com.agropapin.backend.iam.domain.model.queries.GetAllRolesQuery;
+import com.agropapin.backend.iam.domain.services.RoleQueryService;
+import com.agropapin.backend.iam.interfaces.rest.resources.RoleResource;
+import com.agropapin.backend.iam.interfaces.rest.transform.RoleResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

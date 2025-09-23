@@ -1,6 +1,6 @@
 package com.agropapin.backend.iam.infrastructure.tokens.jwt.services;
 
-import com.fromzero.backend.iam.infrastructure.tokens.jwt.BearerTokenService;
+import com.agropapin.backend.iam.infrastructure.tokens.jwt.BearerTokenService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;

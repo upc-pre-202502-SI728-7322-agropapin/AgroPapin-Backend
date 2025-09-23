@@ -1,7 +1,7 @@
 package com.agropapin.backend.iam.infrastructure.authorization.sfs.services;
 
-import com.fromzero.backend.iam.infrastructure.authorization.sfs.model.UserDetailsImpl;
-import com.fromzero.backend.iam.infrastructure.persistence.jpa.repositories.UserRepository;
+import com.agropapin.backend.iam.infrastructure.authorization.sfs.model.UserDetailsImpl;
+import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,9 +1,9 @@
 package com.agropapin.backend.iam.interfaces.rest.transform;
 
 
-import com.fromzero.backend.iam.domain.model.aggregates.User;
-import com.fromzero.backend.iam.domain.model.entities.Role;
-import com.fromzero.backend.iam.interfaces.rest.resources.UserResource;
+import com.agropapin.backend.iam.domain.model.aggregates.User;
+import com.agropapin.backend.iam.domain.model.entities.Role;
+import com.agropapin.backend.iam.interfaces.rest.resources.UserResource;
 
 public class UserResourceFromEntityAssembler {
     public static UserResource toResourceFromEntity(User user) {

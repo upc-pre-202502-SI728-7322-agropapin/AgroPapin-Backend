@@ -1,6 +1,6 @@
 package com.agropapin.backend.iam.domain.model.commands;
 
-import com.fromzero.backend.iam.domain.model.entities.Role;
+import com.agropapin.backend.iam.domain.model.entities.Role;
 
 import java.util.List;
 

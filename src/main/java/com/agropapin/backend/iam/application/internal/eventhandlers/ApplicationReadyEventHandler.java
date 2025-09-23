@@ -1,7 +1,7 @@
 package com.agropapin.backend.iam.application.internal.eventhandlers;
 
-import com.fromzero.backend.iam.domain.model.commands.SeedRolesCommand;
-import com.fromzero.backend.iam.domain.services.RoleCommandService;
+import com.agropapin.backend.iam.domain.model.commands.SeedRolesCommand;
+import com.agropapin.backend.iam.domain.services.RoleCommandService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

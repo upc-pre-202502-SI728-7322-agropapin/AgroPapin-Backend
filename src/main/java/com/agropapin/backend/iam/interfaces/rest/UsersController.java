@@ -1,10 +1,10 @@
 package com.agropapin.backend.iam.interfaces.rest;
 
-import com.fromzero.backend.iam.domain.model.queries.GetAllUsersQuery;
-import com.fromzero.backend.iam.domain.model.queries.GetUserByIdQuery;
-import com.fromzero.backend.iam.domain.services.UserQueryService;
-import com.fromzero.backend.iam.interfaces.rest.resources.UserResource;
-import com.fromzero.backend.iam.interfaces.rest.transform.UserResourceFromEntityAssembler;
+import com.agropapin.backend.iam.domain.model.queries.GetAllUsersQuery;
+import com.agropapin.backend.iam.domain.model.queries.GetUserByIdQuery;
+import com.agropapin.backend.iam.domain.services.UserQueryService;
+import com.agropapin.backend.iam.interfaces.rest.resources.UserResource;
+import com.agropapin.backend.iam.interfaces.rest.transform.UserResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

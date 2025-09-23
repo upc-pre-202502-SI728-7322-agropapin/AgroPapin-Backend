@@ -1,6 +1,6 @@
 package com.agropapin.backend.iam.infrastructure.hashing.bcrypt;
 
-import com.fromzero.backend.iam.application.internal.outboundservices.hashing.HashingService;
+import com.agropapin.backend.iam.application.internal.outboundservices.hashing.HashingService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**

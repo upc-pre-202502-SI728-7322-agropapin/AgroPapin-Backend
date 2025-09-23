@@ -1,10 +1,10 @@
 package com.agropapin.backend.iam.application.internal.queryservices;
 
-import com.fromzero.backend.iam.domain.model.entities.Role;
-import com.fromzero.backend.iam.domain.model.queries.GetAllRolesQuery;
-import com.fromzero.backend.iam.domain.model.queries.GetRoleByNameQuery;
-import com.fromzero.backend.iam.domain.services.RoleQueryService;
-import com.fromzero.backend.iam.infrastructure.persistence.jpa.repositories.RoleRepository;
+import com.agropapin.backend.iam.domain.model.entities.Role;
+import com.agropapin.backend.iam.domain.model.queries.GetAllRolesQuery;
+import com.agropapin.backend.iam.domain.model.queries.GetRoleByNameQuery;
+import com.agropapin.backend.iam.domain.services.RoleQueryService;
+import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

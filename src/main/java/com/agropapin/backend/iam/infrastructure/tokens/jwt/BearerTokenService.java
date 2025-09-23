@@ -1,7 +1,7 @@
 package com.agropapin.backend.iam.infrastructure.tokens.jwt;
 
 
-import com.fromzero.backend.iam.application.internal.outboundservices.tokens.TokenService;
+import com.agropapin.backend.iam.application.internal.outboundservices.tokens.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 

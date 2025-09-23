@@ -1,7 +1,7 @@
 package com.agropapin.backend.iam.interfaces.rest.transform;
 
-import com.fromzero.backend.iam.domain.model.commands.SignUpDeveloperCommand;
-import com.fromzero.backend.iam.interfaces.rest.resources.SignUpDeveloperResource;
+import com.agropapin.backend.iam.domain.model.commands.SignUpDeveloperCommand;
+import com.agropapin.backend.iam.interfaces.rest.resources.SignUpDeveloperResource;
 
 public class SignUpDeveloperCommandFromResourceAssembler {
     public static SignUpDeveloperCommand toCommandFromResource(SignUpDeveloperResource resource) {

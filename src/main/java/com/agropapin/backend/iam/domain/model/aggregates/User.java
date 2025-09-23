@@ -1,7 +1,7 @@
 package com.agropapin.backend.iam.domain.model.aggregates;
 
-import com.fromzero.backend.iam.domain.model.entities.Role;
-import com.fromzero.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.agropapin.backend.iam.domain.model.entities.Role;
+import com.agropapin.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

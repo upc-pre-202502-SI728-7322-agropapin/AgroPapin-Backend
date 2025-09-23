@@ -1,11 +1,11 @@
 package com.agropapin.backend.iam.application.internal.queryservices;
 
-import com.fromzero.backend.iam.domain.model.aggregates.User;
-import com.fromzero.backend.iam.domain.model.queries.GetAllUsersQuery;
-import com.fromzero.backend.iam.domain.model.queries.GetUserByIdQuery;
-import com.fromzero.backend.iam.domain.model.queries.GetUserByUsernameQuery;
-import com.fromzero.backend.iam.domain.services.UserQueryService;
-import com.fromzero.backend.iam.infrastructure.persistence.jpa.repositories.UserRepository;
+import com.agropapin.backend.iam.domain.model.aggregates.User;
+import com.agropapin.backend.iam.domain.model.queries.GetAllUsersQuery;
+import com.agropapin.backend.iam.domain.model.queries.GetUserByIdQuery;
+import com.agropapin.backend.iam.domain.model.queries.GetUserByUsernameQuery;
+import com.agropapin.backend.iam.domain.services.UserQueryService;
+import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.agropapin.backend.iam.domain.model.entities;
 
-import com.fromzero.backend.iam.domain.model.valueobjects.Roles;
+import com.agropapin.backend.iam.domain.model.valueobjects.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 

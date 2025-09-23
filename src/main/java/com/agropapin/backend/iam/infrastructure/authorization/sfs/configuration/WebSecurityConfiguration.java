@@ -1,8 +1,8 @@
 package com.agropapin.backend.iam.infrastructure.authorization.sfs.configuration;
 
-import com.fromzero.backend.iam.infrastructure.authorization.sfs.pipeline.BearerAuthorizationRequestFilter;
-import com.fromzero.backend.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
-import com.fromzero.backend.iam.infrastructure.tokens.jwt.BearerTokenService;
+import com.agropapin.backend.iam.infrastructure.authorization.sfs.pipeline.BearerAuthorizationRequestFilter;
+import com.agropapin.backend.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
+import com.agropapin.backend.iam.infrastructure.tokens.jwt.BearerTokenService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

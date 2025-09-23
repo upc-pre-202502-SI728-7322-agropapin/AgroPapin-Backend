@@ -1,7 +1,7 @@
 package com.agropapin.backend.iam.infrastructure.authorization.sfs.pipeline;
 
-import com.fromzero.backend.iam.infrastructure.authorization.sfs.model.UsernamePasswordAuthenticationTokenBuilder;
-import com.fromzero.backend.iam.infrastructure.tokens.jwt.BearerTokenService;
+import com.agropapin.backend.iam.infrastructure.authorization.sfs.model.UsernamePasswordAuthenticationTokenBuilder;
+import com.agropapin.backend.iam.infrastructure.tokens.jwt.BearerTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
