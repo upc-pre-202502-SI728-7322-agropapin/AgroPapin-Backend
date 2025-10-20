@@ -11,10 +11,10 @@ import com.agropapin.backend.iam.domain.model.valueobjects.Roles;
 import com.agropapin.backend.iam.domain.services.UserCommandService;
 import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.RoleRepository;
 import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.UserRepository;
-import com.agropapin.backend.user.domain.model.aggregates.Developer;
-import com.agropapin.backend.user.domain.model.aggregates.Enterprise;
-import com.agropapin.backend.user.infrastructure.persistence.jpa.repositories.DeveloperRepository;
-import com.agropapin.backend.user.infrastructure.persistence.jpa.repositories.EnterpriseRepository;
+import com.agropapin.backend.organizationManagement.domain.model.aggregates.Developer;
+import com.agropapin.backend.organizationManagement.domain.model.aggregates.Enterprise;
+import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.DeveloperRepository;
+import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.EnterpriseRepository;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.stereotype.Service;
 
