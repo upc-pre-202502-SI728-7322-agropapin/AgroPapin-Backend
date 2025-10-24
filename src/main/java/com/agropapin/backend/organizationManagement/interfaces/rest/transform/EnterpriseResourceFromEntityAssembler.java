@@ -1,6 +1,5 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest.transform;
 
-import com.agropapin.backend.organizationManagement.domain.model.aggregates.Enterprise;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.EnterpriseResource;
 
 public class EnterpriseResourceFromEntityAssembler {

@@ -1,9 +1,5 @@
 package com.agropapin.backend.organizationManagement.application.internal.queryservices;
 
-import com.agropapin.backend.organizationManagement.domain.model.aggregates.Enterprise;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetAllEnterprisesAsyncQuery;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetEnterpriseByIdQuery;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetEnterpriseByUserIdAsyncQuery;
 import com.agropapin.backend.organizationManagement.domain.services.EnterpriseQueryService;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.EnterpriseRepository;
 import org.springframework.stereotype.Service;

@@ -2,10 +2,7 @@ package com.agropapin.backend.organizationManagement.domain.model.aggregates;
 
 import com.agropapin.backend.iam.domain.model.aggregates.User;
 import com.agropapin.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
@@ -29,4 +26,8 @@ public class Administrator extends AuditableAbstractAggregateRoot<Administrator>
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cooperative_id")
+    private Cooperative cooperative;
 }

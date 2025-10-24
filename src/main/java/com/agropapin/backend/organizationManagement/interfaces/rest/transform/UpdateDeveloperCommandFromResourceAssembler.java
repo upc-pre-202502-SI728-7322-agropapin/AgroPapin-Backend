@@ -1,6 +1,5 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest.transform;
 
-import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateDeveloperCommand;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.UpdateDeveloperResource;
 
 public class UpdateDeveloperCommandFromResourceAssembler {

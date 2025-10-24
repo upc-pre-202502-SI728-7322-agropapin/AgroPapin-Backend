@@ -1,9 +1,6 @@
 package com.agropapin.backend.organizationManagement.application.internal.commandservices;
 
 
-import com.agropapin.backend.organizationManagement.domain.model.aggregates.Developer;
-import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateDeveloperCommand;
-import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateDeveloperCompletedProjectsCommand;
 import com.agropapin.backend.organizationManagement.domain.services.DeveloperCommandService;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.DeveloperRepository;
 import org.springframework.stereotype.Service;

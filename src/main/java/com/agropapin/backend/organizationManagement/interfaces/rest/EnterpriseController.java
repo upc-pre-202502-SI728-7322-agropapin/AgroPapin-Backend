@@ -1,8 +1,5 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest;
 
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetAllEnterprisesAsyncQuery;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetEnterpriseByIdQuery;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetEnterpriseByUserIdAsyncQuery;
 import com.agropapin.backend.organizationManagement.domain.services.EnterpriseCommandService;
 import com.agropapin.backend.organizationManagement.domain.services.EnterpriseQueryService;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.EnterpriseResource;

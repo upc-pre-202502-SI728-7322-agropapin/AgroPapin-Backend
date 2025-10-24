@@ -1,9 +1,6 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest;
 
 
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetAllDevelopersAsyncQuery;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetDeveloperByIdQuery;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetDeveloperByUserIdAsyncQuery;
 import com.agropapin.backend.organizationManagement.domain.services.DeveloperCommandService;
 import com.agropapin.backend.organizationManagement.domain.services.DeveloperQueryService;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.DeveloperResource;

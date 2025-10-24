@@ -1,4 +1,6 @@
 package com.agropapin.backend.organizationManagement.domain.model.queries;
 
-public record GetEnterpriseByIdQuery(Long enterpriseId) {
+public record GetFarmerByIdQuery(
+    Long farmerId
+) {
 }

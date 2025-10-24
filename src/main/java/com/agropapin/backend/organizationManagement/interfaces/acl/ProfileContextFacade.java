@@ -1,11 +1,5 @@
 package com.agropapin.backend.organizationManagement.interfaces.acl;
 
-import com.agropapin.backend.organizationManagement.domain.model.aggregates.Developer;
-import com.agropapin.backend.organizationManagement.domain.model.aggregates.Enterprise;
-import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateDeveloperCompletedProjectsCommand;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetDeveloperByIdQuery;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetDeveloperByUserIdAsyncQuery;
-import com.agropapin.backend.organizationManagement.domain.model.queries.GetEnterpriseByUserIdAsyncQuery;
 import com.agropapin.backend.organizationManagement.domain.services.DeveloperCommandService;
 import com.agropapin.backend.organizationManagement.domain.services.DeveloperQueryService;
 import com.agropapin.backend.organizationManagement.domain.services.EnterpriseQueryService;

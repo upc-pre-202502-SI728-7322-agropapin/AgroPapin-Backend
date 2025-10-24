@@ -1,4 +1,6 @@
 package com.agropapin.backend.organizationManagement.domain.model.queries;
 
-public record GetDeveloperByUserIdAsyncQuery(Long id) {
+public record GetAdministratorByUserIdAsyncQuery(
+    Long userId
+) {
 }
