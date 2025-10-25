@@ -1,8 +1,6 @@
 package com.agropapin.backend.organizationManagement.application.internal.commandservices;
 
 
-import com.agropapin.backend.organizationManagement.domain.services.DeveloperCommandService;
-import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.DeveloperRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

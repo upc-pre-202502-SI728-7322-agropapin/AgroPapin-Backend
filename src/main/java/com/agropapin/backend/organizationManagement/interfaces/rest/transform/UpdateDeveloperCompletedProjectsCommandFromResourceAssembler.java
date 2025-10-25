@@ -1,6 +1,5 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest.transform;
 
-import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.DeveloperRepository;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.UpdateDeveloperCompletedProjectsResource;
 
 public class UpdateDeveloperCompletedProjectsCommandFromResourceAssembler {

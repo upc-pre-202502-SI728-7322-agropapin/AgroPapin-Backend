@@ -1,8 +1,6 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest;
 
 
-import com.agropapin.backend.organizationManagement.domain.services.DeveloperCommandService;
-import com.agropapin.backend.organizationManagement.domain.services.DeveloperQueryService;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.DeveloperResource;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.UpdateDeveloperResource;
 import com.agropapin.backend.organizationManagement.interfaces.rest.transform.DeveloperResourceFromEntityAssembler;

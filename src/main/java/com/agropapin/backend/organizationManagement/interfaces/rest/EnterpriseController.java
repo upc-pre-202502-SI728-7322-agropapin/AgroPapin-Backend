@@ -1,7 +1,5 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest;
 
-import com.agropapin.backend.organizationManagement.domain.services.EnterpriseCommandService;
-import com.agropapin.backend.organizationManagement.domain.services.EnterpriseQueryService;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.EnterpriseResource;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.UpdateEnterpriseResource;
 import com.agropapin.backend.organizationManagement.interfaces.rest.transform.EnterpriseResourceFromEntityAssembler;

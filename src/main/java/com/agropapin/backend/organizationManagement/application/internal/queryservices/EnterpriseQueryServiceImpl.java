@@ -1,7 +1,5 @@
 package com.agropapin.backend.organizationManagement.application.internal.queryservices;
 
-import com.agropapin.backend.organizationManagement.domain.services.EnterpriseQueryService;
-import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.EnterpriseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
