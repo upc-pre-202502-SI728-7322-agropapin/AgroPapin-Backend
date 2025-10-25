@@ -62,4 +62,8 @@ public class Farmer extends AuditableAbstractAggregateRoot<Farmer> {
     public void assignToCooperative(Cooperative cooperative) {
         this.cooperative = cooperative;
     }
+
+    public void clearCooperative() {
+        this.cooperative = null;
+    }
 }
