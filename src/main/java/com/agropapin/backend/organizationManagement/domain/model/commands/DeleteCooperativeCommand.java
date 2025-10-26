@@ -1,4 +1,7 @@
 package com.agropapin.backend.organizationManagement.domain.model.commands;
 
-public class DeleteCooperativeCommand {
+public record DeleteCooperativeCommand(
+        Long cooperativeId,
+        Long deletedByUserId
+) {
 }

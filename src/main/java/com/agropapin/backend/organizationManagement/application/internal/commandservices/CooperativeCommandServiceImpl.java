@@ -1,12 +1,11 @@
 package com.agropapin.backend.organizationManagement.application.internal.commandservices;
 
 import com.agropapin.backend.organizationManagement.domain.model.aggregates.Cooperative;
-import com.agropapin.backend.organizationManagement.domain.model.commands.CreateCooperativeCommand;
-import com.agropapin.backend.organizationManagement.domain.model.commands.DeleteCooperativeCommand;
-import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateCooperativeCommand;
+import com.agropapin.backend.organizationManagement.domain.model.commands.*;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeCommandService;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.AdministratorRepository;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.CooperativeRepository;
+import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.FarmerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,10 +15,12 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
     private final CooperativeRepository cooperativeRepository;
     private final AdministratorRepository administratorRepository;
+    private final FarmerRepository farmerRepository;
 
-    public CooperativeCommandServiceImpl(CooperativeRepository cooperativeRepository, AdministratorRepository administratorRepository) {
+    public CooperativeCommandServiceImpl(CooperativeRepository cooperativeRepository, AdministratorRepository administratorRepository, FarmerRepository farmerRepository) {
         this.cooperativeRepository = cooperativeRepository;
         this.administratorRepository = administratorRepository;
+        this.farmerRepository = farmerRepository;
     }
 
     @Override
@@ -59,6 +60,27 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
     @Override
     public Optional<Cooperative> handle(DeleteCooperativeCommand deleteCooperativeCommand) {
+        var cooperative = cooperativeRepository.findById(deleteCooperativeCommand.cooperativeId());
+
+        if (cooperative.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "No Cooperative found with id " + deleteCooperativeCommand.cooperativeId());
+        }
+
+        cooperativeRepository.deleteById(deleteCooperativeCommand.cooperativeId());
+        return cooperative;
+    }
+
+    @Override
+    public Optional<Cooperative> handle(AddNewAdministratorInCooperativeCommand addNewAdministratorInCooperativeCommand) {
+        if (administratorRepository.existsAdministratorByUserId(addNewAdministratorInCooperativeCommand.performedByUserId() )) {
+            throw new IllegalArgumentException(
+                    "An Administrator already exists for user id " + addNewAdministratorInCooperativeCommand.administratorUserId());
+        }
+    }
+
+    @Override
+    public Optional<Cooperative> handle(AddNewMemberInCooperativeCommand addNewMemberInCooperativeCommand) {
         return Optional.empty();
     }
 }
