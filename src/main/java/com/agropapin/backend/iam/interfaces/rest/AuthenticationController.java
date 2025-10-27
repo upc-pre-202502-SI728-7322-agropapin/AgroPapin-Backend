@@ -55,8 +55,8 @@ public class AuthenticationController {
      * @return the created user resource.
      */
     @PostMapping("/sign-up/developer")
-    public ResponseEntity<UserResource> signUpDeveloper(@RequestBody SignUpDeveloperResource signUpDeveloperResource) {
-        var signUpCommand = SignUpDeveloperCommandFromResourceAssembler.toCommandFromResource(signUpDeveloperResource);
+    public ResponseEntity<UserResource> signUpDeveloper(@RequestBody SignUpFarmerResource signUpDeveloperResource) {
+        var signUpCommand = SignUpFarmerCommandFromResourceAssembler.toCommandFromResource(signUpDeveloperResource);
         var user = userCommandService.handle(signUpCommand);
         if (user.isEmpty()) {
             return ResponseEntity.badRequest().build();
@@ -71,8 +71,8 @@ public class AuthenticationController {
      * @return the created user resource.
      */
     @PostMapping("/sign-up/enterprise")
-    public ResponseEntity<UserResource> signUpEnterprise(@RequestBody SignUpEnterpriseResource signUpEnterpriseResource) {
-        var signUpCommand = SignUpEnterpriseCommandFromResourceAssembler.toCommandFromResource(signUpEnterpriseResource);
+    public ResponseEntity<UserResource> signUpEnterprise(@RequestBody SignUpAdministratorResource signUpEnterpriseResource) {
+        var signUpCommand = SignUpAdministratorCommandFromResourceAssembler.toCommandFromResource(signUpEnterpriseResource);
         var user = userCommandService.handle(signUpCommand);
         if (user.isEmpty()) {
             return ResponseEntity.badRequest().build();

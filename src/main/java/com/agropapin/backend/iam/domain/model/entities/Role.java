@@ -38,7 +38,7 @@ public class Role {
      * @return the default role
      */
     public static Role getDefaultRole() {
-        return new Role(Roles.ROLE_ADMIN);
+        return new Role(Roles.ROLE_ADMINISTRATOR);
     }
 
     /**

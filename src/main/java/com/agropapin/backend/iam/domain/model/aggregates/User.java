@@ -20,7 +20,7 @@ public class User extends AuditableAbstractAggregateRoot<User> {
     @NotBlank
     @Size(max = 50)
     @Column(unique = true)
-    private String username;
+    private String email;
 
     @NotBlank
     @Size(max = 120)
@@ -36,14 +36,14 @@ public class User extends AuditableAbstractAggregateRoot<User> {
         this.roles = new HashSet<>();
     }
 
-    public User(String username, String password) {
-        this.username = username;
+    public User(String email, String password) {
+        this.email = email;
         this.password = password;
         this.roles = new HashSet<>();
     }
 
-    public User(String username, String password,List<Role> roles) {
-        this(username, password);
+    public User(String email, String password,List<Role> roles) {
+        this(email, password);
         addRoles(roles);
     }
 
@@ -57,9 +57,6 @@ public class User extends AuditableAbstractAggregateRoot<User> {
         var validatedRoleSet = Role.validateRoleSet(roles);
         this.roles.addAll(validatedRoleSet);
         return this;
-    }
-    public void serUsernmae (String username){
-        this.username = username;
     }
 
     public List<String> getSerializedRoles() {

@@ -2,7 +2,7 @@ package com.agropapin.backend.iam.interfaces.acl;
 
 import com.agropapin.backend.iam.domain.model.aggregates.User;
 import com.agropapin.backend.iam.domain.model.commands.SignUpDeveloperCommand;
-import com.agropapin.backend.iam.domain.model.commands.SignUpEnterpriseCommand;
+import com.agropapin.backend.iam.domain.model.commands.SignUpAdministratorCommand;
 import com.agropapin.backend.iam.domain.model.queries.GetUserByIdQuery;
 import com.agropapin.backend.iam.domain.model.queries.GetUserByUsernameQuery;
 import com.agropapin.backend.iam.domain.services.UserCommandService;
@@ -55,7 +55,7 @@ public class IamContextFacade {
      * @return The id of the created user.
      */
     public Long createEnterpriseUser(String username, String password, String enterpriseName, List<String> roleNames) {
-        var signUpCommand = new SignUpEnterpriseCommand(username, password, enterpriseName);
+        var signUpCommand = new SignUpAdministratorCommand(username, password, enterpriseName);
         var result = userCommandService.handle(signUpCommand);
         if (result.isEmpty()) return 0L;
         return result.get().getId();

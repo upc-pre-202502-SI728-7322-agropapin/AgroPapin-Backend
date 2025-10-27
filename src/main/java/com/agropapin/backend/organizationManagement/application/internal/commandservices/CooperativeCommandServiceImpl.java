@@ -73,14 +73,57 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
     @Override
     public Optional<Cooperative> handle(AddNewAdministratorInCooperativeCommand addNewAdministratorInCooperativeCommand) {
-        if (administratorRepository.existsAdministratorByUserId(addNewAdministratorInCooperativeCommand.performedByUserId() )) {
+        if (cooperativeRepository.existsByIdAndAdministrators_Id(addNewAdministratorInCooperativeCommand.cooperativeId(), addNewAdministratorInCooperativeCommand.performedByUserId())) {
+            var administrator = administratorRepository.findAdministratorByUserId(addNewAdministratorInCooperativeCommand.newAdministratorId());
+
+            if (administrator.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "No Administrator found for user id " + addNewAdministratorInCooperativeCommand.newAdministratorId());
+            }
+
+            var cooperative = cooperativeRepository.findById(addNewAdministratorInCooperativeCommand.cooperativeId());
+
+            if (cooperative.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "No Cooperative found with id " + addNewAdministratorInCooperativeCommand.cooperativeId());
+            }
+
+            return cooperative.map(cooperativeData -> {
+                cooperativeData.addAdministrator(administrator.get());
+                return cooperativeRepository.save(cooperativeData);
+            });
+        } else {
             throw new IllegalArgumentException(
-                    "An Administrator already exists for user id " + addNewAdministratorInCooperativeCommand.administratorUserId());
+                    "User id " + addNewAdministratorInCooperativeCommand.performedByUserId() +
+                            " is not an administrator of cooperative id " + addNewAdministratorInCooperativeCommand.cooperativeId());
         }
     }
 
     @Override
     public Optional<Cooperative> handle(AddNewMemberInCooperativeCommand addNewMemberInCooperativeCommand) {
-        return Optional.empty();
+        if (cooperativeRepository.existsByIdAndAdministrators_Id(addNewMemberInCooperativeCommand.cooperativeId(), addNewMemberInCooperativeCommand.performedByUserId())) {
+            var farmer = farmerRepository.findFarmerByUser_Id(addNewMemberInCooperativeCommand.newMemberId());
+
+            if (farmer.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "No Farmer found for user id " + addNewMemberInCooperativeCommand.newMemberId());
+            }
+
+            var cooperative = cooperativeRepository.findById(addNewMemberInCooperativeCommand.cooperativeId());
+
+            if (cooperative.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "No Cooperative found with id " + addNewMemberInCooperativeCommand.cooperativeId());
+            }
+
+            return cooperative.map(cooperativeData -> {
+                cooperativeData.addMember(farmer.get());
+                return cooperativeRepository.save(cooperativeData);
+            });
+        } else {
+            throw new IllegalArgumentException(
+                    "User id " + addNewMemberInCooperativeCommand.performedByUserId() +
+                            " is not an administrator of cooperative id " + addNewMemberInCooperativeCommand.cooperativeId());
+        }
     }
 }

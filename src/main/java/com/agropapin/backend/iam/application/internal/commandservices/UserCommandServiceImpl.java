@@ -4,13 +4,15 @@ import com.agropapin.backend.iam.application.internal.outboundservices.hashing.H
 import com.agropapin.backend.iam.application.internal.outboundservices.tokens.TokenService;
 import com.agropapin.backend.iam.domain.model.aggregates.User;
 import com.agropapin.backend.iam.domain.model.commands.SignInCommand;
-import com.agropapin.backend.iam.domain.model.commands.SignUpDeveloperCommand;
-import com.agropapin.backend.iam.domain.model.commands.SignUpEnterpriseCommand;
+import com.agropapin.backend.iam.domain.model.commands.SignUpAdministratorCommand;
+import com.agropapin.backend.iam.domain.model.commands.SignUpFarmerCommand;
 import com.agropapin.backend.iam.domain.model.entities.Role;
 import com.agropapin.backend.iam.domain.model.valueobjects.Roles;
 import com.agropapin.backend.iam.domain.services.UserCommandService;
 import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.RoleRepository;
 import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.UserRepository;
+import com.agropapin.backend.organizationManagement.interfaces.acl.OrganizationManagementFacade;
+import jakarta.transaction.Transactional;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.stereotype.Service;
 
@@ -24,27 +26,25 @@ public class UserCommandServiceImpl implements UserCommandService {
     private final RoleRepository roleRepository;
     private final HashingService hashingService;
     private final TokenService tokenService;
-    private final DeveloperRepository developerRepository;
-    private final EnterpriseRepository enterpriseRepository;
+    private final OrganizationManagementFacade organizationManagementFacade;
 
 
-    public UserCommandServiceImpl(UserRepository userRepository, RoleRepository roleRepository, HashingService hashingService, TokenService tokenService , DeveloperRepository developerRepository, EnterpriseRepository enterpriseRepository) {
+    public UserCommandServiceImpl(UserRepository userRepository, RoleRepository roleRepository, HashingService hashingService, TokenService tokenService, OrganizationManagementFacade organizationManagementFacade) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.hashingService = hashingService;
         this.tokenService = tokenService;
-        this.developerRepository = developerRepository;
-        this.enterpriseRepository = enterpriseRepository;
+        this.organizationManagementFacade = organizationManagementFacade;
     }
 
     @Override
     public Optional<ImmutablePair<User, String>> handle(SignInCommand command) {
-        var user = userRepository.findByUsername(command.username());
+        var user = userRepository.findByEmail(command.email());
         if (user.isEmpty())
             throw new RuntimeException("User not found");
         if (!hashingService.matches(command.password(), user.get().getPassword()))
             throw new RuntimeException("Invalid password");
-        var token = tokenService.generateToken(user.get().getUsername());
+        var token = tokenService.generateToken(user.get().getEmail());
         return Optional.of(ImmutablePair.of(user.get(), token));
     }
 
@@ -59,61 +59,49 @@ public class UserCommandServiceImpl implements UserCommandService {
 //    }
 
     @Override
-    public Optional<User> handle(SignUpDeveloperCommand command) {
-        if (userRepository.existsByUsername(command.username()))
-            throw new RuntimeException("Username already exists");
+    @Transactional
+    public Optional<User> handle(SignUpFarmerCommand command) {
+        if (userRepository.existsByEmail(command.email()))
+            throw new RuntimeException("User with this email already exists");
 
-        // Buscar el rol de desarrollador en el repositorio de roles
-        Role developerRole = roleRepository.findByName(Roles.valueOf("ROLE_DEVELOPER"))
-                .orElseThrow(() -> new RuntimeException("Developer role not found"));
+        Role farmerRole = roleRepository.findByName(Roles.valueOf("ROLE_FARMER"))
+                .orElseThrow(() -> new RuntimeException("Farmer role not found"));
 
-        // Crear una lista con el rol de desarrollador
-        List<Role> roles = List.of(developerRole);
+        List<Role> roles = List.of(farmerRole);
 
-        // Crear el usuario con el rol de desarrollador
-        var user = new User(command.username(), hashingService.encode(command.password()), roles);
+        var user = new User(command.email(), hashingService.encode(command.password()), roles);
         userRepository.save(user);
 
-        Developer developer = new Developer(
-                user,
+        this.organizationManagementFacade.createFarmer(
                 command.firstName(),
                 command.lastName(),
-                "No description provided.",
-                "No country provided.",
-                "No phone provided.",
-                0,
-                "No specialties provided.",
-                "https://hwqkibwyspmfwkzjlumy.supabase.co/storage/v1/object/public/profile/profile.png"
+                command.country(),
+                command.phone(),
+                user.getId()
         );
-        developerRepository.save(developer);
 
         return Optional.of(user);
     }
 
     @Override
-    public Optional<User> handle(SignUpEnterpriseCommand command) {
-        if (userRepository.existsByUsername(command.username()))
-            throw new RuntimeException("Username already exists");
+    public Optional<User> handle(SignUpAdministratorCommand command) {
+        if (userRepository.existsByEmail(command.email()))
+            throw new RuntimeException("User with this email already exists");
 
-        Role enterpriseRole= roleRepository.findByName(Roles.valueOf("ROLE_ENTERPRISE"))
-                .orElseThrow(() -> new RuntimeException("Enterprise role not found"));
-        List<Role> roles = List.of(enterpriseRole);
+        Role administratorRole= roleRepository.findByName(Roles.valueOf("ROLE_ADMINISTRATOR"))
+                .orElseThrow(() -> new RuntimeException("Administrator role not found"));
+        List<Role> roles = List.of(administratorRole);
 
-        var user = new User(command.username(), hashingService.encode(command.password()), roles);
+        var user = new User(command.email(), hashingService.encode(command.password()), roles);
         userRepository.save(user);
 
-        Enterprise enterprise = new Enterprise(
-                user,
-                command.enterpriseName(),
-                "No description provided.",
-                "No country provided.",
-                "11111111111",
-                "999 999 999",
-                "No website provided.",
-                "https://cdn-icons-png.flaticon.com/512/3237/3237472.png",
-                "No sector provided."
+        this.organizationManagementFacade.createAdministrator(
+                command.firstName(),
+                command.lastName(),
+                command.country(),
+                command.phone(),
+                user.getId()
         );
-        enterpriseRepository.save(enterprise);
 
         return Optional.of(user);
     }

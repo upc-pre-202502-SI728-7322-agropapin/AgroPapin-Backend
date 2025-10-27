@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CooperativeRepository extends JpaRepository<Cooperative,Long> {
-    boolean existsByAdministrators_Id(Long administratorsId);
+    boolean existsByIdAndAdministrators_Id(Long cooperativeId, Long administratorId);
 }
