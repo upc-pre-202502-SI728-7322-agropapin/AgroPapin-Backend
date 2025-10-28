@@ -7,7 +7,10 @@ import com.agropapin.backend.iam.domain.model.queries.GetUserByEmailQuery;
 import com.agropapin.backend.iam.domain.model.queries.GetUserByIdQuery;
 import com.agropapin.backend.iam.domain.services.UserCommandService;
 import com.agropapin.backend.iam.domain.services.UserQueryService;
+import com.agropapin.backend.iam.interfaces.rest.resources.UserResource;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -80,5 +83,28 @@ public class IamContextFacade {
         var getUserByIdQuery = new GetUserByIdQuery(userId);
         var user = this.userQueryService.handle(getUserByIdQuery);
         return user.orElse(null);
+    }
+
+    public Long getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) {
+            throw new SecurityException("No context authentication found");
+        }
+
+        if (!authentication.isAuthenticated()) {
+            throw new IllegalStateException("User not authenticated");
+        }
+        return ((UserResource) authentication.getPrincipal()).id();
+    }
+
+    public User getCurrentUser() {
+        Long currentUserId = getCurrentUserId();
+        return getUserById(currentUserId);
+    }
+
+    public boolean hasCurrentUserRole(String role) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + role));
     }
 }
