@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/farmers")
+@RequestMapping("/api/v1/farmer")
 @Tag(name = "Farmers", description = "Farmer Management Endpoints")
 public class FarmerController {
 

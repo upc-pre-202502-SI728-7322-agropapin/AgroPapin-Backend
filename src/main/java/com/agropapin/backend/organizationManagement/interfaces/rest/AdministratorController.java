@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/administrators")
+@RequestMapping("/api/v1/administrator")
 @Tag(name = "Administrators", description = "Administrator Management Endpoints")
 public class AdministratorController {
     private final AdministratorQueryService administratorQueryService;
