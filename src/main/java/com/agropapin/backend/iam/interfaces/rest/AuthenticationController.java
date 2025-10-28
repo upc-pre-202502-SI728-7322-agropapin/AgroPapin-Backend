@@ -50,13 +50,13 @@ public class AuthenticationController {
     }
 
     /**
-     * Handles the sign-up request for developers.
-     * @param signUpDeveloperResource the sign-up request body.
+     * Handles the sign-up request for farmers.
+     * @param signUpFarmerResource the sign-up request body.
      * @return the created user resource.
      */
-    @PostMapping("/sign-up/developer")
-    public ResponseEntity<UserResource> signUpDeveloper(@RequestBody SignUpFarmerResource signUpDeveloperResource) {
-        var signUpCommand = SignUpFarmerCommandFromResourceAssembler.toCommandFromResource(signUpDeveloperResource);
+    @PostMapping("/sign-up/farmer")
+    public ResponseEntity<UserResource> signUpDeveloper(@RequestBody SignUpFarmerResource signUpFarmerResource) {
+        var signUpCommand = SignUpFarmerCommandFromResourceAssembler.toCommandFromResource(signUpFarmerResource);
         var user = userCommandService.handle(signUpCommand);
         if (user.isEmpty()) {
             return ResponseEntity.badRequest().build();
@@ -66,13 +66,13 @@ public class AuthenticationController {
     }
 
     /**
-     * Handles the sign-up request for enterprises.
-     * @param signUpEnterpriseResource the sign-up request body.
+     * Handles the sign-up request for administrators.
+     * @param signUpAdministratorResource the sign-up request body.
      * @return the created user resource.
      */
-    @PostMapping("/sign-up/enterprise")
-    public ResponseEntity<UserResource> signUpEnterprise(@RequestBody SignUpAdministratorResource signUpEnterpriseResource) {
-        var signUpCommand = SignUpAdministratorCommandFromResourceAssembler.toCommandFromResource(signUpEnterpriseResource);
+    @PostMapping("/sign-up/administrator")
+    public ResponseEntity<UserResource> signUpEnterprise(@RequestBody SignUpAdministratorResource signUpAdministratorResource) {
+        var signUpCommand = SignUpAdministratorCommandFromResourceAssembler.toCommandFromResource(signUpAdministratorResource);
         var user = userCommandService.handle(signUpCommand);
         if (user.isEmpty()) {
             return ResponseEntity.badRequest().build();

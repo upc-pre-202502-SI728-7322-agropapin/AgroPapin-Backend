@@ -1,10 +1,10 @@
 package com.agropapin.backend.iam.interfaces.acl;
 
 import com.agropapin.backend.iam.domain.model.aggregates.User;
-import com.agropapin.backend.iam.domain.model.commands.SignUpDeveloperCommand;
 import com.agropapin.backend.iam.domain.model.commands.SignUpAdministratorCommand;
+import com.agropapin.backend.iam.domain.model.commands.SignUpFarmerCommand;
+import com.agropapin.backend.iam.domain.model.queries.GetUserByEmailQuery;
 import com.agropapin.backend.iam.domain.model.queries.GetUserByIdQuery;
-import com.agropapin.backend.iam.domain.model.queries.GetUserByUsernameQuery;
 import com.agropapin.backend.iam.domain.services.UserCommandService;
 import com.agropapin.backend.iam.domain.services.UserQueryService;
 import org.apache.logging.log4j.util.Strings;
@@ -31,58 +31,49 @@ public class IamContextFacade {
     }
 
     /**
-     * Creates a developer user with the given username, password, and developer-specific information.
-     * @param username The username of the user.
+     * Creates a farmer user with the given username, password, and farmer-specific information.
+     * @param email The email of the user.
      * @param password The password of the user.
-     * @param firstName The first name of the developer.
-     * @param lastName The last name of the developer.
-     * @param roleNames The names of the roles of the user. When a role does not exist, it is ignored.
+     * @param firstName The first name of the farmer.
+     * @param lastName The last name of the farmer.
+     * @param country The country of residence of the farmer.
+     * @param phone The contact number of the farmer.
      * @return The id of the created user.
      */
-    public Long createDeveloperUser(String username, String password, String firstName, String lastName, List<String> roleNames) {
-        var signUpCommand = new SignUpDeveloperCommand(username, password, firstName, lastName);
+    public Long createFarmerUser(String email, String password, String firstName, String lastName, String country, String phone) {
+        var signUpCommand = new SignUpFarmerCommand(email, password, firstName, lastName, country, phone);
         var result = userCommandService.handle(signUpCommand);
         if (result.isEmpty()) return 0L;
         return result.get().getId();
     }
 
     /**
-     * Creates an enterprise user with the given username, password, and enterprise-specific information.
-     * @param username The username of the user.
-     * @param password The password of the user.
-     * @param enterpriseName The name of the enterprise.
-     * @param roleNames The names of the roles of the user. When a role does not exist, it is ignored.
-     * @return The id of the created user.
+     * Creates an administrator user with the provided personal and contact information.
+     * @param email The email address of the administrator (used as username).
+     * @param password The password for the administrator account.
+     * @param firstName The first name of the administrator.
+     * @param lastName The last name of the administrator.
+     * @param country The country of residence for the administrator.
+     * @param phone The phone number of the administrator.
+     * @return The id of the created administrator user, or 0L if creation failed.
      */
-    public Long createEnterpriseUser(String username, String password, String enterpriseName, List<String> roleNames) {
-        var signUpCommand = new SignUpAdministratorCommand(username, password, enterpriseName);
+    public Long createAdministratorUser(String email, String password, String firstName,  String lastName, String country, String phone) {
+        var signUpCommand = new SignUpAdministratorCommand(email, password, firstName, lastName, country, phone);
         var result = userCommandService.handle(signUpCommand);
         if (result.isEmpty()) return 0L;
         return result.get().getId();
     }
 
     /**
-     * Fetches the id of the user with the given username.
-     * @param username The username of the user.
+     * Fetches the id of the user with the given email.
+     * @param email The email of the user.
      * @return The id of the user.
      */
-    public Long fetchUserIdByUsername(String username) {
-        var getUserByUsernameQuery = new GetUserByUsernameQuery(username);
-        var result = userQueryService.handle(getUserByUsernameQuery);
+    public Long fetchUserIdByEmail(String email) {
+        var getUserByEmailQuery = new GetUserByEmailQuery(email);
+        var result = userQueryService.handle(getUserByEmailQuery);
         if (result.isEmpty()) return 0L;
         return result.get().getId();
-    }
-
-    /**
-     * Fetches the username of the user with the given id.
-     * @param userId The id of the user.
-     * @return The username of the user.
-     */
-    public String fetchUsernameByUserId(Long userId) {
-        var getUserByIdQuery = new GetUserByIdQuery(userId);
-        var result = userQueryService.handle(getUserByIdQuery);
-        if (result.isEmpty()) return Strings.EMPTY;
-        return result.get().getUsername();
     }
 
     public User getUserById(Long userId) {
