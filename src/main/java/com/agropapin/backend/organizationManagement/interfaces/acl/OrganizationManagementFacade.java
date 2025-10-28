@@ -32,10 +32,9 @@ public class OrganizationManagementFacade {
         return farmer.orElse(null);
     }
 
-    public Farmer createFarmer(String firstName, String lastName, String country, String phone, Long userId){
+    public void createFarmer(String firstName, String lastName, String country, String phone, Long userId){
         var createFarmerCommand = new CreateFarmerCommand(firstName, lastName, country, phone, userId);
         var farmer = this.farmerCommandService.handle(createFarmerCommand);
-        return farmer.orElse(null);
     }
 
     public Administrator getAdministratorByUserId(Long userId){
@@ -44,9 +43,8 @@ public class OrganizationManagementFacade {
         return administrator.orElse(null);
     }
 
-    public Administrator createAdministrator(String firstName, String lastName, String country, String phone, Long userId){
+    public void createAdministrator(String firstName, String lastName, String country, String phone, Long userId){
         var createAdministratorCommand = new CreateAdministratorCommand(firstName, lastName, country, phone, userId);
         var administrator = this.administratorCommandService.handle(createAdministratorCommand);
-        return administrator.orElse(null);
     }
 }

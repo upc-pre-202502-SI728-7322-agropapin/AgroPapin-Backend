@@ -1,4 +1,6 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest.resources;
 
-public record UpdateCooperativeResource() {
+public record UpdateCooperativeResource(
+        String name
+) {
 }
