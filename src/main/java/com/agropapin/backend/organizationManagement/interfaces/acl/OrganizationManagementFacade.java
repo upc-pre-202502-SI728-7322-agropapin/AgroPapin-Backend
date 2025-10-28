@@ -12,6 +12,8 @@ import com.agropapin.backend.organizationManagement.domain.services.FarmerComman
 import com.agropapin.backend.organizationManagement.domain.services.FarmerQueryService;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class OrganizationManagementFacade {
     private final FarmerQueryService farmerQueryService;
@@ -26,24 +28,24 @@ public class OrganizationManagementFacade {
         this.administratorCommandService = administratorCommandService;
     }
 
-    public Farmer getFarmerByUserId(Long userId){
+    public Farmer getFarmerByUserId(UUID userId){
         var getFarmerByUserIdQuery = new GetFarmerByUserIdAsyncQuery(userId);
         var farmer = this.farmerQueryService.handle(getFarmerByUserIdQuery);
         return farmer.orElse(null);
     }
 
-    public void createFarmer(String firstName, String lastName, String country, String phone, Long userId){
+    public void createFarmer(String firstName, String lastName, String country, String phone, UUID userId){
         var createFarmerCommand = new CreateFarmerCommand(firstName, lastName, country, phone, userId);
         var farmer = this.farmerCommandService.handle(createFarmerCommand);
     }
 
-    public Administrator getAdministratorByUserId(Long userId){
+    public Administrator getAdministratorByUserId(UUID userId){
         var getAdministratorByUserIdQuery = new GetAdministratorByUserIdAsyncQuery(userId);
         var administrator = this.administratorQueryService.handle(getAdministratorByUserIdQuery);
         return administrator.orElse(null);
     }
 
-    public void createAdministrator(String firstName, String lastName, String country, String phone, Long userId){
+    public void createAdministrator(String firstName, String lastName, String country, String phone, UUID userId){
         var createAdministratorCommand = new CreateAdministratorCommand(firstName, lastName, country, phone, userId);
         var administrator = this.administratorCommandService.handle(createAdministratorCommand);
     }

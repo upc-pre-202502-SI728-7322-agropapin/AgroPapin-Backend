@@ -18,6 +18,8 @@ import org.hibernate.sql.Update;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/cooperative")
 @Tag(name = "Cooperatives", description = "Cooperative Management Endpoints")
@@ -33,7 +35,7 @@ public class CooperativeController {
     }
 
     @GetMapping(value = "/{cooperativeId}")
-    public ResponseEntity<CooperativeResource> getCooperativeById(@PathVariable Long cooperativeId) {
+    public ResponseEntity<CooperativeResource> getCooperativeById(@PathVariable UUID cooperativeId) {
         var getCooperativeByIdQuery = new GetCooperativeByIdQuery(cooperativeId);
         var cooperative = cooperativeQueryService.handle(getCooperativeByIdQuery);
         if (cooperative.isEmpty()) {
@@ -44,7 +46,7 @@ public class CooperativeController {
     }
 
     @PutMapping(value = "/{cooperativeId}")
-    public ResponseEntity<CooperativeResource> updateCooperativeById(@PathVariable Long cooperativeId, @RequestBody UpdateCooperativeResource resource) {
+    public ResponseEntity<CooperativeResource> updateCooperativeById(@PathVariable UUID cooperativeId, @RequestBody UpdateCooperativeResource resource) {
         var updateCooperativeCommand = new UpdateCooperativeCommand(cooperativeId, resource.name());
         var cooperative = cooperativeCommandService.handle(updateCooperativeCommand);
         if (cooperative.isEmpty()) {
@@ -55,8 +57,8 @@ public class CooperativeController {
     }
 
     @DeleteMapping(value = "/{cooperativeId}")
-    public ResponseEntity<Void> deleteCooperativeById(@PathVariable Long cooperativeId) {
-        Long currenUserId = iamContextFacade.getCurrentUserId();
+    public ResponseEntity<Void> deleteCooperativeById(@PathVariable UUID cooperativeId) {
+        UUID currenUserId = iamContextFacade.getCurrentUserId();
         var deleteCooperativeCommand = new DeleteCooperativeCommand(cooperativeId, currenUserId);
 
         var cooperative = cooperativeCommandService.handle(deleteCooperativeCommand);
@@ -68,10 +70,10 @@ public class CooperativeController {
 
     @PostMapping(value = "/{cooperativeId}/administrators")
     public ResponseEntity<CooperativeResource> addAdministratorToCooperative(
-            @PathVariable Long cooperativeId,
+            @PathVariable UUID cooperativeId,
             @Valid @RequestBody AddAdministratorToCooperativeResource resource) {
 
-        Long currentUserId = iamContextFacade.getCurrentUserId();
+        UUID currentUserId = iamContextFacade.getCurrentUserId();
 
         var addAdministratorCommand = new AddNewAdministratorInCooperativeCommand(
                 cooperativeId,
@@ -91,10 +93,10 @@ public class CooperativeController {
 
     @PostMapping(value = "/{cooperativeId}/members")
     public ResponseEntity<CooperativeResource> addFarmerToCooperative(
-            @PathVariable Long cooperativeId,
+            @PathVariable UUID cooperativeId,
             @Valid @RequestBody AddFarmerToCooperativeResource resource) {
 
-        Long currentUserId = iamContextFacade.getCurrentUserId();
+        UUID currentUserId = iamContextFacade.getCurrentUserId();
 
         var addMemberCommand = new AddNewAdministratorInCooperativeCommand(
                 cooperativeId,

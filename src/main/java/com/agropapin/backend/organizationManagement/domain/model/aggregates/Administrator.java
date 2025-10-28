@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,13 +31,13 @@ public class Administrator extends AuditableAbstractAggregateRoot<Administrator>
     private String phone = "999 999 999";
 
     @Column(name = "user_id", nullable = false, unique = true)
-    private Long userId;
+    private UUID userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cooperative_id")
     private Cooperative cooperative;
 
-    public Administrator(String firstName, String lastName, String country, String phone, Long userId) {
+    public Administrator(String firstName, String lastName, String country, String phone, UUID userId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country != null ? country : "No country provided.";

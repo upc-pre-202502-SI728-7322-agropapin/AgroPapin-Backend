@@ -13,6 +13,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/farmer")
 @Tag(name = "Farmers", description = "Farmer Management Endpoints")
@@ -27,7 +29,7 @@ public class FarmerController {
     }
 
     @GetMapping(value = "/{farmerId}")
-    public ResponseEntity<FarmerResource> getFarmerById(@PathVariable Long farmerId) {
+    public ResponseEntity<FarmerResource> getFarmerById(@PathVariable UUID farmerId) {
         var getFarmerByIdQuery = new GetFarmerByIdQuery(farmerId);
         var farmer = farmerQueryService.handle(getFarmerByIdQuery);
         if (farmer.isEmpty()) {
@@ -38,7 +40,7 @@ public class FarmerController {
     }
 
     @GetMapping(value = "/user/{userId}")
-    public ResponseEntity<FarmerResource> getFarmerByUserId(@PathVariable Long userId) {
+    public ResponseEntity<FarmerResource> getFarmerByUserId(@PathVariable UUID userId) {
         var getFarmerByUserIdQuery = new GetFarmerByUserIdAsyncQuery(userId);
         var farmer = farmerQueryService.handle(getFarmerByUserIdQuery);
         if (farmer.isEmpty()) {
@@ -49,7 +51,7 @@ public class FarmerController {
     }
 
     @PutMapping(value = "/{userId}")
-    public ResponseEntity<FarmerResource> updateFarmerByUserId(@PathVariable Long userId, @RequestBody UpdateFarmerResource resource) {
+    public ResponseEntity<FarmerResource> updateFarmerByUserId(@PathVariable UUID userId, @RequestBody UpdateFarmerResource resource) {
         var getFarmerByUserIdQuery = new GetFarmerByUserIdAsyncQuery(userId);
         var farmer = farmerQueryService.handle(getFarmerByUserIdQuery);
         if (farmer.isEmpty()) {

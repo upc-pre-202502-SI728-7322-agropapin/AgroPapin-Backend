@@ -102,7 +102,7 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
     @Override
     public Optional<Cooperative> handle(AddNewMemberInCooperativeCommand addNewMemberInCooperativeCommand) {
         if (cooperativeRepository.existsByIdAndAdministrators_Id(addNewMemberInCooperativeCommand.cooperativeId(), addNewMemberInCooperativeCommand.performedByUserId())) {
-            var farmer = farmerRepository.findFarmerByUser_Id(addNewMemberInCooperativeCommand.newMemberId());
+            var farmer = farmerRepository.findFarmerByUserId(addNewMemberInCooperativeCommand.newMemberId());
 
             if (farmer.isEmpty()) {
                 throw new IllegalArgumentException(

@@ -25,6 +25,6 @@ public class AdministratorQueryServiceImpl implements AdministratorQueryService 
 
     @Override
     public Optional<Administrator> handle(GetAdministratorByUserIdAsyncQuery getAdministratorByUserIdAsyncQuery) {
-        return administratorRepository.findAdministratorByUser_Id(getAdministratorByUserIdAsyncQuery.userId());
+        return administratorRepository.findAdministratorByUserId(getAdministratorByUserIdAsyncQuery.userId());
     }
 }

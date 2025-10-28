@@ -1,4 +1,6 @@
 package com.agropapin.backend.iam.domain.model.queries;
 
-public record GetUserByIdQuery(Long userId) {
+import java.util.UUID;
+
+public record GetUserByIdQuery(UUID userId) {
 }

@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,14 +31,14 @@ public class Farmer extends AuditableAbstractAggregateRoot<Farmer> {
     private String phone = "999 999 999";
 
     @Column(name = "user_id", nullable = false, unique = true)
-    private Long userId;
+    private UUID userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cooperative_id")
     private Cooperative cooperative;
 
     public Farmer(String firstName, String lastName, String country,
-                  String phone, Long userId) {
+                  String phone, UUID userId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country != null ? country : "No country provided.";

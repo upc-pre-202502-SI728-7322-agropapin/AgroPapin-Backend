@@ -4,9 +4,10 @@ import com.agropapin.backend.organizationManagement.domain.model.aggregates.Admi
 import com.agropapin.backend.organizationManagement.domain.model.aggregates.Farmer;
 
 import java.util.List;
+import java.util.UUID;
 
 public record CooperativeResource(
-        Long cooperativeId,
+        UUID cooperativeId,
         String cooperativeName,
         List<Farmer> members,
         List<Administrator> administrators

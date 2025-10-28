@@ -1,12 +1,14 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest.resources;
 
+import java.util.UUID;
+
 public record FarmerResource(
-        Long farmerId,
+        UUID farmerId,
         String firstName,
         String lastName,
         String country,
         String phone,
-        Long userId,
-        Long cooperativeId
+        UUID userId,
+        UUID cooperativeId
 ) {
 }

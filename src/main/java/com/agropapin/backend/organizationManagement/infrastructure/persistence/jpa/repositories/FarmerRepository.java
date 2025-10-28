@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface FarmerRepository extends JpaRepository<Farmer, Long> {
-    Optional<Farmer> findFarmerByUser_Id(Long id);
-    boolean existsFarmerByUser_Id(Long userId);
+public interface FarmerRepository extends JpaRepository<Farmer, UUID> {
+    Optional<Farmer> findFarmerByUserId(UUID id);
+    boolean existsFarmerByUserId(UUID userId);
 }

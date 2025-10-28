@@ -1,6 +1,8 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest.resources;
 
+import java.util.UUID;
+
 public record AddFarmerToCooperativeResource(
-        Long farmerUserId
+        UUID farmerUserId
 ) {
 }

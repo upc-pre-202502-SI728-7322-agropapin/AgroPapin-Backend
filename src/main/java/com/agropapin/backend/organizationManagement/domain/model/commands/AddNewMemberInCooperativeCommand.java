@@ -1,8 +1,10 @@
 package com.agropapin.backend.organizationManagement.domain.model.commands;
 
+import java.util.UUID;
+
 public record AddNewMemberInCooperativeCommand(
-        Long cooperativeId,
-        Long newMemberId,
-        Long performedByUserId
+        UUID cooperativeId,
+        UUID newMemberId,
+        UUID performedByUserId
 ) {
 }

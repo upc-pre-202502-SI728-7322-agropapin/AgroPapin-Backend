@@ -22,7 +22,7 @@ public class FarmerCommandServiceImpl implements FarmerCommandService {
     @Override
     @Transactional
     public Optional<Farmer> handle(CreateFarmerCommand createFarmerCommand) {
-        if (farmerRepository.existsFarmerByUser_Id(createFarmerCommand.userId())) {
+        if (farmerRepository.existsFarmerByUserId(createFarmerCommand.userId())) {
             throw new IllegalArgumentException(
                     "A Farmer already exists for user id " + createFarmerCommand.userId());
         }

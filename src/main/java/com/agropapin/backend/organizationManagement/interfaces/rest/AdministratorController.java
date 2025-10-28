@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/administrator")
@@ -27,7 +28,7 @@ public class AdministratorController {
     }
 
     @GetMapping(value = "/{administratorId}")
-    public ResponseEntity<AdministratorResource> getAdministratorById(@PathVariable Long administratorId) {
+    public ResponseEntity<AdministratorResource> getAdministratorById(@PathVariable UUID administratorId) {
         var getAdministratorByIdQuery = new GetAdministratorByIdQuery(administratorId);
         var administrator = administratorQueryService.handle(getAdministratorByIdQuery);
         if (administrator.isEmpty()) {
@@ -38,7 +39,7 @@ public class AdministratorController {
     }
 
     @GetMapping(value = "/user/{userId}")
-    public ResponseEntity<AdministratorResource> getAdministratorByUserId(@PathVariable Long userId) {
+    public ResponseEntity<AdministratorResource> getAdministratorByUserId(@PathVariable UUID userId) {
         var getAdministratorByUserIdQuery = new GetAdministratorByUserIdAsyncQuery(userId);
         var administrator = administratorQueryService.handle(getAdministratorByUserIdQuery);
         if (administrator.isEmpty()) {
@@ -49,7 +50,7 @@ public class AdministratorController {
     }
 
     @PutMapping(value = "/{userId}")
-    public ResponseEntity<AdministratorResource> updateAdministratorByUserId(@PathVariable Long userId, @RequestBody UpdateAdministratorResource resource) {
+    public ResponseEntity<AdministratorResource> updateAdministratorByUserId(@PathVariable UUID userId, @RequestBody UpdateAdministratorResource resource) {
         var getAdministratorByUserIdQuery = new GetAdministratorByUserIdAsyncQuery(userId);
         var administrator = administratorQueryService.handle(getAdministratorByUserIdQuery);
         if (administrator.isEmpty()) {

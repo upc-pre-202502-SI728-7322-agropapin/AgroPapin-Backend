@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Setter
@@ -14,8 +15,9 @@ import java.util.List;
 @With // es para que se generen los métodos with en el objeto
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    @GeneratedValue
+    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
+    private UUID Id;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)

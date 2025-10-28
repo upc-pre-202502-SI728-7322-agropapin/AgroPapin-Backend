@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * IamContextFacade
@@ -43,10 +44,10 @@ public class IamContextFacade {
      * @param phone The contact number of the farmer.
      * @return The id of the created user.
      */
-    public Long createFarmerUser(String email, String password, String firstName, String lastName, String country, String phone) {
+    public UUID createFarmerUser(String email, String password, String firstName, String lastName, String country, String phone) {
         var signUpCommand = new SignUpFarmerCommand(email, password, firstName, lastName, country, phone);
         var result = userCommandService.handle(signUpCommand);
-        if (result.isEmpty()) return 0L;
+        if (result.isEmpty()) return null;
         return result.get().getId();
     }
 
@@ -60,10 +61,10 @@ public class IamContextFacade {
      * @param phone The phone number of the administrator.
      * @return The id of the created administrator user, or 0L if creation failed.
      */
-    public Long createAdministratorUser(String email, String password, String firstName,  String lastName, String country, String phone) {
+    public UUID createAdministratorUser(String email, String password, String firstName,  String lastName, String country, String phone) {
         var signUpCommand = new SignUpAdministratorCommand(email, password, firstName, lastName, country, phone);
         var result = userCommandService.handle(signUpCommand);
-        if (result.isEmpty()) return 0L;
+        if (result.isEmpty()) return null;
         return result.get().getId();
     }
 
@@ -72,20 +73,20 @@ public class IamContextFacade {
      * @param email The email of the user.
      * @return The id of the user.
      */
-    public Long fetchUserIdByEmail(String email) {
+    public UUID fetchUserIdByEmail(String email) {
         var getUserByEmailQuery = new GetUserByEmailQuery(email);
         var result = userQueryService.handle(getUserByEmailQuery);
-        if (result.isEmpty()) return 0L;
+        if (result.isEmpty()) return null;
         return result.get().getId();
     }
 
-    public User getUserById(Long userId) {
+    public User getUserById(UUID userId) {
         var getUserByIdQuery = new GetUserByIdQuery(userId);
         var user = this.userQueryService.handle(getUserByIdQuery);
         return user.orElse(null);
     }
 
-    public Long getCurrentUserId() {
+    public UUID getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {
             throw new SecurityException("No context authentication found");
@@ -98,7 +99,7 @@ public class IamContextFacade {
     }
 
     public User getCurrentUser() {
-        Long currentUserId = getCurrentUserId();
+        UUID currentUserId = getCurrentUserId();
         return getUserById(currentUserId);
     }
 
