@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * This class is a REST controller that exposes the users resource.
@@ -54,7 +55,7 @@ public class UsersController {
      * @see UserResource
      */
     @GetMapping(value = "/{userId}")
-    public ResponseEntity<UserResource> getUserById(@PathVariable Long userId) {
+    public ResponseEntity<UserResource> getUserById(@PathVariable UUID userId) {
         var getUserByIdQuery = new GetUserByIdQuery(userId);
         var user = userQueryService.handle(getUserByIdQuery);
         if (user.isEmpty()) {

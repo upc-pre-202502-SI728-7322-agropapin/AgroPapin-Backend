@@ -1,4 +1,6 @@
 package com.agropapin.backend.iam.interfaces.rest.resources;
 
-public record RoleResource(Long id, String name) {
+import java.util.UUID;
+
+public record RoleResource(UUID id, String name) {
 }

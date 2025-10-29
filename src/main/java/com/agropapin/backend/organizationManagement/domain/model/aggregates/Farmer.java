@@ -30,7 +30,7 @@ public class Farmer extends AuditableAbstractAggregateRoot<Farmer> {
     @Column(name = "phone", nullable = false)
     private String phone = "999 999 999";
 
-    @Column(name = "user_id", nullable = false, unique = true)
+    @Column(name = "user_id", nullable = false, unique = true, columnDefinition = "BINARY(16)")
     private UUID userId;
 
     @ManyToOne(fetch = FetchType.LAZY)

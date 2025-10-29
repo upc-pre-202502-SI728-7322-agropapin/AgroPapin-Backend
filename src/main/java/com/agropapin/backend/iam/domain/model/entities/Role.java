@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Role {
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
     private UUID Id;
 
     @Enumerated(EnumType.STRING)
