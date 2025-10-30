@@ -1,13 +1,18 @@
 package com.agropapin.backend.organizationManagement.application.internal.commandservices;
 
+import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
+import com.agropapin.backend.organizationManagement.domain.model.aggregates.Administrator;
 import com.agropapin.backend.organizationManagement.domain.model.aggregates.Cooperative;
 import com.agropapin.backend.organizationManagement.domain.model.commands.*;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeCommandService;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.AdministratorRepository;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.CooperativeRepository;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.FarmerRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,13 +22,14 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
     private final AdministratorRepository administratorRepository;
     private final FarmerRepository farmerRepository;
 
-    public CooperativeCommandServiceImpl(CooperativeRepository cooperativeRepository, AdministratorRepository administratorRepository, FarmerRepository farmerRepository) {
+    public CooperativeCommandServiceImpl(CooperativeRepository cooperativeRepository, AdministratorRepository administratorRepository, FarmerRepository farmerRepository, IamContextFacade iamContextFacade) {
         this.cooperativeRepository = cooperativeRepository;
         this.administratorRepository = administratorRepository;
         this.farmerRepository = farmerRepository;
     }
 
     @Override
+    @Transactional
     public Optional<Cooperative> handle(CreateCooperativeCommand createCooperativeCommand) {
         var administrator = administratorRepository.findAdministratorByUserId(createCooperativeCommand.createdByUserId());
 
@@ -66,6 +72,13 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
             throw new IllegalArgumentException(
                     "No Cooperative found with id " + deleteCooperativeCommand.cooperativeId());
         }
+
+        List<Administrator> administrators = cooperative.get().getAdministrators();
+        for (Administrator admin : administrators) {
+            admin.clearCooperative();
+        }
+
+        administratorRepository.saveAll(administrators);
 
         cooperativeRepository.deleteById(deleteCooperativeCommand.cooperativeId());
         return cooperative;

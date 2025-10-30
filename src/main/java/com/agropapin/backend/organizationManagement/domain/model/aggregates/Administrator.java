@@ -2,6 +2,7 @@ package com.agropapin.backend.organizationManagement.domain.model.aggregates;
 
 import com.agropapin.backend.iam.domain.model.aggregates.User;
 import com.agropapin.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;

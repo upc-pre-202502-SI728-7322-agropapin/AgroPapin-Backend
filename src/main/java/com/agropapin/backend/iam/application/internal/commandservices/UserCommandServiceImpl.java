@@ -39,29 +39,18 @@ public class UserCommandServiceImpl implements UserCommandService {
 
     @Override
     public Optional<ImmutablePair<User, String>> handle(SignInCommand command) {
-        var user = userRepository.findByEmail(command.email());
+        var user = userRepository.findByUsername(command.email());
         if (user.isEmpty())
             throw new RuntimeException("User not found");
         if (!hashingService.matches(command.password(), user.get().getPassword()))
             throw new RuntimeException("Invalid password");
-        var token = tokenService.generateToken(user.get().getEmail());
+        var token = tokenService.generateToken(user.get().getUsername());
         return Optional.of(ImmutablePair.of(user.get(), token));
     }
 
-//    @Override
-//    public Optional<User> handle(SignUpCommand command) {
-//        if (userRepository.existsByUsername(command.username()))
-//            throw new RuntimeException("Username already exists");
-//        var roles = command.roles().stream().map(role -> roleRepository.findByName(role.getName()).orElseThrow(() -> new RuntimeException("Role name not found"))).toList();
-//        var user = new User(command.username(), hashingService.encode(command.password()), roles);
-//        userRepository.save(user);
-//        return userRepository.findByUsername(command.username());
-//    }
-
     @Override
-    @Transactional
     public Optional<User> handle(SignUpFarmerCommand command) {
-        if (userRepository.existsByEmail(command.email()))
+        if (userRepository.existsByUsername(command.email()))
             throw new RuntimeException("User with this email already exists");
 
         Role farmerRole = roleRepository.findByName(Roles.valueOf("ROLE_FARMER"))
@@ -85,7 +74,7 @@ public class UserCommandServiceImpl implements UserCommandService {
 
     @Override
     public Optional<User> handle(SignUpAdministratorCommand command) {
-        if (userRepository.existsByEmail(command.email()))
+        if (userRepository.existsByUsername(command.email()))
             throw new RuntimeException("User with this email already exists");
 
         Role administratorRole= roleRepository.findByName(Roles.valueOf("ROLE_ADMINISTRATOR"))

@@ -2,15 +2,13 @@ package com.agropapin.backend.organizationManagement.interfaces.rest;
 
 import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
 import com.agropapin.backend.organizationManagement.domain.model.commands.AddNewAdministratorInCooperativeCommand;
+import com.agropapin.backend.organizationManagement.domain.model.commands.CreateCooperativeCommand;
 import com.agropapin.backend.organizationManagement.domain.model.commands.DeleteCooperativeCommand;
 import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateCooperativeCommand;
 import com.agropapin.backend.organizationManagement.domain.model.queries.GetCooperativeByIdQuery;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeCommandService;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeQueryService;
-import com.agropapin.backend.organizationManagement.interfaces.rest.resources.AddAdministratorToCooperativeResource;
-import com.agropapin.backend.organizationManagement.interfaces.rest.resources.AddFarmerToCooperativeResource;
-import com.agropapin.backend.organizationManagement.interfaces.rest.resources.CooperativeResource;
-import com.agropapin.backend.organizationManagement.interfaces.rest.resources.UpdateCooperativeResource;
+import com.agropapin.backend.organizationManagement.interfaces.rest.resources.*;
 import com.agropapin.backend.organizationManagement.interfaces.rest.transform.CooperativeResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -20,8 +18,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
-@RequestMapping("/api/v1/cooperative")
+@RequestMapping(value = "/api/v1/cooperative", produces = APPLICATION_JSON_VALUE)
 @Tag(name = "Cooperatives", description = "Cooperative Management Endpoints")
 public class CooperativeController {
     private final CooperativeQueryService cooperativeQueryService;
@@ -32,6 +32,18 @@ public class CooperativeController {
         this.cooperativeQueryService = cooperativeQueryService;
         this.cooperativeCommandService = cooperativeCommandService;
         this.iamContextFacade = iamContextFacade;
+    }
+
+    @PostMapping(value = "/")
+    public ResponseEntity<CooperativeResource> createCooperative(@Valid @RequestBody CreateCooperativeResource resource) {
+        UUID currentUserId = iamContextFacade.getCurrentUserId();
+        var createCooperativeCommand = new CreateCooperativeCommand(resource.cooperativeName(), currentUserId);
+        var cooperative = cooperativeCommandService.handle(createCooperativeCommand);
+        if (cooperative.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        var cooperativeResource = CooperativeResourceFromEntityAssembler.toResourceFromEntity(cooperative.get());
+        return ResponseEntity.ok(cooperativeResource);
     }
 
     @GetMapping(value = "/{cooperativeId}")
