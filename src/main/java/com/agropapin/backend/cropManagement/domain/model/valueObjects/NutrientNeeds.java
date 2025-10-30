@@ -8,4 +8,7 @@ public record NutrientNeeds(
        String phosphorus,
        String potassium
 ) {
+    public NutrientNeeds() {
+        this("", "", "");
+    }
 }

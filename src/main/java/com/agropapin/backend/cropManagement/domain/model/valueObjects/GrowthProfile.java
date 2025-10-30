@@ -10,4 +10,7 @@ public record GrowthProfile(
         Float rowSpacingCm,
         Float seedDepthCm
 ) {
+    public GrowthProfile() {
+        this(0, 0f, 0f, 0f);
+    }
 }
