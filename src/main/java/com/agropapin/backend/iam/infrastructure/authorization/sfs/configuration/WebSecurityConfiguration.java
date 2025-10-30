@@ -24,7 +24,6 @@ import java.util.List;
 
 @Configuration
 @EnableMethodSecurity
-@EnableWebSecurity
 public class WebSecurityConfiguration {
 
     private final UserDetailsService userDetailsService;
@@ -87,7 +86,7 @@ public class WebSecurityConfiguration {
         http.cors(configurer -> configurer.configurationSource(request  -> {
             var cors = new CorsConfiguration();
             cors.setAllowedOrigins(List.of("*"));
-            cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+            cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
             cors.setAllowedHeaders(List.of("*"));
             return cors;
         }));
@@ -95,19 +94,20 @@ public class WebSecurityConfiguration {
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(unauthorizedRequestHandler))
                 .sessionManagement( customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers(
-                                "/api/v1/authentication/**",
-                                "/api/v1/roles/**",
-                                "/v3/api-docs/**",
-                                "/swagger-ui.html",
-                                "/swagger-ui/**",
-                                "/swagger-resources/**",
-                                "/webjars/**").permitAll()
-                        //.requestMatchers("/**").permitAll()   para permitir acceder cualquier edpoitn sin pasarle token
+//                        .requestMatchers(
+//                                "/api/v1/authentication/**",
+//                                "ap/v1/roles/**",
+//                                "/v3/api-docs/**",
+//                                "/swagger-ui.html",
+//                                "/swagger-ui/**",
+//                                "/swagger-resources/**",
+//                                "/webjars/**").permitAll()
+                        .requestMatchers("/**").permitAll()   //para permitir acceder cualquier edpoitn sin pasarle token
                         .anyRequest().authenticated());
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authorizationRequestFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
+
     }
 
     /**

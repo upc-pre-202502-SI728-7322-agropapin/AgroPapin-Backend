@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Field extends AuditableAbstractAggregateRoot<Field> {
     @NotNull(message = "Total area is mandatory")
     @Positive(message = "Total area must be positive")
     @Digits(integer = 8, fraction = 2, message = "Total area must have valid decimal format")
-    private Float totalArea;
+    private BigDecimal totalArea;
 
     @OneToMany(
             mappedBy = "field",

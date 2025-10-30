@@ -23,22 +23,17 @@ public class Cooperative extends AuditableAbstractAggregateRoot<Cooperative> {
     private String cooperativeName;
 
     // 0..* members — mappedBy debe existir en Farmer: private Cooperative cooperative;
-    @OneToMany(mappedBy = "cooperative", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cooperative", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Farmer> members = new ArrayList<>();
 
     // 1..* administrators — usar @NotEmpty para forzar al menos uno
-    @NotEmpty
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "cooperative_administrators",
-            joinColumns = @JoinColumn(name = "cooperative_id"),
-            inverseJoinColumns = @JoinColumn(name = "administrator_id")
-    )
+    @OneToMany(mappedBy = "cooperative", fetch = FetchType.LAZY)
     private List<Administrator> administrators = new ArrayList<>();
 
     public Cooperative(String name, Administrator creatorUser) {
         this.cooperativeName = name;
         this.administrators.add(creatorUser);
+        creatorUser.assignToCooperative(this);
     }
 
     public void updateInfo(String name) {

@@ -8,6 +8,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,7 +24,7 @@ public class Plot extends AuditableAbstractAggregateRoot<Plot> {
     @NotNull(message = "Area is mandatory")
     @Positive(message = "Area must be positive")
     @Digits(integer = 8, fraction = 2, message = "Area must have valid decimal format")
-    private Float area;
+    private BigDecimal area;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

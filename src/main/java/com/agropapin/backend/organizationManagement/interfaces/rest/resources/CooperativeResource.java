@@ -9,7 +9,8 @@ import java.util.UUID;
 public record CooperativeResource(
         UUID cooperativeId,
         String cooperativeName,
-        List<Farmer> members,
-        List<Administrator> administrators
+        List<MemberSummaryResource> members,
+        List<AdministratorSummaryResource> administrators
 ) {
 }
+

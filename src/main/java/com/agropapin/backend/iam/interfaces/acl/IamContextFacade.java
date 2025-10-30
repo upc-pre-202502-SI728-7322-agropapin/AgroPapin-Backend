@@ -7,10 +7,11 @@ import com.agropapin.backend.iam.domain.model.queries.GetUserByEmailQuery;
 import com.agropapin.backend.iam.domain.model.queries.GetUserByIdQuery;
 import com.agropapin.backend.iam.domain.services.UserCommandService;
 import com.agropapin.backend.iam.domain.services.UserQueryService;
+import com.agropapin.backend.iam.infrastructure.authorization.sfs.model.UserDetailsImpl;
 import com.agropapin.backend.iam.interfaces.rest.resources.UserResource;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -95,7 +96,15 @@ public class IamContextFacade {
         if (!authentication.isAuthenticated()) {
             throw new IllegalStateException("User not authenticated");
         }
-        return ((UserResource) authentication.getPrincipal()).id();
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        String email = userDetails.getUsername();
+
+        User user = userQueryService.handle(new GetUserByEmailQuery(email))
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        return user.getId();
     }
 
     public User getCurrentUser() {
