@@ -32,7 +32,7 @@ public class Administrator extends AuditableAbstractAggregateRoot<Administrator>
     @Column(name = "phone")
     private String phone = "999 999 999";
 
-    @Column(name = "user_id", unique = true, columnDefinition = "BINARY(16)")
+    @Column(name = "user_id", unique = true, nullable = false)
     private String userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -43,6 +43,7 @@ public class Administrator extends AuditableAbstractAggregateRoot<Administrator>
         if (email == null || email.isBlank()) {
             throw new IllegalArgumentException("Email cannot be empty");
         }
+        this.email = email;
         this.firstName = firstName != null ? firstName : "No first name provided.";
         this.lastName = lastName != null ? lastName : "No last name provided.";
         this.country = country != null ? country : "No country provided.";

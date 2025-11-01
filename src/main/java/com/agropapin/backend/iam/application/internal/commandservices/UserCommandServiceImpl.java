@@ -10,6 +10,7 @@ import com.agropapin.backend.iam.domain.services.UserCommandService;
 import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.RoleRepository;
 import com.agropapin.backend.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import com.agropapin.backend.organizationManagement.interfaces.acl.OrganizationManagementFacade;
+import jakarta.transaction.Transactional;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.stereotype.Service;
 
@@ -31,43 +32,57 @@ public class UserCommandServiceImpl implements UserCommandService {
     }
 
     @Override
+    @Transactional
     public Optional<User> handle(SignUpFarmerCommand command) {
         if (userRepository.existsByUsername(command.email()))
             throw new RuntimeException("User with this email already exists");
 
-//        Role farmerRole = roleRepository.findByName(Roles.valueOf("ROLE_FARMER"))
-//                .orElseThrow(() -> new RuntimeException("Farmer role not found"));
-//
-//        List<Role> roles = List.of(farmerRole);
-//
-//        var user = new User(command.email(), hashingService.encode(command.password()), roles);
-//        userRepository.save(user);
+        Role farmerRole = roleRepository.findByName(Roles.valueOf("ROLE_FARMER"))
+                .orElseThrow(() -> new RuntimeException("Farmer role not found"));
 
-        this.organizationManagementFacade.createFarmer(
-                command.email(),
-                command.userId()
-        );
+        List<Role> roles = List.of(farmerRole);
 
-        return Optional.empty();
+        var user = new User(command.userId(), command.email());
+        user.addRoles(roles);
+        User savedUser = userRepository.save(user);
+
+        try {
+            this.organizationManagementFacade.createFarmer(
+                    command.email(),
+                    command.userId()
+            );
+
+            return Optional.of(savedUser);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create farmer in external system: " + e.getMessage(), e);
+        }
     }
 
     @Override
+    @Transactional
     public Optional<User> handle(SignUpAdministratorCommand command) {
         if (userRepository.existsByUsername(command.email()))
             throw new RuntimeException("User with this email already exists");
 
-//        Role administratorRole= roleRepository.findByName(Roles.valueOf("ROLE_ADMINISTRATOR"))
-//                .orElseThrow(() -> new RuntimeException("Administrator role not found"));
-//        List<Role> roles = List.of(administratorRole);
-//
-//        var user = new User(command.email(), hashingService.encode(command.password()), roles);
-//        userRepository.save(user);
+        Role administratorRole= roleRepository.findByName(Roles.valueOf("ROLE_ADMINISTRATOR"))
+                .orElseThrow(() -> new RuntimeException("Administrator role not found"));
+        List<Role> roles = List.of(administratorRole);
 
-        this.organizationManagementFacade.createAdministrator(
-                command.email(),
-                command.userId()
-        );
+        var user = new User(command.userId(), command.email());
+        user.addRoles(roles);
+        User savedUser = userRepository.save(user);
 
-        return Optional.empty();
+        try {
+            this.organizationManagementFacade.createAdministrator(
+                    command.email(),
+                    command.userId()
+            );
+
+            return Optional.of(savedUser);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create administrator in external system: " + e.getMessage(), e);
+        }
     }
 }

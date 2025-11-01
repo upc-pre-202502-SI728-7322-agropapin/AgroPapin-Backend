@@ -29,7 +29,7 @@ public class Farmer extends AuditableAbstractAggregateRoot<Farmer> {
     @Column(name = "phone")
     private String phone = "999 999 999";
 
-    @Column(name = "user_id", nullable = false, unique = true, columnDefinition = "BINARY(16)")
+    @Column(name = "user_id", nullable = false, unique = true)
     private String userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,6 +40,7 @@ public class Farmer extends AuditableAbstractAggregateRoot<Farmer> {
         if (email == null || email.isBlank()) {
             throw new IllegalArgumentException("Email cannot be empty");
         }
+        this.email = email;
         this.firstName = firstName != null ? firstName : "No first name provided.";
         this.lastName = lastName != null ? lastName : "No last name provided.";
         this.country = country != null ? country : "No country provided.";

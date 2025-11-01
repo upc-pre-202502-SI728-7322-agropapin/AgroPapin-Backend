@@ -18,7 +18,6 @@ import java.util.UUID;
 @Entity
 public class User {
     @Id
-    @GeneratedValue
     @Column(updatable = false, nullable = false)
     private String id;
 
@@ -26,10 +25,6 @@ public class User {
     @Size(max = 50)
     @Column(unique = true)
     private String username;
-
-    @NotBlank
-    @Size(max = 120)
-    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_roles",
@@ -41,17 +36,21 @@ public class User {
         this.roles = new HashSet<>();
     }
 
-    public User(String username, String password) {
+    public User(String username) {
         this.username = username;
-        this.password = password;
         this.roles = new HashSet<>();
     }
 
-    public User(String username, String password,List<Role> roles) {
-        this(username, password);
-        addRoles(roles);
+    public User(String id, String username) {
+        this.id = id;
+        this.username = username;
+        this.roles = new HashSet<>();
     }
 
+    public User(String username,List<Role> roles) {
+        this(username);
+        addRoles(roles);
+    }
 
     public User addRole(Role role) {
         this.roles.add(role);

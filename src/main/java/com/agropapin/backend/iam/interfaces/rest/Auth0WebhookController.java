@@ -38,12 +38,12 @@ public class Auth0WebhookController {
             String roleType = registrationData.roleType().toUpperCase();
 
             switch (roleType) {
-                case "FARMER":
+                case "ROLE_FARMER":
                     var signUpCommand = SignUpFarmerCommandFromResourceAssembler.toCommandFromResource(registrationData);
                     var user = userCommandService.handle(signUpCommand);
 
                     break;
-                case "ADMINISTRATOR":
+                case "ROLE_ADMINISTRATOR":
                     var signUpAdminCommand = SignUpAdministratorCommandFromResourceAssembler.toCommandFromResource(registrationData);
                     var adminUser = userCommandService.handle(signUpAdminCommand);
                     break;
