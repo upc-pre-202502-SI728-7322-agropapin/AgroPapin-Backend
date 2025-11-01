@@ -36,7 +36,7 @@ public class CooperativeController {
 
     @PostMapping(value = "/")
     public ResponseEntity<CooperativeResource> createCooperative(@Valid @RequestBody CreateCooperativeResource resource) {
-        UUID currentUserId = iamContextFacade.getCurrentUserId();
+        String currentUserId = iamContextFacade.getCurrentUserId();
         var createCooperativeCommand = new CreateCooperativeCommand(resource.cooperativeName(), currentUserId);
         var cooperative = cooperativeCommandService.handle(createCooperativeCommand);
         if (cooperative.isEmpty()) {
@@ -70,7 +70,7 @@ public class CooperativeController {
 
     @DeleteMapping(value = "/{cooperativeId}")
     public ResponseEntity<Void> deleteCooperativeById(@PathVariable UUID cooperativeId) {
-        UUID currenUserId = iamContextFacade.getCurrentUserId();
+        String currenUserId = iamContextFacade.getCurrentUserId();
         var deleteCooperativeCommand = new DeleteCooperativeCommand(cooperativeId, currenUserId);
 
         var cooperative = cooperativeCommandService.handle(deleteCooperativeCommand);
@@ -85,7 +85,7 @@ public class CooperativeController {
             @PathVariable UUID cooperativeId,
             @Valid @RequestBody AddAdministratorToCooperativeResource resource) {
 
-        UUID currentUserId = iamContextFacade.getCurrentUserId();
+        String currentUserId = iamContextFacade.getCurrentUserId();
 
         var addAdministratorCommand = new AddNewAdministratorInCooperativeCommand(
                 cooperativeId,
@@ -108,7 +108,7 @@ public class CooperativeController {
             @PathVariable UUID cooperativeId,
             @Valid @RequestBody AddFarmerToCooperativeResource resource) {
 
-        UUID currentUserId = iamContextFacade.getCurrentUserId();
+        String currentUserId = iamContextFacade.getCurrentUserId();
 
         var addMemberCommand = new AddNewAdministratorInCooperativeCommand(
                 cooperativeId,

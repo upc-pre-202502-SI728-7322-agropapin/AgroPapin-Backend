@@ -39,7 +39,7 @@ public class AdministratorController {
     }
 
     @GetMapping(value = "/user/{userId}")
-    public ResponseEntity<AdministratorResource> getAdministratorByUserId(@PathVariable UUID userId) {
+    public ResponseEntity<AdministratorResource> getAdministratorByUserId(@PathVariable String userId) {
         var getAdministratorByUserIdQuery = new GetAdministratorByUserIdAsyncQuery(userId);
         var administrator = administratorQueryService.handle(getAdministratorByUserIdQuery);
         if (administrator.isEmpty()) {
@@ -50,14 +50,14 @@ public class AdministratorController {
     }
 
     @PutMapping(value = "/{userId}")
-    public ResponseEntity<AdministratorResource> updateAdministratorByUserId(@PathVariable UUID userId, @RequestBody UpdateAdministratorResource resource) {
+    public ResponseEntity<AdministratorResource> updateAdministratorByUserId(@PathVariable String userId, @RequestBody UpdateAdministratorResource resource) {
         var getAdministratorByUserIdQuery = new GetAdministratorByUserIdAsyncQuery(userId);
         var administrator = administratorQueryService.handle(getAdministratorByUserIdQuery);
         if (administrator.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        var updateAdministratorCommand = UpdateAdministratorCommandFromResourceAssembler.toCommandFromResource(administrator.get().getUserId(), resource);
+        var updateAdministratorCommand = UpdateAdministratorCommandFromResourceAssembler.toCommandFromResource(administrator.get().getId(), resource);
         var updatedAdministrator = administratorCommandService.handle(updateAdministratorCommand);
         if (updatedAdministrator.isEmpty()) {
             return ResponseEntity.notFound().build();

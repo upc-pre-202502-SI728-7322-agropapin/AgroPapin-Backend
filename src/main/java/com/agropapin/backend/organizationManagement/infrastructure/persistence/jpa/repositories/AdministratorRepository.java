@@ -9,6 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator, UUID> {
-    Optional<Administrator> findAdministratorByUserId(UUID userId);
-    boolean existsAdministratorByUserId(UUID userId);
+    Optional<Administrator> findAdministratorByUserId(String userId);
+    boolean existsAdministratorByUserId(String userId);
 }

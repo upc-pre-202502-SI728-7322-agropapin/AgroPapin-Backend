@@ -27,46 +27,10 @@ import java.util.UUID;
  */
 @Service
 public class IamContextFacade {
-    private final UserCommandService userCommandService;
     private final UserQueryService userQueryService;
 
-    public IamContextFacade(UserCommandService userCommandService, UserQueryService userQueryService) {
-        this.userCommandService = userCommandService;
+    public IamContextFacade(UserQueryService userQueryService) {
         this.userQueryService = userQueryService;
-    }
-
-    /**
-     * Creates a farmer user with the given username, password, and farmer-specific information.
-     * @param email The email of the user.
-     * @param password The password of the user.
-     * @param firstName The first name of the farmer.
-     * @param lastName The last name of the farmer.
-     * @param country The country of residence of the farmer.
-     * @param phone The contact number of the farmer.
-     * @return The id of the created user.
-     */
-    public UUID createFarmerUser(String email, String password, String firstName, String lastName, String country, String phone) {
-        var signUpCommand = new SignUpFarmerCommand(email, password, firstName, lastName, country, phone);
-        var result = userCommandService.handle(signUpCommand);
-        if (result.isEmpty()) return null;
-        return result.get().getId();
-    }
-
-    /**
-     * Creates an administrator user with the provided personal and contact information.
-     * @param email The email address of the administrator (used as username).
-     * @param password The password for the administrator account.
-     * @param firstName The first name of the administrator.
-     * @param lastName The last name of the administrator.
-     * @param country The country of residence for the administrator.
-     * @param phone The phone number of the administrator.
-     * @return The id of the created administrator user, or 0L if creation failed.
-     */
-    public UUID createAdministratorUser(String email, String password, String firstName,  String lastName, String country, String phone) {
-        var signUpCommand = new SignUpAdministratorCommand(email, password, firstName, lastName, country, phone);
-        var result = userCommandService.handle(signUpCommand);
-        if (result.isEmpty()) return null;
-        return result.get().getId();
     }
 
     /**
@@ -74,20 +38,20 @@ public class IamContextFacade {
      * @param email The email of the user.
      * @return The id of the user.
      */
-    public UUID fetchUserIdByEmail(String email) {
+    public String fetchUserIdByEmail(String email) {
         var getUserByEmailQuery = new GetUserByEmailQuery(email);
         var result = userQueryService.handle(getUserByEmailQuery);
         if (result.isEmpty()) return null;
         return result.get().getId();
     }
 
-    public User getUserById(UUID userId) {
+    public User getUserById(String userId) {
         var getUserByIdQuery = new GetUserByIdQuery(userId);
         var user = this.userQueryService.handle(getUserByIdQuery);
         return user.orElse(null);
     }
 
-    public UUID getCurrentUserId() {
+    public String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {
             throw new SecurityException("No context authentication found");
@@ -108,7 +72,7 @@ public class IamContextFacade {
     }
 
     public User getCurrentUser() {
-        UUID currentUserId = getCurrentUserId();
+        String currentUserId = getCurrentUserId();
         return getUserById(currentUserId);
     }
 

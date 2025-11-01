@@ -11,11 +11,16 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-public class User extends AuditableAbstractAggregateRoot<User> {
+public class User {
+    @Id
+    @GeneratedValue
+    @Column(updatable = false, nullable = false)
+    private String id;
 
     @NotBlank
     @Size(max = 50)

@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public record AddNewMemberInCooperativeCommand(
         UUID cooperativeId,
-        UUID newMemberId,
+        String newMemberId,
         UUID performedByUserId
 ) {
 }

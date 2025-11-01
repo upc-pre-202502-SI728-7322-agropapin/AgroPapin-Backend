@@ -4,6 +4,6 @@ import java.util.UUID;
 
 public record DeleteCooperativeCommand(
         UUID cooperativeId,
-        UUID deletedByUserId
+        String deletedByUserId
 ) {
 }

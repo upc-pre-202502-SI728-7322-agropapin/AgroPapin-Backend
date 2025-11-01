@@ -28,10 +28,7 @@ public class FarmerCommandServiceImpl implements FarmerCommandService {
         }
 
         var farmer = new Farmer(
-                createFarmerCommand.firstName(),
-                createFarmerCommand.lastName(),
-                createFarmerCommand.country(),
-                createFarmerCommand.phone(),
+                createFarmerCommand.email(),
                 createFarmerCommand.userId()
         );
 
