@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -31,6 +32,10 @@ public class Field extends AuditableAbstractAggregateRoot<Field> {
     @Positive(message = "Total area must be positive")
     @Digits(integer = 8, fraction = 2, message = "Total area must have valid decimal format")
     private BigDecimal totalArea;
+
+    @Column(name = "farmer_id", columnDefinition = "BINARY(16)", updatable = false, nullable = false)
+    @NotNull(message = "Farmer ID is mandatory")
+    private UUID farmerId;
 
     @OneToMany(
             mappedBy = "field",

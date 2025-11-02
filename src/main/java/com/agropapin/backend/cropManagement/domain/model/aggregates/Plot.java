@@ -26,7 +26,6 @@ public class Plot extends AuditableAbstractAggregateRoot<Plot> {
     @Digits(integer = 8, fraction = 2, message = "Area must have valid decimal format")
     private BigDecimal area;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "field_id", nullable = false)
     @NotNull(message = "Field is mandatory")
