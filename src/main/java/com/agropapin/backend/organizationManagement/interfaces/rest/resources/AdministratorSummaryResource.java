@@ -8,7 +8,7 @@ public record AdministratorSummaryResource(
         String lastName,
         String country,
         String phone,
-        UUID userId
+        String userId
 ){}
 
 

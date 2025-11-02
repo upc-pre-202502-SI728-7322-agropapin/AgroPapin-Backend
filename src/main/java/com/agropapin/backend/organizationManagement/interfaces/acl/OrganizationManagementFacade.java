@@ -28,25 +28,25 @@ public class OrganizationManagementFacade {
         this.administratorCommandService = administratorCommandService;
     }
 
-    public Farmer getFarmerByUserId(UUID userId){
+    public Farmer getFarmerByUserId(String userId){
         var getFarmerByUserIdQuery = new GetFarmerByUserIdAsyncQuery(userId);
         var farmer = this.farmerQueryService.handle(getFarmerByUserIdQuery);
         return farmer.orElse(null);
     }
 
-    public void createFarmer(String firstName, String lastName, String country, String phone, UUID userId){
-        var createFarmerCommand = new CreateFarmerCommand(firstName, lastName, country, phone, userId);
+    public void createFarmer(String email, String userId){
+        var createFarmerCommand = new CreateFarmerCommand(email, userId);
         var farmer = this.farmerCommandService.handle(createFarmerCommand);
     }
 
-    public Administrator getAdministratorByUserId(UUID userId){
+    public Administrator getAdministratorByUserId(String userId){
         var getAdministratorByUserIdQuery = new GetAdministratorByUserIdAsyncQuery(userId);
         var administrator = this.administratorQueryService.handle(getAdministratorByUserIdQuery);
         return administrator.orElse(null);
     }
 
-    public void createAdministrator(String firstName, String lastName, String country, String phone, UUID userId){
-        var createAdministratorCommand = new CreateAdministratorCommand(firstName, lastName, country, phone, userId);
+    public void createAdministrator(String email, String userId){
+        var createAdministratorCommand = new CreateAdministratorCommand(email, userId);
         var administrator = this.administratorCommandService.handle(createAdministratorCommand);
     }
 }

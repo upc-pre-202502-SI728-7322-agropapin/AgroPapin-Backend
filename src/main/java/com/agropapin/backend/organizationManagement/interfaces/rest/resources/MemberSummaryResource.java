@@ -8,5 +8,5 @@ public record MemberSummaryResource(
         String lastName,
         String country,
         String phone,
-        UUID userId
+        String userId
 ){}
