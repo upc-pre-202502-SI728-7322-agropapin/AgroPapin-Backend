@@ -53,15 +53,14 @@ public class IamContextFacade {
 
     public String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null) {
-            throw new SecurityException("No context authentication found");
+
+        if (authentication == null || !authentication.isAuthenticated()){
+            return null;
         }
 
-        if (!authentication.isAuthenticated()) {
-            throw new IllegalStateException("User not authenticated");
-        }
+        Object principal = authentication.getPrincipal();
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) principal;
 
         String email = userDetails.getUsername();
 

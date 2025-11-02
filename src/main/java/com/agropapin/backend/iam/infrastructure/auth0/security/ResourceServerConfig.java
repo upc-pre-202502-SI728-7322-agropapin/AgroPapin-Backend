@@ -38,22 +38,13 @@ public class ResourceServerConfig {
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                        .jwt(jwt -> jwt.jwtAuthenticationConverter(auth0JwtToUserConverter()))
                 );
         return http.build();
     }
 
     @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverter() {
-        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-
-        grantedAuthoritiesConverter.setAuthoritiesClaimName("https://agropapin-api/roles");
-
-        grantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
-
-        JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
-        jwtConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
-
-        return jwtConverter;
+    public Auth0JwtToUserConverter auth0JwtToUserConverter() {
+        return new Auth0JwtToUserConverter();
     }
 }

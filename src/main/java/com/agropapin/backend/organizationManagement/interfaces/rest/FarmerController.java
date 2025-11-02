@@ -1,6 +1,7 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest;
 
 
+import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
 import com.agropapin.backend.organizationManagement.domain.model.queries.GetFarmerByIdQuery;
 import com.agropapin.backend.organizationManagement.domain.model.queries.GetFarmerByUserIdAsyncQuery;
 import com.agropapin.backend.organizationManagement.domain.services.FarmerCommandService;
@@ -71,5 +72,4 @@ public class FarmerController {
     public ResponseEntity<String> healthCheck() {
         return ResponseEntity.ok("Farmer Service is up and running!");
     }
-
 }
