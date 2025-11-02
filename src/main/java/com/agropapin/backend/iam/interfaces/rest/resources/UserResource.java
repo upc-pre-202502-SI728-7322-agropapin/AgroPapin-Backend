@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 public record UserResource(
-        UUID id,
+        String id,
         String email,
         List<String> roles
 ) {

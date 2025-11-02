@@ -1,7 +1,5 @@
 package com.agropapin.backend.iam.application.internal.commandservices;
 
-import com.agropapin.backend.iam.application.internal.outboundservices.hashing.HashingService;
-import com.agropapin.backend.iam.application.internal.outboundservices.tokens.TokenService;
 import com.agropapin.backend.iam.domain.model.aggregates.User;
 import com.agropapin.backend.iam.domain.model.commands.SignInCommand;
 import com.agropapin.backend.iam.domain.model.commands.SignUpAdministratorCommand;
@@ -24,31 +22,17 @@ public class UserCommandServiceImpl implements UserCommandService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final HashingService hashingService;
-    private final TokenService tokenService;
     private final OrganizationManagementFacade organizationManagementFacade;
 
 
-    public UserCommandServiceImpl(UserRepository userRepository, RoleRepository roleRepository, HashingService hashingService, TokenService tokenService, OrganizationManagementFacade organizationManagementFacade) {
+    public UserCommandServiceImpl(UserRepository userRepository, RoleRepository roleRepository, OrganizationManagementFacade organizationManagementFacade) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.hashingService = hashingService;
-        this.tokenService = tokenService;
         this.organizationManagementFacade = organizationManagementFacade;
     }
 
     @Override
-    public Optional<ImmutablePair<User, String>> handle(SignInCommand command) {
-        var user = userRepository.findByUsername(command.email());
-        if (user.isEmpty())
-            throw new RuntimeException("User not found");
-        if (!hashingService.matches(command.password(), user.get().getPassword()))
-            throw new RuntimeException("Invalid password");
-        var token = tokenService.generateToken(user.get().getUsername());
-        return Optional.of(ImmutablePair.of(user.get(), token));
-    }
-
-    @Override
+    @Transactional
     public Optional<User> handle(SignUpFarmerCommand command) {
         if (userRepository.existsByUsername(command.email()))
             throw new RuntimeException("User with this email already exists");
@@ -58,21 +42,25 @@ public class UserCommandServiceImpl implements UserCommandService {
 
         List<Role> roles = List.of(farmerRole);
 
-        var user = new User(command.email(), hashingService.encode(command.password()), roles);
-        userRepository.save(user);
+        var user = new User(command.userId(), command.email());
+        user.addRoles(roles);
+        User savedUser = userRepository.save(user);
 
-        this.organizationManagementFacade.createFarmer(
-                command.firstName(),
-                command.lastName(),
-                command.country(),
-                command.phone(),
-                user.getId()
-        );
+        try {
+            this.organizationManagementFacade.createFarmer(
+                    command.email(),
+                    command.userId()
+            );
 
-        return Optional.of(user);
+            return Optional.of(savedUser);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create farmer in external system: " + e.getMessage(), e);
+        }
     }
 
     @Override
+    @Transactional
     public Optional<User> handle(SignUpAdministratorCommand command) {
         if (userRepository.existsByUsername(command.email()))
             throw new RuntimeException("User with this email already exists");
@@ -81,17 +69,20 @@ public class UserCommandServiceImpl implements UserCommandService {
                 .orElseThrow(() -> new RuntimeException("Administrator role not found"));
         List<Role> roles = List.of(administratorRole);
 
-        var user = new User(command.email(), hashingService.encode(command.password()), roles);
-        userRepository.save(user);
+        var user = new User(command.userId(), command.email());
+        user.addRoles(roles);
+        User savedUser = userRepository.save(user);
 
-        this.organizationManagementFacade.createAdministrator(
-                command.firstName(),
-                command.lastName(),
-                command.country(),
-                command.phone(),
-                user.getId()
-        );
+        try {
+            this.organizationManagementFacade.createAdministrator(
+                    command.email(),
+                    command.userId()
+            );
 
-        return Optional.of(user);
+            return Optional.of(savedUser);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create administrator in external system: " + e.getMessage(), e);
+        }
     }
 }

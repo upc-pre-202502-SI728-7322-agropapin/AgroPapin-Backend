@@ -4,6 +4,6 @@ import java.util.UUID;
 
 public record CreateCooperativeCommand(
         String name,
-        UUID createdByUserId
+        String createdByUserId
 ) {
 }

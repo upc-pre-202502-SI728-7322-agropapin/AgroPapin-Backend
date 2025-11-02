@@ -9,6 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface FarmerRepository extends JpaRepository<Farmer, UUID> {
-    Optional<Farmer> findFarmerByUserId(UUID id);
-    boolean existsFarmerByUserId(UUID userId);
+    Optional<Farmer> findFarmerByUserId(String id);
+    boolean existsFarmerByUserId(String userId);
 }

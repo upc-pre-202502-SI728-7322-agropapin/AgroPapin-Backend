@@ -28,10 +28,7 @@ public class AdministratorCommandServiceImpl implements AdministratorCommandServ
         }
 
         var administrator = new Administrator(
-                createAdministratorCommand.firstName(),
-                createAdministratorCommand.lastName(),
-                createAdministratorCommand.country(),
-                createAdministratorCommand.phone(),
+                createAdministratorCommand.email(),
                 createAdministratorCommand.userId()
         );
 

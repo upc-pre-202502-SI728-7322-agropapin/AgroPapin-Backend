@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CooperativeCommandServiceImpl implements CooperativeCommandService {
@@ -86,7 +87,7 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
     @Override
     public Optional<Cooperative> handle(AddNewAdministratorInCooperativeCommand addNewAdministratorInCooperativeCommand) {
-        if (cooperativeRepository.existsByIdAndAdministrators_Id(addNewAdministratorInCooperativeCommand.cooperativeId(), addNewAdministratorInCooperativeCommand.performedByUserId())) {
+        if (cooperativeRepository.existsByIdAndAdministrators_Id(addNewAdministratorInCooperativeCommand.cooperativeId(), UUID.fromString(addNewAdministratorInCooperativeCommand.performedByUserId()))) {
             var administrator = administratorRepository.findAdministratorByUserId(addNewAdministratorInCooperativeCommand.newAdministratorId());
 
             if (administrator.isEmpty()) {

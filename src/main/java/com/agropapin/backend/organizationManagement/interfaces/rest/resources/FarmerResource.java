@@ -8,7 +8,7 @@ public record FarmerResource(
         String lastName,
         String country,
         String phone,
-        UUID userId,
+        String userId,
         UUID cooperativeId
 ) {
 }

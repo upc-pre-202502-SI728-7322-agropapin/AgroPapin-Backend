@@ -14,35 +14,41 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Farmer extends AuditableAbstractAggregateRoot<Farmer> {
 
-    @NotBlank
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "country", nullable = false)
+    @Column(name = "country")
     private String country = "No country provided.";
 
-    @Column(name = "phone", nullable = false)
+    @Column(name = "phone")
     private String phone = "999 999 999";
 
-    @Column(name = "user_id", nullable = false, unique = true, columnDefinition = "BINARY(16)")
-    private UUID userId;
+    @Column(name = "user_id", nullable = false, unique = true)
+    private String userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cooperative_id")
     private Cooperative cooperative;
 
-    public Farmer(String firstName, String lastName, String country,
-                  String phone, UUID userId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Farmer(String email, String userId) {
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("Email cannot be empty");
+        }
+        this.email = email;
+        this.firstName = firstName != null ? firstName : "No first name provided.";
+        this.lastName = lastName != null ? lastName : "No last name provided.";
         this.country = country != null ? country : "No country provided.";
         this.phone = phone != null ? phone : "999 999 999";
         this.userId = userId;
     }
+
+
 
     public void updatePersonalInfo(String firstName, String lastName,
                                    String country, String phone) {

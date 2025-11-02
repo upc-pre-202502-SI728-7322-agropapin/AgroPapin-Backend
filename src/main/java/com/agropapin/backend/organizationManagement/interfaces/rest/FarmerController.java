@@ -40,7 +40,7 @@ public class FarmerController {
     }
 
     @GetMapping(value = "/user/{userId}")
-    public ResponseEntity<FarmerResource> getFarmerByUserId(@PathVariable UUID userId) {
+    public ResponseEntity<FarmerResource> getFarmerByUserId(@PathVariable String userId) {
         var getFarmerByUserIdQuery = new GetFarmerByUserIdAsyncQuery(userId);
         var farmer = farmerQueryService.handle(getFarmerByUserIdQuery);
         if (farmer.isEmpty()) {
@@ -51,20 +51,25 @@ public class FarmerController {
     }
 
     @PutMapping(value = "/{userId}")
-    public ResponseEntity<FarmerResource> updateFarmerByUserId(@PathVariable UUID userId, @RequestBody UpdateFarmerResource resource) {
+    public ResponseEntity<FarmerResource> updateFarmerByUserId(@PathVariable String userId, @RequestBody UpdateFarmerResource resource) {
         var getFarmerByUserIdQuery = new GetFarmerByUserIdAsyncQuery(userId);
         var farmer = farmerQueryService.handle(getFarmerByUserIdQuery);
         if (farmer.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        var updateFarmerCommand = UpdateFarmerCommandFromResourceAssembler.toCommandFromResource(farmer.get().getUserId(), resource);
+        var updateFarmerCommand = UpdateFarmerCommandFromResourceAssembler.toCommandFromResource(farmer.get().getId(), resource);
         var updatedFarmer = farmerCommandService.handle(updateFarmerCommand);
         if (updatedFarmer.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         var farmerResourceUpdated = FarmerResourceFromEntityAssembler.toResourceFromEntity(updatedFarmer.get());
         return ResponseEntity.ok(farmerResourceUpdated);
+    }
+
+    @GetMapping(value = "/" )
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("Farmer Service is up and running!");
     }
 
 }
