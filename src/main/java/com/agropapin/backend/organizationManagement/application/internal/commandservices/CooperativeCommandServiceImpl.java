@@ -38,7 +38,11 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
             throw new IllegalArgumentException(
                     "No Administrator found for user id " + createCooperativeCommand.createdByUserId());
         }
-
+        if (administrator.get().getCooperative() != null){
+            throw new IllegalArgumentException(
+                    "Administrator current have a cooperative"
+            );
+        }
         var cooperative = new Cooperative(
                 createCooperativeCommand.name(),
                 administrator.get()
@@ -50,11 +54,11 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
     @Override
     public Optional<Cooperative> handle(UpdateCooperativeCommand command) {
-        var cooperative = cooperativeRepository.findById(command.cooperativeId());
+        var cooperative = cooperativeRepository.findByAdministrators_UserId(command.userId());
 
         if (cooperative.isEmpty()) {
             throw new IllegalArgumentException(
-                    "No Cooperative found with id " + command.cooperativeId());
+                    "No Cooperative found with any administrator with userId: " + command.userId());
         }
 
         return cooperative.map(cooperativeData -> {
@@ -87,7 +91,7 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
     @Override
     public Optional<Cooperative> handle(AddNewAdministratorInCooperativeCommand addNewAdministratorInCooperativeCommand) {
-        if (cooperativeRepository.existsByIdAndAdministrators_Id(addNewAdministratorInCooperativeCommand.cooperativeId(), UUID.fromString(addNewAdministratorInCooperativeCommand.performedByUserId()))) {
+        if (cooperativeRepository.existsByIdAndAdministrators_UserId(addNewAdministratorInCooperativeCommand.cooperativeId(), addNewAdministratorInCooperativeCommand.performedByUserId())) {
             var administrator = administratorRepository.findAdministratorByUserId(addNewAdministratorInCooperativeCommand.newAdministratorId());
 
             if (administrator.isEmpty()) {
@@ -104,6 +108,8 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
             return cooperative.map(cooperativeData -> {
                 cooperativeData.addAdministrator(administrator.get());
+                administrator.get().assignToCooperative(cooperativeData);
+
                 return cooperativeRepository.save(cooperativeData);
             });
         } else {
@@ -115,7 +121,7 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
     @Override
     public Optional<Cooperative> handle(AddNewMemberInCooperativeCommand addNewMemberInCooperativeCommand) {
-        if (cooperativeRepository.existsByIdAndAdministrators_Id(addNewMemberInCooperativeCommand.cooperativeId(), addNewMemberInCooperativeCommand.performedByUserId())) {
+        if (cooperativeRepository.existsByIdAndAdministrators_UserId(addNewMemberInCooperativeCommand.cooperativeId(), addNewMemberInCooperativeCommand.performedByUserId())) {
             var farmer = farmerRepository.findFarmerByUserId(addNewMemberInCooperativeCommand.newMemberId());
 
             if (farmer.isEmpty()) {
@@ -132,6 +138,8 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
 
             return cooperative.map(cooperativeData -> {
                 cooperativeData.addMember(farmer.get());
+                farmer.get().assignToCooperative(cooperativeData);
+
                 return cooperativeRepository.save(cooperativeData);
             });
         } else {

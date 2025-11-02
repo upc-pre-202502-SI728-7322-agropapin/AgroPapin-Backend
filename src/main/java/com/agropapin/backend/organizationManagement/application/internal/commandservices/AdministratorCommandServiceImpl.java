@@ -2,6 +2,7 @@ package com.agropapin.backend.organizationManagement.application.internal.comman
 
 import com.agropapin.backend.organizationManagement.domain.model.aggregates.Administrator;
 import com.agropapin.backend.organizationManagement.domain.model.commands.CreateAdministratorCommand;
+import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateAdministratorByUserIdCommand;
 import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateAdministratorInfoCommand;
 import com.agropapin.backend.organizationManagement.domain.services.AdministratorCommandService;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.AdministratorRepository;
@@ -37,6 +38,7 @@ public class AdministratorCommandServiceImpl implements AdministratorCommandServ
     }
 
     @Override
+    @Transactional
     public Optional<Administrator> handle(UpdateAdministratorInfoCommand updateAdministratorInfoCommand) {
         var administrator = administratorRepository.findById(updateAdministratorInfoCommand.administratorId());
 
@@ -51,6 +53,27 @@ public class AdministratorCommandServiceImpl implements AdministratorCommandServ
                     updateAdministratorInfoCommand.lastName(),
                     updateAdministratorInfoCommand.country(),
                     updateAdministratorInfoCommand.phoneNumber()
+            );
+            return administratorRepository.save(administratorData);
+        });
+    }
+
+    @Override
+    @Transactional
+    public Optional<Administrator> handle(UpdateAdministratorByUserIdCommand updateAdministratorByUserIdCommand) {
+        var administrator = administratorRepository.findAdministratorByUserId(updateAdministratorByUserIdCommand.userId());
+
+        if (administrator.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "No Administrator found with user id " + updateAdministratorByUserIdCommand.userId());
+        }
+
+        return administrator.map(administratorData -> {
+            administratorData.updatePersonalInfo(
+                    updateAdministratorByUserIdCommand.firstName(),
+                    updateAdministratorByUserIdCommand.lastName(),
+                    updateAdministratorByUserIdCommand.country(),
+                    updateAdministratorByUserIdCommand.phoneNumber()
             );
             return administratorRepository.save(administratorData);
         });

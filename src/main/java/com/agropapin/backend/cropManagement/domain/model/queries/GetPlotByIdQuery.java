@@ -1,4 +1,4 @@
 package com.agropapin.backend.cropManagement.domain.model.queries;
 
-public record GetAllCropByFieldIdQuery() {
+public record GetPlotByIdQuery() {
 }

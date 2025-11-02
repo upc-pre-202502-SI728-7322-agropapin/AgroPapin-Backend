@@ -4,8 +4,11 @@ import com.agropapin.backend.cropManagement.domain.model.aggregates.Planting;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface PlantingRepository extends JpaRepository<Planting, UUID> {
+    Optional<List<Planting>> getAllByPlotId(UUID plotId);
 }

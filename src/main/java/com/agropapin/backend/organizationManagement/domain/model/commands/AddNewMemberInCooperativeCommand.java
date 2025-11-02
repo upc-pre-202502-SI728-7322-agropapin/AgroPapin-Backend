@@ -5,6 +5,6 @@ import java.util.UUID;
 public record AddNewMemberInCooperativeCommand(
         UUID cooperativeId,
         String newMemberId,
-        UUID performedByUserId
+        String performedByUserId
 ) {
 }
