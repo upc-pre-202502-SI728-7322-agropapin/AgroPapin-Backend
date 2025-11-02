@@ -34,7 +34,7 @@ public class Auth0JwtToUserConverter implements Converter<Jwt, AbstractAuthentic
         // Asumiendo que el claim de roles es una lista de strings
         if (jwt.hasClaim(ROLES_CLAIM)) {
             return ((Collection<String>) jwt.getClaim(ROLES_CLAIM)).stream()
-                    .map(role -> new SimpleGrantedAuthority(PREFIX + role))
+                    .map(SimpleGrantedAuthority::new)
                     .collect(Collectors.toList());
         }
         return new java.util.ArrayList<>();

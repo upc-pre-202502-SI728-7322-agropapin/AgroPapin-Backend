@@ -11,8 +11,9 @@ public class AdministratorResourceFromEntityAssembler {
                 entity.getLastName(),
                 entity.getCountry(),
                 entity.getPhone(),
+                entity.getEmail(),
                 entity.getUserId(),
-                null
+                entity.getCooperative() == null ? null : entity.getCooperative().getId()
         );
     }
 }

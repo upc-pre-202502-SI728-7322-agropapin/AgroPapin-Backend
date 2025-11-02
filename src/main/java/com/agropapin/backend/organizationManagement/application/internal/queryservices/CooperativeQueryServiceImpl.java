@@ -2,6 +2,7 @@ package com.agropapin.backend.organizationManagement.application.internal.querys
 
 import com.agropapin.backend.organizationManagement.domain.model.aggregates.Cooperative;
 import com.agropapin.backend.organizationManagement.domain.model.queries.GetCooperativeByIdQuery;
+import com.agropapin.backend.organizationManagement.domain.model.queries.GetCooperativeByUserIdQuery;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeQueryService;
 import com.agropapin.backend.organizationManagement.infrastructure.persistence.jpa.repositories.CooperativeRepository;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,10 @@ public class CooperativeQueryServiceImpl implements CooperativeQueryService {
     @Override
     public Optional<Cooperative> handle(GetCooperativeByIdQuery getCooperativeByIdQuery) {
         return cooperativeRepository.findById(getCooperativeByIdQuery.cooperativeId());
+    }
+
+    @Override
+    public Optional<Cooperative> handle(GetCooperativeByUserIdQuery query) {
+        return cooperativeRepository.findByAdministrators_UserIdOrMembers_UserId(query.userId(), query.userId());
     }
 }

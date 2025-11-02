@@ -1,11 +1,9 @@
 package com.agropapin.backend.organizationManagement.interfaces.rest;
 
 import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
-import com.agropapin.backend.organizationManagement.domain.model.commands.AddNewAdministratorInCooperativeCommand;
-import com.agropapin.backend.organizationManagement.domain.model.commands.CreateCooperativeCommand;
-import com.agropapin.backend.organizationManagement.domain.model.commands.DeleteCooperativeCommand;
-import com.agropapin.backend.organizationManagement.domain.model.commands.UpdateCooperativeCommand;
+import com.agropapin.backend.organizationManagement.domain.model.commands.*;
 import com.agropapin.backend.organizationManagement.domain.model.queries.GetCooperativeByIdQuery;
+import com.agropapin.backend.organizationManagement.domain.model.queries.GetCooperativeByUserIdQuery;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeCommandService;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeQueryService;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.*;
@@ -14,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.hibernate.sql.Update;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -36,7 +35,16 @@ public class CooperativeController {
 
     @PostMapping(value = "/")
     public ResponseEntity<CooperativeResource> createCooperative(@Valid @RequestBody CreateCooperativeResource resource) {
+        if (resource.cooperativeName() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
         String currentUserId = iamContextFacade.getCurrentUserId();
+
+        if (currentUserId == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
         var createCooperativeCommand = new CreateCooperativeCommand(resource.cooperativeName(), currentUserId);
         var cooperative = cooperativeCommandService.handle(createCooperativeCommand);
         if (cooperative.isEmpty()) {
@@ -46,10 +54,15 @@ public class CooperativeController {
         return ResponseEntity.ok(cooperativeResource);
     }
 
-    @GetMapping(value = "/{cooperativeId}")
-    public ResponseEntity<CooperativeResource> getCooperativeById(@PathVariable UUID cooperativeId) {
-        var getCooperativeByIdQuery = new GetCooperativeByIdQuery(cooperativeId);
+    @GetMapping(value = "/my")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
+    public ResponseEntity<CooperativeResource> getMyCooperative(){
+        var userId = iamContextFacade.getCurrentUserId();
+
+        var getCooperativeByIdQuery = new GetCooperativeByUserIdQuery(userId);
+
         var cooperative = cooperativeQueryService.handle(getCooperativeByIdQuery);
+
         if (cooperative.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -57,10 +70,26 @@ public class CooperativeController {
         return ResponseEntity.ok(cooperativeResource);
     }
 
-    @PutMapping(value = "/{cooperativeId}")
-    public ResponseEntity<CooperativeResource> updateCooperativeById(@PathVariable UUID cooperativeId, @RequestBody UpdateCooperativeResource resource) {
-        var updateCooperativeCommand = new UpdateCooperativeCommand(cooperativeId, resource.name());
+    @PutMapping(value = "/my")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
+    public ResponseEntity<CooperativeResource> updateMyCooperative(@RequestBody UpdateCooperativeResource updateCooperativeResource){
+        var userId = iamContextFacade.getCurrentUserId();
+
+        var updateCooperativeCommand = new UpdateCooperativeCommand(userId, updateCooperativeResource.name());
+
         var cooperative = cooperativeCommandService.handle(updateCooperativeCommand);
+
+        if (cooperative.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var cooperativeResource = CooperativeResourceFromEntityAssembler.toResourceFromEntity(cooperative.get());
+        return ResponseEntity.ok(cooperativeResource);
+    }
+
+    @GetMapping(value = "/{cooperativeId}")
+    public ResponseEntity<CooperativeResource> getCooperativeById(@PathVariable UUID cooperativeId) {
+        var getCooperativeByIdQuery = new GetCooperativeByIdQuery(cooperativeId);
+        var cooperative = cooperativeQueryService.handle(getCooperativeByIdQuery);
         if (cooperative.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -80,16 +109,17 @@ public class CooperativeController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value = "/{cooperativeId}/administrators")
+    @PostMapping(value = "/{cooperativeId}/administrators/{userId}")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     public ResponseEntity<CooperativeResource> addAdministratorToCooperative(
             @PathVariable UUID cooperativeId,
-            @Valid @RequestBody AddAdministratorToCooperativeResource resource) {
+            @PathVariable String userId) {
 
         String currentUserId = iamContextFacade.getCurrentUserId();
 
         var addAdministratorCommand = new AddNewAdministratorInCooperativeCommand(
                 cooperativeId,
-                resource.administratorUserId(),
+                userId,
                 currentUserId
         );
 
@@ -103,16 +133,17 @@ public class CooperativeController {
         return ResponseEntity.ok(cooperativeResource);
     }
 
-    @PostMapping(value = "/{cooperativeId}/members")
+    @PostMapping(value = "/{cooperativeId}/members/{userId}")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     public ResponseEntity<CooperativeResource> addFarmerToCooperative(
             @PathVariable UUID cooperativeId,
-            @Valid @RequestBody AddFarmerToCooperativeResource resource) {
+            @PathVariable String userId) {
 
         String currentUserId = iamContextFacade.getCurrentUserId();
 
-        var addMemberCommand = new AddNewAdministratorInCooperativeCommand(
+        var addMemberCommand = new AddNewMemberInCooperativeCommand(
                 cooperativeId,
-                resource.farmerUserId(),
+                userId,
                 currentUserId
         );
 
