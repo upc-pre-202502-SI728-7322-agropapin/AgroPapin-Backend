@@ -1,4 +1,8 @@
 package com.agropapin.backend.cropManagement.domain.model.queries;
 
-public record GetFieldByIdQuery() {
+import java.util.UUID;
+
+public record GetFieldByIdQuery(
+        UUID fieldID
+) {
 }

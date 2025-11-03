@@ -49,4 +49,18 @@ public class Field extends AuditableAbstractAggregateRoot<Field> {
     @Column(name = "status", nullable = false, length = 20)
     @NotNull(message = "Status is mandatory")
     private FieldStatus status;
+
+    public Field(String fieldName, String location, BigDecimal totalArea, String farmerUserId) {
+        this.fieldName = fieldName;
+        this.location = location;
+        this.totalArea = totalArea;
+        this.farmerUserId = farmerUserId;
+        this.status = FieldStatus.ACTIVE;
+    }
+
+    public void updateInfo(String fieldName, String location, BigDecimal totalArea) {
+        this.fieldName = fieldName;
+        this.location = location;
+        this.totalArea = totalArea;
+    }
 }

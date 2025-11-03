@@ -6,6 +6,7 @@ import com.agropapin.backend.cropManagement.domain.model.commands.UpdateFieldDat
 import com.agropapin.backend.cropManagement.domain.model.services.FieldCommandService;
 import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.FieldRepository;
 import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,12 +23,42 @@ public class FieldCommandServiceImpl implements FieldCommandService {
     }
 
     @Override
+    @Transactional
     public Optional<Field> handle(CreateFieldCommand createNewFieldCommand) {
-        return Optional.empty();
+        var fieldExisted = fieldRepository.findFieldByFarmerUserId(createNewFieldCommand.creatorUserId());
+
+        if (fieldExisted.isPresent()) {
+            throw new IllegalStateException("Farmer currently have a field");
+        }
+
+        var field = new Field(
+                createNewFieldCommand.fieldName(),
+                createNewFieldCommand.location(),
+                createNewFieldCommand.area(),
+                createNewFieldCommand.creatorUserId()
+        );
+
+        var savedField = this.fieldRepository.save(field);
+        return Optional.of(savedField);
     }
 
     @Override
     public Optional<Field> handle(UpdateFieldDataCommand updateFieldDataCommand) {
-        return Optional.empty();
+        var field = fieldRepository.findFieldByFarmerUserId(updateFieldDataCommand.userId());
+
+        if (field.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "No field found with any user with userId: " + updateFieldDataCommand.userId());
+        }
+
+        return field.map(fieldData -> {
+            fieldData.updateInfo(
+                    updateFieldDataCommand.fieldName(),
+                    updateFieldDataCommand.location(),
+                    updateFieldDataCommand.area()
+            );
+
+            return fieldRepository.save(fieldData);
+        });
     }
 }
