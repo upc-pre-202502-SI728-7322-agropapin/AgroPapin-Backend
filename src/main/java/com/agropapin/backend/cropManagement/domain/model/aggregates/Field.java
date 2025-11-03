@@ -33,9 +33,9 @@ public class Field extends AuditableAbstractAggregateRoot<Field> {
     @Digits(integer = 8, fraction = 2, message = "Total area must have valid decimal format")
     private BigDecimal totalArea;
 
-    @Column(name = "farmer_id", columnDefinition = "BINARY(16)", updatable = false, nullable = false)
-    @NotNull(message = "Farmer ID is mandatory")
-    private UUID farmerId;
+    @Column(name = "farmer_user_id",unique = true, updatable = false, nullable = false)
+    @NotNull(message = "User ID is mandatory")
+    private String farmerUserId;
 
     @OneToMany(
             mappedBy = "field",
