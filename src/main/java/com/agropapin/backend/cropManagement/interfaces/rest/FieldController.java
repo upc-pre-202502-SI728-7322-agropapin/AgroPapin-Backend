@@ -5,19 +5,15 @@ import com.agropapin.backend.cropManagement.domain.model.commands.UpdateFieldDat
 import com.agropapin.backend.cropManagement.domain.model.queries.GetFieldByFarmerIdQuery;
 import com.agropapin.backend.cropManagement.domain.model.services.FieldCommandService;
 import com.agropapin.backend.cropManagement.domain.model.services.FieldQueryService;
-import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.FieldRepository;
 import com.agropapin.backend.cropManagement.interfaces.rest.resources.CreateFieldResource;
 import com.agropapin.backend.cropManagement.interfaces.rest.resources.FieldResource;
 import com.agropapin.backend.cropManagement.interfaces.rest.resources.UpdateFieldResource;
 import com.agropapin.backend.cropManagement.interfaces.rest.transform.FieldResourceFromEntityAssembler;
 import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -35,7 +31,7 @@ public class FieldController {
         this.iamContextFacade = iamContextFacade;
     }
 
-    @PostMapping(value = "/my")
+    @PostMapping(value = "/me")
     public ResponseEntity<FieldResource> createField(CreateFieldResource createFieldResource) {
         var userId = iamContextFacade.getCurrentUserId();
 
@@ -57,7 +53,7 @@ public class FieldController {
         return  ResponseEntity.status(HttpStatus.CREATED).body(fieldResource);
     }
 
-    @PutMapping(value = "/my")
+    @PutMapping(value = "/me")
     public ResponseEntity<FieldResource> updateField(UpdateFieldResource updateFieldResource) {
         var userId = iamContextFacade.getCurrentUserId();
 
@@ -79,7 +75,7 @@ public class FieldController {
         return  ResponseEntity.status(HttpStatus.OK).body(fieldResource);
     }
 
-    @GetMapping(value = "/my")
+    @GetMapping(value = "/me")
     public ResponseEntity<FieldResource> getField() {
         var userId = iamContextFacade.getCurrentUserId();
 

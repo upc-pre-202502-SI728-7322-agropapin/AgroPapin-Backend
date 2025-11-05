@@ -38,7 +38,7 @@ public class AdministratorController {
         this.iamContextFacade = iamContextFacade;
     }
 
-    @GetMapping(value = "/my")
+    @GetMapping(value = "/me")
     public ResponseEntity<AdministratorResource> getMyAdministratorProfile() {
         var userId = iamContextFacade.getCurrentUserId();
 
@@ -54,7 +54,7 @@ public class AdministratorController {
         return ResponseEntity.ok(administratorResource);
     }
 
-    @PutMapping(value = "/my")
+    @PutMapping(value = "/me")
     public ResponseEntity<AdministratorResource> updateMyFarmerProfile(@RequestBody UpdateAdministratorByUserIdCommand updateAdministratorByUserIdCommand) {
         var userId = iamContextFacade.getCurrentUserId();
 
