@@ -1,9 +1,13 @@
 package com.agropapin.backend.cropManagement.application.internal.commandservices;
 
+import com.agropapin.backend.cropManagement.domain.exceptions.FieldNotFoundException;
+import com.agropapin.backend.cropManagement.domain.exceptions.UnauthorizedFieldAccessException;
 import com.agropapin.backend.cropManagement.domain.model.aggregates.Field;
 import com.agropapin.backend.cropManagement.domain.model.commands.CreateFieldCommand;
 import com.agropapin.backend.cropManagement.domain.model.commands.UpdateFieldDataCommand;
+import com.agropapin.backend.cropManagement.domain.model.commands.UpdateFieldStatusCommand;
 import com.agropapin.backend.cropManagement.domain.model.services.FieldCommandService;
+import com.agropapin.backend.cropManagement.domain.model.valueObjects.FieldStatus;
 import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.FieldRepository;
 import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
 import jakarta.transaction.Transactional;
@@ -60,5 +64,26 @@ public class FieldCommandServiceImpl implements FieldCommandService {
 
             return fieldRepository.save(fieldData);
         });
+    }
+
+    @Override
+    @Transactional
+    public Optional<Field> handle(UpdateFieldStatusCommand updateFieldStatusCommand) {
+        var field = fieldRepository.findById(updateFieldStatusCommand.fieldId())
+                .orElseThrow(() -> new FieldNotFoundException(updateFieldStatusCommand.fieldId()));
+
+        if (!field.getFarmerUserId().equals(updateFieldStatusCommand.farmerUserId())) {
+            throw new UnauthorizedFieldAccessException("Not authorized to update this field");
+        }
+
+        if (!field.canBeModified() && updateFieldStatusCommand.newStatus() != FieldStatus.ACTIVE) {
+            throw new IllegalStateException("Field under maintenance can only be activated");
+        }
+
+        field.updateStatus(updateFieldStatusCommand.newStatus());
+
+        var savedField = fieldRepository.save(field);
+
+        return Optional.of(savedField);
     }
 }

@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -62,5 +61,56 @@ public class Field extends AuditableAbstractAggregateRoot<Field> {
         this.fieldName = fieldName;
         this.location = location;
         this.totalArea = totalArea;
+    }
+
+    public void updateStatus(FieldStatus newStatus) {
+        if (this.status == newStatus) {
+            return;
+        }
+
+        if (!this.status.canTransitionTo(newStatus)) {
+            throw new IllegalStateException(
+                    String.format("Invalid status transition from %s to %s", this.status, newStatus)
+            );
+        }
+
+        // validateBusinessRulesForStatus(newStatus);
+
+        FieldStatus oldStatus = this.status;
+        this.status = newStatus;
+
+        // Registrar evento de dominio
+        //registerEvent(new FieldStatusChangedEvent(this.id, oldStatus, newStatus));
+    }
+
+//    private void validateBusinessRulesForStatus(FieldStatus newStatus) {
+//        switch (newStatus) {
+//            case ACTIVE:
+//                if (this.plots.isEmpty()) {
+//                    throw new IllegalStateException("Cannot activate field without plots");
+//                }
+//                break;
+//
+//            case UNDER_MAINTENANCE:
+//                if (this.totalArea.compareTo(BigDecimal.ZERO) <= 0) {
+//                    throw new IllegalStateException("Field must have valid area to be under maintenance");
+//                }
+//                break;
+//
+//            case INACTIVE:
+//                break;
+//        }
+//    }
+
+    public boolean isActive() {
+        return this.status == FieldStatus.ACTIVE;
+    }
+
+    public boolean isUnderMaintenance() {
+        return this.status == FieldStatus.UNDER_MAINTENANCE;
+    }
+
+    public boolean canBeModified() {
+        return this.status != FieldStatus.UNDER_MAINTENANCE;
     }
 }

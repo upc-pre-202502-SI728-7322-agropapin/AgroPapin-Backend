@@ -5,6 +5,6 @@ import java.math.BigDecimal;
 public record UpdateFieldResource(
         String fieldName,
         String location,
-        BigDecimal totalArea
+        BigDecimal area
 ) {
 }
