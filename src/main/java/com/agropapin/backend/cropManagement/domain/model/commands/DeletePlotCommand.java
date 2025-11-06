@@ -1,12 +1,9 @@
 package com.agropapin.backend.cropManagement.domain.model.commands;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
-public record UpdatePlotDataCommand(
+public record DeletePlotCommand(
         UUID plotId,
-        String plotName,
-        BigDecimal area,
         UUID fieldId
 ) {
 }

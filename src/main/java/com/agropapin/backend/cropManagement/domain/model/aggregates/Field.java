@@ -37,7 +37,7 @@ public class Field extends AuditableAbstractAggregateRoot<Field> {
     private String farmerUserId;
 
     @OneToMany(
-            mappedBy = "field",
+            mappedBy = "fieldId",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY

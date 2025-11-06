@@ -3,6 +3,9 @@ package com.agropapin.backend.cropManagement.interfaces.rest.transform;
 import com.agropapin.backend.cropManagement.domain.model.aggregates.Field;
 import com.agropapin.backend.cropManagement.interfaces.rest.resources.FieldResource;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class FieldResourceFromEntityAssembler {
     public static FieldResource toResourceFromEntity(Field entity) {
         return new FieldResource(
