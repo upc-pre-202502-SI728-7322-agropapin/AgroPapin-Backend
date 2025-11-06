@@ -11,4 +11,5 @@ import java.util.UUID;
 @Repository
 public interface PlotRepository extends JpaRepository<Plot, UUID> {
     Optional<List<Plot>> findAllByFieldId(UUID fieldId);
+    Optional<Plot> findPlotByIdAndFieldId(UUID fieldId, UUID plotId);
 }

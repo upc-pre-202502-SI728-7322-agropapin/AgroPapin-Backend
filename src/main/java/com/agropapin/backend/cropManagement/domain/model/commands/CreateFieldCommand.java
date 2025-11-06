@@ -1,4 +1,11 @@
 package com.agropapin.backend.cropManagement.domain.model.commands;
 
-public record CreateFieldCommand() {
+import java.math.BigDecimal;
+
+public record CreateFieldCommand(
+        String creatorUserId,
+        String fieldName,
+        String location,
+        BigDecimal area
+) {
 }

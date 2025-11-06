@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -33,12 +32,12 @@ public class Field extends AuditableAbstractAggregateRoot<Field> {
     @Digits(integer = 8, fraction = 2, message = "Total area must have valid decimal format")
     private BigDecimal totalArea;
 
-    @Column(name = "farmer_id", columnDefinition = "BINARY(16)", updatable = false, nullable = false)
-    @NotNull(message = "Farmer ID is mandatory")
-    private UUID farmerId;
+    @Column(name = "farmer_user_id",unique = true, updatable = false, nullable = false)
+    @NotNull(message = "User ID is mandatory")
+    private String farmerUserId;
 
     @OneToMany(
-            mappedBy = "field",
+            mappedBy = "fieldId",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY
@@ -49,4 +48,69 @@ public class Field extends AuditableAbstractAggregateRoot<Field> {
     @Column(name = "status", nullable = false, length = 20)
     @NotNull(message = "Status is mandatory")
     private FieldStatus status;
+
+    public Field(String fieldName, String location, BigDecimal totalArea, String farmerUserId) {
+        this.fieldName = fieldName;
+        this.location = location;
+        this.totalArea = totalArea;
+        this.farmerUserId = farmerUserId;
+        this.status = FieldStatus.ACTIVE;
+    }
+
+    public void updateInfo(String fieldName, String location, BigDecimal totalArea) {
+        this.fieldName = fieldName;
+        this.location = location;
+        this.totalArea = totalArea;
+    }
+
+    public void updateStatus(FieldStatus newStatus) {
+        if (this.status == newStatus) {
+            return;
+        }
+
+        if (!this.status.canTransitionTo(newStatus)) {
+            throw new IllegalStateException(
+                    String.format("Invalid status transition from %s to %s", this.status, newStatus)
+            );
+        }
+
+        // validateBusinessRulesForStatus(newStatus);
+
+        FieldStatus oldStatus = this.status;
+        this.status = newStatus;
+
+        // Registrar evento de dominio
+        //registerEvent(new FieldStatusChangedEvent(this.id, oldStatus, newStatus));
+    }
+
+//    private void validateBusinessRulesForStatus(FieldStatus newStatus) {
+//        switch (newStatus) {
+//            case ACTIVE:
+//                if (this.plots.isEmpty()) {
+//                    throw new IllegalStateException("Cannot activate field without plots");
+//                }
+//                break;
+//
+//            case UNDER_MAINTENANCE:
+//                if (this.totalArea.compareTo(BigDecimal.ZERO) <= 0) {
+//                    throw new IllegalStateException("Field must have valid area to be under maintenance");
+//                }
+//                break;
+//
+//            case INACTIVE:
+//                break;
+//        }
+//    }
+
+    public boolean isActive() {
+        return this.status == FieldStatus.ACTIVE;
+    }
+
+    public boolean isUnderMaintenance() {
+        return this.status == FieldStatus.UNDER_MAINTENANCE;
+    }
+
+    public boolean canBeModified() {
+        return this.status != FieldStatus.UNDER_MAINTENANCE;
+    }
 }

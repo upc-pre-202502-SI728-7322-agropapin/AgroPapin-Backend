@@ -54,7 +54,7 @@ public class CooperativeController {
         return ResponseEntity.ok(cooperativeResource);
     }
 
-    @GetMapping(value = "/my")
+    @GetMapping(value = "/me")
     @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     public ResponseEntity<CooperativeResource> getMyCooperative(){
         var userId = iamContextFacade.getCurrentUserId();
@@ -70,7 +70,7 @@ public class CooperativeController {
         return ResponseEntity.ok(cooperativeResource);
     }
 
-    @PutMapping(value = "/my")
+    @PutMapping(value = "/me")
     @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     public ResponseEntity<CooperativeResource> updateMyCooperative(@RequestBody UpdateCooperativeResource updateCooperativeResource){
         var userId = iamContextFacade.getCurrentUserId();

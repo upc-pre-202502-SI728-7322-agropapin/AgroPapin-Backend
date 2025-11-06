@@ -1,4 +1,6 @@
 package com.agropapin.backend.cropManagement.domain.model.queries;
 
-public record GetFieldByFarmerIdQuery() {
+public record GetFieldByFarmerIdQuery(
+        String farmerId
+) {
 }

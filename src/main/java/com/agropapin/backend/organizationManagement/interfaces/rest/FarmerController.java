@@ -36,7 +36,7 @@ public class FarmerController {
         this.iamContextFacade = iamContextFacade;
     }
 
-    @GetMapping(value = "/my")
+    @GetMapping(value = "/me")
     public ResponseEntity<FarmerResource> getMyFarmerProfile() {
         var userId = iamContextFacade.getCurrentUserId();
 
@@ -52,7 +52,7 @@ public class FarmerController {
         return ResponseEntity.ok(farmerResource);
     }
 
-    @PutMapping(value = "/my")
+    @PutMapping(value = "/me")
     public ResponseEntity<FarmerResource> updateMyFarmerProfile(@RequestBody UpdateFarmerResource updateFarmerResource) {
         var userId = iamContextFacade.getCurrentUserId();
 

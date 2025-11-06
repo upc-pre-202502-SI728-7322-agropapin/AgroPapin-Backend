@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -26,13 +27,51 @@ public class Plot extends AuditableAbstractAggregateRoot<Plot> {
     @Digits(integer = 8, fraction = 2, message = "Area must have valid decimal format")
     private BigDecimal area;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "field_id", nullable = false)
+    @Column(name = "field_id", nullable = false, columnDefinition = "BINARY(16)")
     @NotNull(message = "Field is mandatory")
-    private Field field;
+    private UUID fieldId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     @NotNull(message = "Status is mandatory")
     private PlotStatus status;
+
+    public Plot(String plotName, BigDecimal area, UUID field){
+        this.plotName = plotName;
+        this.area = area;
+        this.fieldId = field;
+        this.status = PlotStatus.EMPTY;
+    }
+
+    public void updateInfo(String plotName, BigDecimal area) {
+        this.plotName = plotName;
+        this.area = area;
+    }
+
+    public void updateStatus(PlotStatus newStatus) {
+        if (this.status == newStatus) {
+            return;
+        }
+
+        if (!this.status.canTransitionTo(newStatus)) {
+            throw new IllegalStateException(
+                    String.format("Invalid status transition from %s to %s", this.status, newStatus)
+            );
+        }
+
+        PlotStatus oldStatus = this.status;
+        this.status = newStatus;
+    }
+
+    public boolean isEmpty() {
+        return this.status == PlotStatus.EMPTY;
+    }
+
+    public boolean isPlanted() {
+        return this.status == PlotStatus.PLANTED;
+    }
+
+    public boolean isHarvested() {
+        return this.status != PlotStatus.HARVESTED;
+    }
 }
