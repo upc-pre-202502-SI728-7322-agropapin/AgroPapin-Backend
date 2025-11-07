@@ -27,9 +27,9 @@ public class CropType extends AuditableAbstractAggregateRoot<CropType> {
     @Size(max = 200, message = "Description must not exceed 100 characters")
     private String description;
 
-    @Column(name = "variaty", length = 100)
-    @Size(max = 100, message = "Variaty must not exceed 100 characters")
-    private String variaty;
+    @Column(name = "variety", length = 100)
+    @Size(max = 100, message = "Variety must not exceed 100 characters")
+    private String variety;
 
     @Column(name = "scientific_name", length = 100)
     @Size(max = 100, message = "scientific name must not exceed 100 characters")
