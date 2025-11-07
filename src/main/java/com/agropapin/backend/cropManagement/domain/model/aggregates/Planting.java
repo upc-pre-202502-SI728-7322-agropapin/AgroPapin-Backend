@@ -1,6 +1,7 @@
 package com.agropapin.backend.cropManagement.domain.model.aggregates;
 
 import com.agropapin.backend.cropManagement.domain.model.valueObjects.CropStatus;
+import com.agropapin.backend.cropManagement.domain.model.valueObjects.PlotStatus;
 import com.agropapin.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -15,26 +16,67 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Planting extends AuditableAbstractAggregateRoot<Planting> {
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plot_id", nullable = false)
-    @NotNull(message = "Plot is mandatory")
-    private Plot plot;
 
-    @Column(nullable = false)
-    @NotNull(message = "CropType is mandatory")
-    private UUID cropTypeId;
-
-    @Column(nullable = false, updatable = false)
     private Date plantingDate;
 
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = true)
     private Date estimatedHarvestDate;
 
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = true)
     private Date actualHarvestDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     @NotNull(message = "Status is mandatory")
-    private CropStatus state;
+    private CropStatus status;
+
+    @Column(name = "plot_id", nullable = false, columnDefinition = "BINARY(16)")
+    @NotNull(message = "Plot is mandatory")
+    private UUID plotId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "crop_type_id", nullable = false)
+    @NotNull(message = "Crop type is mandatory")
+    private CropType cropType;
+
+
+    public Planting(Date plantingDate, UUID plotId, CropType cropType) {
+        this.plantingDate = plantingDate;
+        this.plotId = plotId;
+        this.status = CropStatus.GROWING;
+        this.cropType = cropType;
+    }
+
+    public void update(Date plantingDate, Date harvestDate, UUID plotId) {
+        this.plantingDate = plantingDate;
+        this.actualHarvestDate = harvestDate;
+        this.plotId = plotId;
+    }
+
+    public void updateStatus(CropStatus newStatus) {
+        if (this.status == newStatus) {
+            return;
+        }
+
+        if (!this.status.canTransitionTo(newStatus)) {
+            throw new IllegalStateException(
+                    String.format("Invalid status transition from %s to %s", this.status, newStatus)
+            );
+        }
+
+        CropStatus oldStatus = this.status;
+        this.status = newStatus;
+    }
+
+    public boolean isEmpty() {
+        return this.status == CropStatus.GROWING;
+    }
+
+    public boolean isPlanted() {
+        return this.status == CropStatus.HARVESTED;
+    }
+
+    public boolean isHarvested() {
+        return this.status != CropStatus.FAILED;
+    }
 }

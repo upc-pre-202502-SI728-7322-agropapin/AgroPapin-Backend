@@ -1,12 +1,11 @@
-package com.agropapin.backend.cropManagement.domain.model.commands;
+package com.agropapin.backend.cropManagement.interfaces.rest.resources;
 
 import java.util.Date;
 import java.util.UUID;
 
-public record CreatePlantingCommand(
+public record CreatePlantingResource(
         Date plantingDate,
         Date actualHarvestDate,
-        UUID plotId,
         UUID cropTypeId
 ) {
 }

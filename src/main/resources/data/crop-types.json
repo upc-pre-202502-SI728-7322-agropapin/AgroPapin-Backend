@@ -1,0 +1,1379 @@
+[
+  {
+    "name": "Papa",
+    "description": "Tubérculo andino básico en la alimentación peruana",
+    "variety": "Amarilla",
+    "scientificName": "Solanum tuberosum",
+    "category": "Tubérculo",
+    "imageUrl": "https://www.huertou.cl/wp-content/uploads/2021/04/papa-amarilla-peruana.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 120,
+      "plantSpacingCm": 30.0,
+      "rowSpacingCm": 70.0,
+      "seedDepthCm": 10.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.0,
+      "idealSoilPhMax": 6.0,
+      "minTemperatureC": 7.0,
+      "maxTemperatureC": 20.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Maíz",
+    "description": "Cereal fundamental en la gastronomía peruana",
+    "variety": "Choclo",
+    "scientificName": "Zea mays",
+    "category": "Cereal",
+    "imageUrl": "https://www.perudelights.com/wp-content/uploads/2012/12/Choclo1R.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 90,
+      "plantSpacingCm": 25.0,
+      "rowSpacingCm": 75.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.8,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "High"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Arroz",
+    "description": "Cereal básico cultivado en zonas tropicales",
+    "variety": "Costeño",
+    "scientificName": "Oryza sativa",
+    "category": "Cereal",
+    "imageUrl": "https://www.hogarmania.com/archivos/202002/arroz-integral-XxXx80.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 120,
+      "plantSpacingCm": 20.0,
+      "rowSpacingCm": 25.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Very High"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Quinua",
+    "description": "Granos andinos de alto valor nutricional",
+    "variety": "Blanca",
+    "scientificName": "Chenopodium quinoa",
+    "category": "Granos Andinos",
+    "imageUrl": "https://www.comfruttiperu.com/wp-content/uploads/2020/08/quinua-blanca.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 150,
+      "plantSpacingCm": 40.0,
+      "rowSpacingCm": 60.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 8.5,
+      "minTemperatureC": 5.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Café",
+    "description": "Cultivo de exportación de zonas altoandinas",
+    "variety": "Arabica",
+    "scientificName": "Coffea arabica",
+    "category": "Exportación",
+    "imageUrl": "https://hubdocafe.cooxupe.com.br/wp-content/uploads/2021/06/premio-ernesto-illy.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 270,
+      "plantSpacingCm": 200.0,
+      "rowSpacingCm": 250.0,
+      "seedDepthCm": 3.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 24.0,
+      "sunlight": "Partial Shade",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Espárrago",
+    "description": "Hortaliza de exportación peruana reconocida mundialmente",
+    "variety": "Verde",
+    "scientificName": "Asparagus officinalis",
+    "category": "Hortaliza",
+    "imageUrl": "https://s1.ppllstatics.com/diariovasco/www/multimedia/202106/09/media/cortadas/esparragos-kuyG-U140644297105BKI-1248x770@Diario%20Vasco.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 180,
+      "plantSpacingCm": 30.0,
+      "rowSpacingCm": 150.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.5,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 10.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Algodón",
+    "description": "Cultivo industrial para la industria textil",
+    "variety": "Tangüis",
+    "scientificName": "Gossypium barbadense",
+    "category": "Industrial",
+    "imageUrl": "https://static.wixstatic.com/media/bda7de_f42cdd866e11be9548194ff12b83dcfb.jpg/v1/fill/w_756,h_494,al_c,lg_1,q_85,enc_auto/bda7de_f42cdd866e11be9548194ff12b83dcfb.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 180,
+      "plantSpacingCm": 40.0,
+      "rowSpacingCm": 90.0,
+      "seedDepthCm": 3.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Caña de Azúcar",
+    "description": "Cultivo para producción de azúcar y etanol",
+    "variety": "Cristalina",
+    "scientificName": "Saccharum officinarum",
+    "category": "Industrial",
+    "imageUrl": "https://img.freepik.com/foto-gratis/cana-azucar-fondo-madera_3248-1822.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 365,
+      "plantSpacingCm": 40.0,
+      "rowSpacingCm": 150.0,
+      "seedDepthCm": 8.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "High"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Palta",
+    "description": "Fruta de exportación de alto valor comercial",
+    "variety": "Hass",
+    "scientificName": "Persea americana",
+    "category": "Fruta",
+    "imageUrl": "https://backyardcitrustrees.com/cdn/shop/files/Avocado-Tree_fd2ee85a-78c2-40e1-8a5f-226577ff2d56_635x635.jpg?v=1699377376",
+    "growthProfile": {
+      "estimatedGrowingDays": 240,
+      "plantSpacingCm": 600.0,
+      "rowSpacingCm": 600.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 12.0,
+      "maxTemperatureC": 28.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Mango",
+    "description": "Fruta tropical de exportación",
+    "variety": "Kent",
+    "scientificName": "Mangifera indica",
+    "category": "Fruta",
+    "imageUrl": "https://www.campodebenamayor.es/wp-content/uploads/Mango-Kent-W5-450-277.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 150,
+      "plantSpacingCm": 800.0,
+      "rowSpacingCm": 800.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Uva",
+    "description": "Fruta para mesa y producción de pisco",
+    "variety": "Quebranta",
+    "scientificName": "Vitis vinifera",
+    "category": "Fruta",
+    "imageUrl": "https://lh4.googleusercontent.com/-9MrqtndGrKI/U1xzCR1-TII/AAAAAAAAGUg/XTonCuRqLVg/s1600/DSC_8945.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 180,
+      "plantSpacingCm": 200.0,
+      "rowSpacingCm": 300.0,
+      "seedDepthCm": 8.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Mandarina",
+    "description": "Cítrico dulce de fácil consumo",
+    "variety": "Criolla",
+    "scientificName": "Citrus reticulata",
+    "category": "Cítrico",
+    "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_699481-MLM53309513897_012023-O.webp",
+    "growthProfile": {
+      "estimatedGrowingDays": 240,
+      "plantSpacingCm": 400.0,
+      "rowSpacingCm": 500.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 13.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Limón",
+    "description": "Cítrico ácido esencial en la cocina peruana",
+    "variety": "Sutil",
+    "scientificName": "Citrus aurantifolia",
+    "category": "Cítrico",
+    "imageUrl": "https://agraria.pe/imgs/a/lx/limon-sutil-de-chulucanas-llega-al-valle-de-viru-para-divers-27383.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 180,
+      "plantSpacingCm": 400.0,
+      "rowSpacingCm": 500.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 32.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Plátano",
+    "description": "Fruta tropical de consumo masivo",
+    "variety": "Bellaco",
+    "scientificName": "Musa paradisiaca",
+    "category": "Fruta",
+    "imageUrl": "https://5.imimg.com/data5/KA/AY/MY-23991464/fresh-banana-kadali-variety-500x500.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 270,
+      "plantSpacingCm": 300.0,
+      "rowSpacingCm": 300.0,
+      "seedDepthCm": 10.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "High"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Piña",
+    "description": "Fruta tropical dulce y jugosa",
+    "variety": "Golden",
+    "scientificName": "Ananas comosus",
+    "category": "Fruta",
+    "imageUrl": "https://agrokionperu.com/wp-content/uploads/2022/11/pina-golden.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 365,
+      "plantSpacingCm": 60.0,
+      "rowSpacingCm": 90.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 4.5,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 32.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Cacao",
+    "description": "Cultivo para producción de chocolate fino",
+    "variety": "Criollo",
+    "scientificName": "Theobroma cacao",
+    "category": "Exportación",
+    "imageUrl": "https://dojiw2m9tvv09.cloudfront.net/1829/4/L_x_cacao-circle85538631.jpg?1310",
+    "growthProfile": {
+      "estimatedGrowingDays": 180,
+      "plantSpacingCm": 300.0,
+      "rowSpacingCm": 300.0,
+      "seedDepthCm": 3.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 18.0,
+      "maxTemperatureC": 32.0,
+      "sunlight": "Partial Shade",
+      "wateringNeeds": "High"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Yuca",
+    "description": "Tubérculo tropical resistente a sequías",
+    "variety": "Amarga",
+    "scientificName": "Manihot esculenta",
+    "category": "Tubérculo",
+    "imageUrl": "https://senderosworld.com/wp-content/uploads/2017/04/Yuca-amarga.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 240,
+      "plantSpacingCm": 100.0,
+      "rowSpacingCm": 100.0,
+      "seedDepthCm": 8.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Camote",
+    "description": "Tubérculo dulce muy nutritivo",
+    "variety": "Amarillo",
+    "scientificName": "Ipomoea batatas",
+    "category": "Tubérculo",
+    "imageUrl": "https://cdn.shopify.com/s/files/1/0080/1076/0255/products/camote_amarillo_americano_1_a3233755-c004-4ffb-9471-8bc97f6e3988_1200x1200_crop_center.jpg?v=1654034651",
+    "growthProfile": {
+      "estimatedGrowingDays": 120,
+      "plantSpacingCm": 30.0,
+      "rowSpacingCm": 90.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Zanahoria",
+    "description": "Hortaliza de raíz naranja rica en vitamina A",
+    "variety": "Chantenay",
+    "scientificName": "Daucus carota",
+    "category": "Hortaliza",
+    "imageUrl": "https://www.planfor.es/Donnees_Site/Produit/Images/G003/zanahoria-chantenay-con-corazon-rojo_ES_500_0023484.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 80,
+      "plantSpacingCm": 5.0,
+      "rowSpacingCm": 30.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.8,
+      "minTemperatureC": 10.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Tomate",
+    "description": "Fruta-hortaliza esencial en cocina",
+    "variety": "Rio Grande",
+    "scientificName": "Solanum lycopersicum",
+    "category": "Hortaliza",
+    "imageUrl": "https://agrosemval.com/wp-content/uploads/2020/05/tomate-rio-grande-ipc-01.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 90,
+      "plantSpacingCm": 60.0,
+      "rowSpacingCm": 90.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.8,
+      "minTemperatureC": 18.0,
+      "maxTemperatureC": 27.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Cebolla",
+    "description": "Bulbo aromático fundamental en cocina",
+    "variety": "Roja",
+    "scientificName": "Allium cepa",
+    "category": "Hortaliza",
+    "imageUrl": "https://www.arecetas.com/wp-content/uploads/2021/07/cebolla-roja__auto_d_fncpqf-1024x683.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 120,
+      "plantSpacingCm": 10.0,
+      "rowSpacingCm": 30.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 13.0,
+      "maxTemperatureC": 24.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Ajo",
+    "description": "Bulbo picante con propiedades medicinales",
+    "variety": "Blanco",
+    "scientificName": "Allium sativum",
+    "category": "Hortaliza",
+    "imageUrl": "https://ecosdelatierra.es/wp-content/uploads/2020/10/ajoblancoeco.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 150,
+      "plantSpacingCm": 15.0,
+      "rowSpacingCm": 30.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 10.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Lechuga",
+    "description": "Hoja verde para ensaladas",
+    "variety": "Crespa",
+    "scientificName": "Lactuca sativa",
+    "category": "Hoja Verde",
+    "imageUrl": "https://frescosur.com/wp-content/uploads/2021/06/Verdura-LechugaCrespa-1-1-800x800.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 60,
+      "plantSpacingCm": 25.0,
+      "rowSpacingCm": 30.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 7.0,
+      "maxTemperatureC": 24.0,
+      "sunlight": "Partial Sun",
+      "wateringNeeds": "High"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Repollo",
+    "description": "Col compacta para diversos platos",
+    "variety": "Verde",
+    "scientificName": "Brassica oleracea",
+    "category": "Hortaliza",
+    "imageUrl": "https://img.freepik.com/fotos-premium/vista-superior-repollo-verde-fresco-o-repollo-cabeza-crecen-jardin-savar-dhaka-bangladesh_94678-1340.jpg?w=1000",
+    "growthProfile": {
+      "estimatedGrowingDays": 90,
+      "plantSpacingCm": 45.0,
+      "rowSpacingCm": 60.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 7.0,
+      "maxTemperatureC": 24.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Brócoli",
+    "description": "Inflorescencia rica en nutrientes",
+    "variety": "Calabrés",
+    "scientificName": "Brassica oleracea",
+    "category": "Hortaliza",
+    "imageUrl": "https://www.fecoagro.com.ar/wp-content/uploads/2022/03/broccoli.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 85,
+      "plantSpacingCm": 45.0,
+      "rowSpacingCm": 60.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 7.0,
+      "maxTemperatureC": 24.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Coliflor",
+    "description": "Inflorescencia blanca muy versátil",
+    "variety": "Blanca",
+    "scientificName": "Brassica oleracea",
+    "category": "Hortaliza",
+    "imageUrl": "https://thumbs.dreamstime.com/b/una-coliflor-blanca-rodeada-por-sus-hojas-en-un-campo-plantado-turqu-esmirna-145545623.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 80,
+      "plantSpacingCm": 45.0,
+      "rowSpacingCm": 60.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 7.0,
+      "maxTemperatureC": 24.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "High",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Zapallo",
+    "description": "Calabaza de diversos usos culinarios",
+    "variety": "Macre",
+    "scientificName": "Cucurbita maxima",
+    "category": "Hortaliza",
+    "imageUrl": "https://origin.cronosmedia.glr.pe/large/2020/10/28/lg_5f99aefe0faf084e4926728c.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 100,
+      "plantSpacingCm": 120.0,
+      "rowSpacingCm": 180.0,
+      "seedDepthCm": 3.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.8,
+      "minTemperatureC": 18.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Pepino",
+    "description": "Fruto refrescante para ensaladas",
+    "variety": "Europeo",
+    "scientificName": "Cucumis sativus",
+    "category": "Hortaliza",
+    "imageUrl": "https://tagseeds.com/wp-content/uploads/2023/07/pepino-europeo.webp",
+    "growthProfile": {
+      "estimatedGrowingDays": 60,
+      "plantSpacingCm": 45.0,
+      "rowSpacingCm": 90.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 18.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "High"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Ají",
+    "description": "Chile picante base de la comida peruana",
+    "variety": "Limo",
+    "scientificName": "Capsicum baccatum",
+    "category": "Hortaliza",
+    "imageUrl": "https://www.perudelights.com/wp-content/uploads/2013/01/aj%C3%AD-limo-1.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 90,
+      "plantSpacingCm": 50.0,
+      "rowSpacingCm": 70.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.8,
+      "minTemperatureC": 18.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Pimiento",
+    "description": "Chile dulce sin picante",
+    "variety": "Morrón",
+    "scientificName": "Capsicum annuum",
+    "category": "Hortaliza",
+    "imageUrl": "https://static.wixstatic.com/media/6fce9e_42c082d8a5f544b2ba7a72b6762be07f~mv2.jpg/v1/fill/w_1920,h_1280,al_c/6fce9e_42c082d8a5f544b2ba7a72b6762be07f~mv2.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 85,
+      "plantSpacingCm": 45.0,
+      "rowSpacingCm": 60.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.8,
+      "minTemperatureC": 18.0,
+      "maxTemperatureC": 27.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Berenjena",
+    "description": "Fruto morado para guisos y parrillas",
+    "variety": "Larga Negra",
+    "scientificName": "Solanum melongena",
+    "category": "Hortaliza",
+    "imageUrl": "https://cdn-prod.medicalnewstoday.com/content/images/articles/279/279359/two-eggplants-on-a-wooden-table.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 85,
+      "plantSpacingCm": 60.0,
+      "rowSpacingCm": 90.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.8,
+      "minTemperatureC": 21.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "High",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Haba",
+    "description": "Legumbre andina de alto valor proteico",
+    "variety": "Granada",
+    "scientificName": "Vicia faba",
+    "category": "Legumbre",
+    "imageUrl": "https://granadasdamadeelche.com/wp-content/uploads/2014/11/habas_sld_01.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 120,
+      "plantSpacingCm": 20.0,
+      "rowSpacingCm": 60.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 7.0,
+      "maxTemperatureC": 24.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Arveja",
+    "description": "Legumbre dulce para diversos platos",
+    "variety": "China",
+    "scientificName": "Pisum sativum",
+    "category": "Legumbre",
+    "imageUrl": "https://cubiro.com/wp-content/uploads/2021/12/jolantao-holantao-arvejita-china.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 70,
+      "plantSpacingCm": 10.0,
+      "rowSpacingCm": 60.0,
+      "seedDepthCm": 3.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 7.0,
+      "maxTemperatureC": 24.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Frijol",
+    "description": "Legumbre básica en alimentación",
+    "variety": "Canario",
+    "scientificName": "Phaseolus vulgaris",
+    "category": "Legumbre",
+    "imageUrl": "https://www.agrilatin.com/img/beans/FrejolCanario/000314495W.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 80,
+      "plantSpacingCm": 10.0,
+      "rowSpacingCm": 60.0,
+      "seedDepthCm": 3.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 16.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Pallar",
+    "description": "Legumbre típica de la costa peruana",
+    "variety": "Ica",
+    "scientificName": "Phaseolus lunatus",
+    "category": "Legumbre",
+    "imageUrl": "https://4.bp.blogspot.com/-161mvqRtOTE/W-s0ReyNJAI/AAAAAAAAjN0/93wXcSASd8kUFOernT--YMyMTAfiIrCqgCLcBGAs/s1600/pallar.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 90,
+      "plantSpacingCm": 15.0,
+      "rowSpacingCm": 70.0,
+      "seedDepthCm": 4.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 18.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Garbanzo",
+    "description": "Legumbre mediterránea adaptada al Perú",
+    "variety": "Kabul",
+    "scientificName": "Cicer arietinum",
+    "category": "Legumbre",
+    "imageUrl": "https://mejoresmarcas.de/wp-content/uploads/2021/02/garbanzos.jpg",
+    "growthProfile": {
+          "estimatedGrowingDays": 100,
+          "plantSpacingCm": 15.0,
+          "rowSpacingCm": 60.0,
+          "seedDepthCm": 4.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 18.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Lenteja",
+    "description": "Legumbre pequeña muy nutritiva",
+    "variety": "Castellana",
+    "scientificName": "Lens culinaris",
+    "category": "Legumbre",
+    "imageUrl": "https://herbolariodani.com/wp-content/uploads/2020/06/product_l_e_lenteja-castellana_2-1024x768.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 110,
+      "plantSpacingCm": 5.0,
+      "rowSpacingCm": 30.0,
+      "seedDepthCm": 3.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 10.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Alfalfa",
+    "description": "Forraje para alimentación animal",
+    "variety": "Cuf 101",
+    "scientificName": "Medicago sativa",
+    "category": "Forraje",
+    "imageUrl": "https://hablemosdeculturas.com/wp-content/uploads/2018/09/como-sembrar-alfalfa-3-768x811.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 30,
+      "plantSpacingCm": 20.0,
+      "rowSpacingCm": 30.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.5,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 5.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Maíz Morado",
+    "description": "Maíz andino con propiedades antioxidantes",
+    "variety": "Canteño",
+    "scientificName": "Zea mays",
+    "category": "Cereal",
+    "imageUrl": "https://st2.depositphotos.com/3996371/11448/i/950/depositphotos_114485272-stock-photo-peruvian-purple-corn-maiz-morado.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 120,
+      "plantSpacingCm": 25.0,
+      "rowSpacingCm": 75.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Kiwicha",
+    "description": "Granos andinos de alto valor proteico",
+    "variety": "Oscar Blanco",
+    "scientificName": "Amaranthus caudatus",
+    "category": "Granos Andinos",
+    "imageUrl": "https://portal.andina.pe/EDPfotografia3/Thumbnail/2021/06/02/000778971W.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 120,
+      "plantSpacingCm": 10.0,
+      "rowSpacingCm": 50.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 28.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Cañihua",
+    "description": "Granos andinos resistentes a heladas",
+    "variety": "Ramis",
+    "scientificName": "Chenopodium pallidicaule",
+    "category": "Granos Andinos",
+    "imageUrl": "https://elpopular.cronosmedia.glr.pe/original/2021/04/01/60663d1443720f3e031bf45a.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 130,
+      "plantSpacingCm": 15.0,
+      "rowSpacingCm": 40.0,
+      "seedDepthCm": 1.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 8.0,
+      "minTemperatureC": 5.0,
+      "maxTemperatureC": 20.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Maca",
+    "description": "Tubérculo andino con propiedades medicinales",
+    "variety": "Amarilla",
+    "scientificName": "Lepidium meyenii",
+    "category": "Tubérculo",
+    "imageUrl": "https://th.bing.com/th/id/R.6c1db0ff6aeb2951a11414930e8b9578?rik=SQLcZZEbXWzFbQ&riu=http%3a%2f%2fwww.vegatox.com%2fcdn%2fshop%2farticles%2fMaca_benefits.jpg%3fv%3d1687355180&ehk=gtQaNay1FvScPZgtCi6wBR4mCeFkWh9X%2bR9RUnoqFzs%3d&risl=&pid=ImgRaw&r=0",
+    "growthProfile": {
+      "estimatedGrowingDays": 270,
+      "plantSpacingCm": 20.0,
+      "rowSpacingCm": 40.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": -5.0,
+      "maxTemperatureC": 15.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "Medium"
+    }
+  },
+  {
+    "name": "Olivo",
+    "description": "Árbol para producción de aceitunas y aceite",
+    "variety": "Sevillano",
+    "scientificName": "Olea europaea",
+    "category": "Fruta",
+    "imageUrl": "https://chileoliva.cl/wp-content/uploads/2022/12/FCS_0495-scaled.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 180,
+      "plantSpacingCm": 600.0,
+      "rowSpacingCm": 600.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 10.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Low",
+      "potassium": "Low"
+    }
+  },
+  {
+    "name": "Vid",
+    "description": "Para producción de uvas y pisco",
+    "variety": "Italia",
+    "scientificName": "Vitis vinifera",
+    "category": "Fruta",
+    "imageUrl": "https://assets.jardiland.com/image/fetch/w_554,f_auto/https://enseignecompublicprd.blob.core.windows.net/enseignecompublicprd/Riversand/AssetExport/20274631.3519270002739.53132.40057116.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 180,
+      "plantSpacingCm": 200.0,
+      "rowSpacingCm": 300.0,
+      "seedDepthCm": 8.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Low"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Low",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Granadilla",
+    "description": "Fruta de la pasión dulce",
+    "variety": "Criolla",
+    "scientificName": "Passiflora ligularis",
+    "category": "Fruta",
+    "imageUrl": "https://blog.gardencenterejea.com/wp-content/uploads/2017/08/granadilla-1-380x254.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 270,
+      "plantSpacingCm": 300.0,
+      "rowSpacingCm": 400.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Maracuyá",
+    "description": "Fruta de la pasión ácida",
+    "variety": "Amarilla",
+    "scientificName": "Passiflora edulis",
+    "category": "Fruta",
+    "imageUrl": "https://mejorconsalud.as.com/wp-content/uploads/2021/07/maracuya-amarilla.jpg?auto=webp&quality=60&width=1080&crop=16:9",
+    "growthProfile": {
+      "estimatedGrowingDays": 240,
+      "plantSpacingCm": 300.0,
+      "rowSpacingCm": 400.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Tumbo",
+    "description": "Fruta de la pasión serrana",
+    "variety": "Serrano",
+    "scientificName": "Passiflora mollissima",
+    "category": "Fruta",
+    "imageUrl": "https://1.bp.blogspot.com/_beY-NZgQTMY/TBlTQfPstdI/AAAAAAAAAAk/oQXCLJ8fmbA/s1600/tumbo.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 300,
+      "plantSpacingCm": 400.0,
+      "rowSpacingCm": 500.0,
+      "seedDepthCm": 2.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 10.0,
+      "maxTemperatureC": 20.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Lúcuma",
+    "description": "Fruta andina de sabor único",
+    "variety": "Sedosa",
+    "scientificName": "Pouteria lucuma",
+    "category": "Fruta",
+    "imageUrl": "https://gourmetdemexico.com.mx/wp-content/uploads/2023/11/lucuma-fruta-peruana-1.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 365,
+      "plantSpacingCm": 800.0,
+      "rowSpacingCm": 800.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Chirimoya",
+    "description": "Fruta tropical de pulpa cremosa",
+    "variety": "Cumbe",
+    "scientificName": "Annona cherimola",
+    "category": "Fruta",
+    "imageUrl": "https://agraria.pe/imgs/a/lx/eeuu-permitiria-ingreso-de-higo-papaya-chirimoya-y-grana-7383.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 240,
+      "plantSpacingCm": 600.0,
+      "rowSpacingCm": 600.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.5,
+      "idealSoilPhMax": 7.5,
+      "minTemperatureC": 15.0,
+      "maxTemperatureC": 25.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Guanábana",
+    "description": "Fruta tropical de grandes dimensiones",
+    "variety": "Criolla",
+    "scientificName": "Annona muricata",
+    "category": "Fruta",
+    "imageUrl": "https://www.fundacionmundosilvestre.com/wp-content/uploads/2019/07/600.jpg",
+    "growthProfile": {
+      "estimatedGrowingDays": 270,
+      "plantSpacingCm": 600.0,
+      "rowSpacingCm": 600.0,
+      "seedDepthCm": 5.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 6.0,
+      "idealSoilPhMax": 6.5,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 30.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  },
+  {
+    "name": "Coco",
+    "description": "Palma tropical de múltiples usos",
+    "variety": "Alto del Perú",
+    "scientificName": "Cocos nucifera",
+    "category": "Fruta",
+    "imageUrl": "https://mygarden.decorexpro.com/wp-content/uploads/2023/04/21-1-2.jpeg",
+    "growthProfile": {
+      "estimatedGrowingDays": 365,
+      "plantSpacingCm": 900.0,
+      "rowSpacingCm": 900.0,
+      "seedDepthCm": 10.0
+    },
+    "idealConditions": {
+      "idealSoilPhMin": 5.5,
+      "idealSoilPhMax": 7.0,
+      "minTemperatureC": 20.0,
+      "maxTemperatureC": 35.0,
+      "sunlight": "Full Sun",
+      "wateringNeeds": "Moderate"
+    },
+    "nutrientNeeds": {
+      "nitrogen": "Medium",
+      "phosphorus": "Medium",
+      "potassium": "High"
+    }
+  }
+]
