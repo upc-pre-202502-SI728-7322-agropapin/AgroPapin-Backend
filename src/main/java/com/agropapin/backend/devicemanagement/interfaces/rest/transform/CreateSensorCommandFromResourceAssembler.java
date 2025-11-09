@@ -9,8 +9,7 @@ public class CreateSensorCommandFromResourceAssembler {
                 resource.serialNumber(),
                 resource.plotId(),
                 resource.model(),
-                resource.version(),
-                resource.sensorType()
+                resource.version()
         );
     }
 }

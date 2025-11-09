@@ -1,5 +1,6 @@
 package com.agropapin.backend.devicemanagement.domain.model.aggregates;
 
+import com.agropapin.backend.cropManagement.domain.model.valueObjects.PlotStatus;
 import com.agropapin.backend.devicemanagement.domain.model.enums.ActuatorState;
 import com.agropapin.backend.devicemanagement.domain.model.enums.ActuatorType;
 import com.agropapin.backend.devicemanagement.domain.model.enums.DeviceStatus;
@@ -10,28 +11,26 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+@Getter
 @Entity
 public class Actuator extends AuditableAbstractAggregateRoot<Actuator> {
 
-    @Getter
+    @Column(name = "serial_number", unique = true, nullable = false)
     private String serialNumber;
 
-    @Getter
+    @Column(name = "plot_id", nullable = false, unique = true)
     private UUID plotId;
 
-    @Getter
     @Enumerated(EnumType.STRING)
     private DeviceStatus status;
 
-    @Getter
     @Enumerated(EnumType.STRING)
+    @Column(name = "current_state", nullable = false)
     private ActuatorState currentState;
 
-    @Getter
     @Embedded
     private DeviceModel deviceModel;
 
-    @Getter
     @Enumerated(EnumType.STRING)
     private ActuatorType actuatorType;
 
@@ -55,6 +54,17 @@ public class Actuator extends AuditableAbstractAggregateRoot<Actuator> {
     }
 
     public void updateStatus(DeviceStatus newStatus) {
+        if (this.status == newStatus) {
+            return;
+        }
+
+        if (!this.status.canTransitionTo(newStatus)) {
+            throw new IllegalStateException(
+                    String.format("Invalid status transition from %s to %s", this.status, newStatus)
+            );
+        }
+
+        DeviceStatus oldStatus = this.status;
         this.status = newStatus;
     }
 }

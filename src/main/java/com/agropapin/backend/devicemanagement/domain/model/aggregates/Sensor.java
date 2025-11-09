@@ -35,15 +35,10 @@ public class Sensor extends AuditableAbstractAggregateRoot<Sensor> {
     @Embedded
     private DeviceModel deviceModel;
 
-    @Getter
-    @Enumerated(EnumType.STRING)
-    private SensorType sensorType;
-
-    public Sensor(String serialNumber, UUID plotId, DeviceModel deviceModel, SensorType sensorType) {
+    public Sensor(String serialNumber, UUID plotId, DeviceModel deviceModel) {
         this.serialNumber = serialNumber;
         this.plotId = plotId;
         this.deviceModel = deviceModel;
-        this.sensorType = sensorType;
         this.status = DeviceStatus.PROVISIONED;
         this.lastSeen = Instant.now();
         this.batteryLevel = new BatteryLevel(100.0f);
