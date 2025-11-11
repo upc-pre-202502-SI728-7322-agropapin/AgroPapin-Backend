@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -35,6 +37,14 @@ public class Plot extends AuditableAbstractAggregateRoot<Plot> {
     @Column(name = "status", nullable = false, length = 20)
     @NotNull(message = "Status is mandatory")
     private PlotStatus status;
+
+    @OneToMany(
+            mappedBy = "plotId",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Planting> plantings = new ArrayList<>();
 
     public Plot(String plotName, BigDecimal area, UUID field){
         this.plotName = plotName;

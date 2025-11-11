@@ -1,4 +1,6 @@
 package com.agropapin.backend.cropManagement.domain.model.queries;
 
-public record GetPlantingByIdQuery() {
+import java.util.UUID;
+
+public record GetPlantingByIdQuery(UUID plotId, UUID plantingId) {
 }

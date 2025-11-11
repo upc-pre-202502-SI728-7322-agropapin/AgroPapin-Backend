@@ -7,6 +7,7 @@ import com.agropapin.backend.cropManagement.domain.model.commands.DeletePlotComm
 import com.agropapin.backend.cropManagement.domain.model.commands.UpdatePlotDataCommand;
 import com.agropapin.backend.cropManagement.domain.model.commands.UpdatePlotStatusCommand;
 import com.agropapin.backend.cropManagement.domain.model.services.PlotCommandService;
+import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.FieldRepository;
 import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.PlotRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,21 @@ import java.util.Optional;
 public class PlotCommandServiceImpl implements PlotCommandService {
 
     public final PlotRepository plotRepository;
+    public final FieldRepository fieldRepository;
 
-    public PlotCommandServiceImpl(PlotRepository plotRepository) {
+    public PlotCommandServiceImpl(PlotRepository plotRepository, FieldRepository fieldRepository) {
         this.plotRepository = plotRepository;
+        this.fieldRepository = fieldRepository;
     }
 
     @Override
     public Optional<Plot> handle(CreatePlotCommand createPlotCommand) {
+        var field = fieldRepository.findById(createPlotCommand.fieldId());
+
+        if(field.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "No field found with id: " + createPlotCommand.fieldId());
+        }
 
         var plot = new Plot(
                 createPlotCommand.plotName(),

@@ -23,10 +23,10 @@ public class IdealConditions {
     private Float maxTemperatureC;
 
     @Column(name = "ideal_soil_ph_min")
-    private Float idealSoilPHMin;
+    private Float idealSoilPhMin;
 
     @Column(name = "ideal_soil_ph_max")
-    private Float idealSoilPHMax;
+    private Float idealSoilPhMax;
 
     @Column(name = "watering_needs", length = 50)
     private String wateringNeeds;    // Ej: "MEDIUM"
