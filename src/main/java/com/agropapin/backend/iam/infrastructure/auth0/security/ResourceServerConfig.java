@@ -36,7 +36,8 @@ public class ResourceServerConfig {
                                 "/swagger-ui/**",
                                 "/swagger-resources/**",
                                 "/webjars/**",
-                                "/internal/webhooks/**").permitAll()
+                                "/internal/webhooks/**",
+                                "/api/v1/telemetry/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
