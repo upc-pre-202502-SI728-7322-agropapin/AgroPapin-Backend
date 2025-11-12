@@ -1,6 +1,5 @@
 package com.agropapin.backend.devicemanagement.domain.model.aggregates;
 
-import com.agropapin.backend.cropManagement.domain.model.valueObjects.PlotStatus;
 import com.agropapin.backend.devicemanagement.domain.model.enums.ActuatorState;
 import com.agropapin.backend.devicemanagement.domain.model.enums.ActuatorType;
 import com.agropapin.backend.devicemanagement.domain.model.enums.DeviceStatus;

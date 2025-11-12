@@ -1,0 +1,730 @@
+[
+  {
+    "name": "Riego Moderado Papa Amarilla",
+    "cropName": "Papa",
+    "cropVariety": "Amarilla",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 40.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 30
+      },
+      {
+        "triggerMetric": "TEMPERATURE",
+        "operator": "GREATER_THAN",
+        "thresholdValue": 25.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 20
+      }
+    ]
+  },
+  {
+    "name": "Riego Intensivo Maíz Choclo",
+    "cropName": "Maíz",
+    "cropVariety": "Choclo",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 50.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 45
+      },
+      {
+        "triggerMetric": "GROWTH_STAGE",
+        "operator": "EQUALS",
+        "thresholdValue": 6.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 60
+      }
+    ]
+  },
+  {
+    "name": "Riego Inundación Arroz",
+    "cropName": "Arroz",
+    "cropVariety": "Costeño",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 80.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 120
+      }
+    ]
+  },
+  {
+    "name": "Riego Mínimo Quinua",
+    "cropName": "Quinua",
+    "cropVariety": "Blanca",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 20.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 15
+      }
+    ]
+  },
+  {
+    "name": "Riego Sombra Café",
+    "cropName": "Café",
+    "cropVariety": "Arabica",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 35.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 25
+      }
+    ]
+  },
+  {
+    "name": "Riego Espárrago Exportación",
+    "cropName": "Espárrago",
+    "cropVariety": "Verde",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 45.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 35
+      }
+    ]
+  },
+  {
+    "name": "Riego Industrial Algodón",
+    "cropName": "Algodón",
+    "cropVariety": "Tangüis",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 40.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 40
+      }
+    ]
+  },
+  {
+    "name": "Riego Largo Caña Azúcar",
+    "cropName": "Caña de Azúcar",
+    "cropVariety": "Cristalina",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 55.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 90
+      }
+    ]
+  },
+  {
+    "name": "Riego Profundo Palta",
+    "cropName": "Palta",
+    "cropVariety": "Hass",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 35.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 50
+      }
+    ]
+  },
+  {
+    "name": "Riego Tropical Mango",
+    "cropName": "Mango",
+    "cropVariety": "Kent",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 38.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 45
+      }
+    ]
+  },
+  {
+    "name": "Riego Controlado Uva",
+    "cropName": "Uva",
+    "cropVariety": "Quebranta",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 25.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 20
+      }
+    ]
+  },
+  {
+    "name": "Riego Cítrico Mandarina",
+    "cropName": "Mandarina",
+    "cropVariety": "Criolla",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 32.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 35
+      }
+    ]
+  },
+  {
+    "name": "Riego Limón Sutil",
+    "cropName": "Limón",
+    "cropVariety": "Sutil",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 33.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 30
+      }
+    ]
+  },
+  {
+    "name": "Riego Tropical Plátano",
+    "cropName": "Plátano",
+    "cropVariety": "Bellaco",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 60.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 70
+      }
+    ]
+  },
+  {
+    "name": "Riego Piña Golden",
+    "cropName": "Piña",
+    "cropVariety": "Golden",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 42.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 40
+      }
+    ]
+  },
+  {
+    "name": "Riego Sombra Cacao",
+    "cropName": "Cacao",
+    "cropVariety": "Criollo",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 58.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 55
+      }
+    ]
+  },
+  {
+    "name": "Riego Mínimo Yuca",
+    "cropName": "Yuca",
+    "cropVariety": "Amarga",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 18.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 15
+      }
+    ]
+  },
+  {
+    "name": "Riego Camote Amarillo",
+    "cropName": "Camote",
+    "cropVariety": "Amarillo",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 36.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 25
+      }
+    ]
+  },
+  {
+    "name": "Riego Superficial Zanahoria",
+    "cropName": "Zanahoria",
+    "cropVariety": "Chantenay",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 44.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 20
+      }
+    ]
+  },
+  {
+    "name": "Riego Tomate Rio Grande",
+    "cropName": "Tomate",
+    "cropVariety": "Rio Grande",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 41.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 30
+      }
+    ]
+  },
+  {
+    "name": "Riego Cebolla Roja",
+    "cropName": "Cebolla",
+    "cropVariety": "Roja",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 39.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 25
+      }
+    ]
+  },
+  {
+    "name": "Riego Mínimo Ajo",
+    "cropName": "Ajo",
+    "cropVariety": "Blanco",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 22.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 18
+      }
+    ]
+  },
+  {
+    "name": "Riego Frecuente Lechuga",
+    "cropName": "Lechuga",
+    "cropVariety": "Crespa",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 52.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 15
+      }
+    ]
+  },
+  {
+    "name": "Riego Repollo Verde",
+    "cropName": "Repollo",
+    "cropVariety": "Verde",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 43.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 28
+      }
+    ]
+  },
+  {
+    "name": "Riego Brócoli Calabrés",
+    "cropName": "Brócoli",
+    "cropVariety": "Calabrés",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 46.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 32
+      }
+    ]
+  },
+  {
+    "name": "Riego Coliflor Blanca",
+    "cropName": "Coliflor",
+    "cropVariety": "Blanca",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 45.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 30
+      }
+    ]
+  },
+  {
+    "name": "Riego Zapallo Macre",
+    "cropName": "Zapallo",
+    "cropVariety": "Macre",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 37.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 35
+      }
+    ]
+  },
+  {
+    "name": "Riego Frecuente Pepino",
+    "cropName": "Pepino",
+    "cropVariety": "Europeo",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 48.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 22
+      }
+    ]
+  },
+  {
+    "name": "Riego Ají Limo",
+    "cropName": "Ají",
+    "cropVariety": "Limo",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 38.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 26
+      }
+    ]
+  },
+  {
+    "name": "Riego Pimiento Morrón",
+    "cropName": "Pimiento",
+    "cropVariety": "Morrón",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 40.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 28
+      }
+    ]
+  },
+  {
+    "name": "Riego Berenjena",
+    "cropName": "Berenjena",
+    "cropVariety": "Larga Negra",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 39.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 32
+      }
+    ]
+  },
+  {
+    "name": "Riego Legumbre Haba",
+    "cropName": "Haba",
+    "cropVariety": "Granada",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 34.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 24
+      }
+    ]
+  },
+  {
+    "name": "Riego Arveja China",
+    "cropName": "Arveja",
+    "cropVariety": "China",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 35.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 20
+      }
+    ]
+  },
+  {
+    "name": "Riego Frijol Canario",
+    "cropName": "Frijol",
+    "cropVariety": "Canario",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 33.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 22
+      }
+    ]
+  },
+  {
+    "name": "Riego Pallar Ica",
+    "cropName": "Pallar",
+    "cropVariety": "Ica",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 28.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 18
+      }
+    ]
+  },
+  {
+    "name": "Riego Garbanzo Kabul",
+    "cropName": "Garbanzo",
+    "cropVariety": "Kabul",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 26.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 16
+      }
+    ]
+  },
+  {
+    "name": "Riego Lenteja Castellana",
+    "cropName": "Lenteja",
+    "cropVariety": "Castellana",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 24.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 14
+      }
+    ]
+  },
+  {
+    "name": "Riego Forraje Alfalfa",
+    "cropName": "Alfalfa",
+    "cropVariety": "Cuf 101",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 42.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 25
+      }
+    ]
+  },
+  {
+    "name": "Riego Maíz Morado",
+    "cropName": "Maíz Morado",
+    "cropVariety": "Canteño",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 36.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 35
+      }
+    ]
+  },
+  {
+    "name": "Riego Kiwicha Andina",
+    "cropName": "Kiwicha",
+    "cropVariety": "Oscar Blanco",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 23.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 12
+      }
+    ]
+  },
+  {
+    "name": "Riego Mínimo Cañihua",
+    "cropName": "Cañihua",
+    "cropVariety": "Ramis",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 20.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 10
+      }
+    ]
+  },
+  {
+    "name": "Riego Andino Maca",
+    "cropName": "Maca",
+    "cropVariety": "Amarilla",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 19.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 8
+      }
+    ]
+  },
+  {
+    "name": "Riego Mínimo Olivo",
+    "cropName": "Olivo",
+    "cropVariety": "Sevillano",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 15.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 40
+      }
+    ]
+  },
+  {
+    "name": "Riego Vid Italia",
+    "cropName": "Vid",
+    "cropVariety": "Italia",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 21.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 25
+      }
+    ]
+  },
+  {
+    "name": "Riego Granadilla",
+    "cropName": "Granadilla",
+    "cropVariety": "Criolla",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 37.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 32
+      }
+    ]
+  },
+  {
+    "name": "Riego Maracuyá",
+    "cropName": "Maracuyá",
+    "cropVariety": "Amarilla",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 38.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 34
+      }
+    ]
+  },
+  {
+    "name": "Riego Tumbo Serrano",
+    "cropName": "Tumbo",
+    "cropVariety": "Serrano",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 35.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 30
+      }
+    ]
+  },
+  {
+    "name": "Riego Lúcuma Sedosa",
+    "cropName": "Lúcuma",
+    "cropVariety": "Sedosa",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 36.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 45
+      }
+    ]
+  },
+  {
+    "name": "Riego Chirimoya",
+    "cropName": "Chirimoya",
+    "cropVariety": "Cumbe",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 39.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 38
+      }
+    ]
+  },
+  {
+    "name": "Riego Guanábana",
+    "cropName": "Guanábana",
+    "cropVariety": "Criolla",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 40.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 42
+      }
+    ]
+  },
+  {
+    "name": "Riego Estándar Coco",
+    "cropName": "Coco",
+    "cropVariety": "Alto del Perú",
+    "rules": [
+      {
+        "triggerMetric": "SOIL_MOISTURE",
+        "operator": "LESS_THAN",
+        "thresholdValue": 30.0,
+        "recommendedAction": "START_IRRIGATION",
+        "recommendedDurationMinutes": 15
+      }
+    ]
+  }
+]

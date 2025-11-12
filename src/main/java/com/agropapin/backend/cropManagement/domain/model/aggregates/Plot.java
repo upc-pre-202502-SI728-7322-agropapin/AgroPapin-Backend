@@ -1,6 +1,6 @@
 package com.agropapin.backend.cropManagement.domain.model.aggregates;
 
-import com.agropapin.backend.cropManagement.domain.model.valueObjects.PlotStatus;
+import com.agropapin.backend.cropManagement.domain.model.enums.PlotStatus;
 import com.agropapin.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
