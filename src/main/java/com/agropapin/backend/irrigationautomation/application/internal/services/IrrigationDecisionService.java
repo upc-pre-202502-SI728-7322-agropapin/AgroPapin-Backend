@@ -1,5 +1,7 @@
 package com.agropapin.backend.irrigationautomation.application.internal.services;
 
+import com.agropapin.backend.cropManagement.domain.model.valueObjects.IrrigationRule;
+import com.agropapin.backend.cropManagement.interfaces.acl.CropManagementFacade;
 import com.agropapin.backend.irrigationautomation.domain.model.aggregates.IrrigationLog;
 import com.agropapin.backend.irrigationautomation.domain.model.repositories.IrrigationLogRepository;
 import com.agropapin.backend.telemetryingestion.domain.model.events.TelemetryReadingReceivedEvent;
@@ -8,17 +10,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IrrigationDecisionService {
 
     private static final Logger log = LoggerFactory.getLogger(IrrigationDecisionService.class);
     private final IrrigationLogRepository irrigationLogRepository;
     // Facades for other BCs will be injected here
-    // private final CropManagementFacade cropManagementFacade;
+    private final CropManagementFacade cropManagementFacade;
     // private final DeviceManagementFacade deviceManagementFacade;
 
-    public IrrigationDecisionService(IrrigationLogRepository irrigationLogRepository) {
+    public IrrigationDecisionService(IrrigationLogRepository irrigationLogRepository, CropManagementFacade cropManagementFacade) {
         this.irrigationLogRepository = irrigationLogRepository;
+        this.cropManagementFacade = cropManagementFacade;
     }
 
     @EventListener
@@ -29,7 +34,7 @@ public class IrrigationDecisionService {
         // In a real scenario, you would implement the following steps:
 
         // 1. GET IRRIGATION POLICY
-        // double humidityThreshold = cropManagementFacade.getHumidityThresholdForPlot(event.plotId());
+        List<IrrigationRule> irrigationRules = cropManagementFacade.getIrrigationRuleByPlotId(event.plotId());
         // log.debug("Retrieved humidity threshold for plot {}: {}", event.plotId(), humidityThreshold);
         double humidityThreshold = 30.0; // Hardcoded for now
 

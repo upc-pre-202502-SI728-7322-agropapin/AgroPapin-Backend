@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PlotQueryServiceImpl implements PlotQueryService {
+public abstract class PlotQueryServiceImpl implements PlotQueryService {
 
     private final PlotRepository plotRepository;
 
