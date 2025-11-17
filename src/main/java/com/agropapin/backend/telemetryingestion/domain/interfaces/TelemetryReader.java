@@ -1,6 +1,7 @@
 package com.agropapin.backend.telemetryingestion.domain.interfaces;
 
 import com.agropapin.backend.telemetryingestion.interfaces.rest.resources.AvgReadingResource;
+import com.agropapin.backend.telemetryingestion.interfaces.rest.resources.ChartDataResource;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ public interface TelemetryReader {
      * @return Una lista de recursos agregados.
      */
     List<AvgReadingResource> getLatestMetrics(String orgId, String plotId);
+    List<ChartDataResource> getHistoricalMetrics(String orgId, String plotId, int days);
 }

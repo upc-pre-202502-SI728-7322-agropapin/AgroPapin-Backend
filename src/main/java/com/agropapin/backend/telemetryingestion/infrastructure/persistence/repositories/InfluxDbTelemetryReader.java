@@ -1,5 +1,6 @@
 package com.agropapin.backend.telemetryingestion.infrastructure.persistence.repositories;
 
+import com.agropapin.backend.telemetryingestion.interfaces.rest.resources.ChartDataResource;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import com.agropapin.backend.telemetryingestion.domain.interfaces.TelemetryReader;
@@ -31,6 +32,43 @@ public class InfluxDbTelemetryReader implements TelemetryReader {
         List<FluxTable> tables = influxClient.getQueryApi().query(fluxQuery, orgId);
 
         return mapFluxResultToResource(tables);
+    }
+
+    /**
+     * Obtiene datos históricos agregados (promediados) para gráficos.
+     * @param orgId El ID de la organización
+     * @param plotId El ID de la parcela (OBLIGATORIO para esta consulta)
+     * @param days Cuántos días hacia atrás (ej. 7 días)
+     * @return Lista de puntos de datos para el gráfico
+     */
+    @Override
+    public List<ChartDataResource> getHistoricalMetrics(String orgId, String plotId, int days) {
+
+        String windowInterval = "1h";
+
+        String fluxQuery = String.format("""
+            from(bucket: "%s")
+              |> range(start: -%dd) // 1. Rango dinámico (ej. -7d)
+              |> filter(fn: (r) => r["_measurement"] == "plot_reading")
+              |> filter(fn: (r) => r["plotId"] == "%s") // 2. Filtro de PlotId (obligatorio)
+              |> filter(fn: (r) => r["_field"] == "temperature" or r["_field"] == "humidity" or r["_field"] == "soilMoisture")
+              
+              // 3. Agrega los datos en "ventanas" (ej. 1 hora) y calcula el promedio
+              |> aggregateWindow(every: %s, fn: mean, createEmpty: false)
+              
+              // 4. Pivotea los datos:
+              //   Queremos filas por tiempo, y columnas por 'field'
+              //   Resultado: { _time: ..., temperature: 25.5, humidity: 60.1, ... }
+              |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+              
+              |> keep(columns: ["_time", "temperature", "humidity", "soilMoisture"])
+              |> yield(name: "historical_metrics")
+            """, bucket, days, plotId, windowInterval);
+
+        List<ChartDataResource> results = influxClient.getQueryApi()
+                .query(fluxQuery, orgId, ChartDataResource.class);
+
+        return results;
     }
 
     private String buildFluxQuery(String plotId) {
