@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public abstract class PlantingQueryServiceImpl implements PlantingQueryService {
+public class PlantingQueryServiceImpl implements PlantingQueryService {
     private final PlantingRepository plantingRepository;
     private final IrrigationPolicyRepository irrigationPolicyRepository;
 

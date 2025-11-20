@@ -65,10 +65,9 @@ public class InfluxDbTelemetryReader implements TelemetryReader {
               |> yield(name: "historical_metrics")
             """, bucket, days, plotId, windowInterval);
 
-        List<ChartDataResource> results = influxClient.getQueryApi()
-                .query(fluxQuery, orgId, ChartDataResource.class);
+        List<FluxTable> tables = influxClient.getQueryApi().query(fluxQuery, orgId);
 
-        return results;
+        return mapToChartData(tables);
     }
 
     private String buildFluxQuery(String plotId) {
@@ -162,5 +161,36 @@ public class InfluxDbTelemetryReader implements TelemetryReader {
                     );
                 })
                 .collect(Collectors.toList());
+    }
+
+    private List<ChartDataResource> mapToChartData(List<FluxTable> tables) {
+        List<ChartDataResource> chartData = new ArrayList<>();
+
+        for (FluxTable table : tables) {
+            for (FluxRecord record : table.getRecords()) {
+
+                Instant time = record.getTime();
+
+                // Extraer valores de las columnas pivotadas de forma segura
+                Float temp = getFloatFromRecord(record, "temperature");
+                Float hum = getFloatFromRecord(record, "humidity");
+                Float soil = getFloatFromRecord(record, "soilMoisture");
+
+                chartData.add(new ChartDataResource(time, temp, hum, soil));
+            }
+        }
+        return chartData;
+    }
+
+    private Float getFloatFromRecord(FluxRecord record, String fieldName) {
+        Object value = record.getValueByKey(fieldName);
+        if (value == null) return 0.0f; // O null, según prefieras
+
+        if (value instanceof Double) {
+            return ((Double) value).floatValue();
+        } else if (value instanceof Long) {
+            return ((Long) value).floatValue();
+        }
+        return 0.0f;
     }
 }
