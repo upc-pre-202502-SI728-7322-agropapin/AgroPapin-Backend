@@ -17,7 +17,7 @@ public class Actuator extends AuditableAbstractAggregateRoot<Actuator> {
     @Column(name = "serial_number", unique = true, nullable = false)
     private String serialNumber;
 
-    @Column(name = "plot_id", nullable = false, unique = true)
+    @Column(name = "plot_id", nullable = false)
     private UUID plotId;
 
     @Enumerated(EnumType.STRING)
