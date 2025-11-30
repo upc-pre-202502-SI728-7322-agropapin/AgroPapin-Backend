@@ -57,7 +57,7 @@ public class PlantingCommandServiceImpl implements PlantingCommandService {
         if (planting.isEmpty()) {
             return Optional.empty();
         }
-        planting.get().update(command.plantingDate(), command.harvestDate(), command.cropId());
+        planting.get().update(command.plantingDate(), command.harvestDate());
         plantingRepository.save(planting.get());
         return planting;
     }

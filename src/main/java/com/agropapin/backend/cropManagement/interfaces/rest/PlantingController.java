@@ -72,12 +72,11 @@ public class PlantingController {
     }
 
     @PutMapping("/{plantingId}")
-    public ResponseEntity<PlantingResource> updatePlanting(@PathVariable UUID fieldId, @PathVariable UUID plotId, @PathVariable UUID plantingId, @RequestBody UpdatePlantingResource updatePlantingResource){
+    public ResponseEntity<UpdatedPlantingResource> updatePlanting(@PathVariable UUID fieldId, @PathVariable UUID plotId, @PathVariable UUID plantingId, @RequestBody UpdatePlantingResource updatePlantingResource){
         var updatePlantingDataCommand = new UpdatePlantingDataCommand(
                 plantingId,
                 updatePlantingResource.plantingDate(),
                 updatePlantingResource.harvestDate(),
-                updatePlantingResource.cropId(),
                 plotId
         );
         var planting = plantingCommandService.handle(updatePlantingDataCommand);
@@ -85,7 +84,7 @@ public class PlantingController {
             return ResponseEntity.badRequest().build();
         }
         var plantingResource = PlantingResourceFromEntityAssembler.toResourceFromEntity(planting.get());
-        return ResponseEntity.ok(plantingResource);
+        return ResponseEntity.ok(new UpdatedPlantingResource(plantingResource.id(), plantingResource.plantingDate(), plantingResource.actualHarvestDate(), plantingResource.status(), plantingResource.plotId()));
     }
 
     @DeleteMapping("/{plantingId}")
@@ -96,7 +95,7 @@ public class PlantingController {
     }
 
     @PatchMapping("/{plantingId}/status")
-    public ResponseEntity<PlantingResource> updatePlantingStatus(
+    public ResponseEntity<UpdatedPlantingResource> updatePlantingStatus(
             @PathVariable UUID fieldId,
             @PathVariable UUID plotId,
             @PathVariable UUID plantingId,
@@ -107,7 +106,12 @@ public class PlantingController {
                 updatePlantingStatusResource.status()
         );
         var updatedPlanting = plantingCommandService.handle(updatePlantingStatusCommand);
-        return updatedPlanting.map(planting -> ResponseEntity.ok(PlantingResourceFromEntityAssembler.toResourceFromEntity(planting)))
-                .orElse(ResponseEntity.notFound().build());
+        if (updatedPlanting.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        var plantingResource = PlantingResourceFromEntityAssembler.toResourceFromEntity(updatedPlanting.get());
+
+        return ResponseEntity.ok(new UpdatedPlantingResource(plantingResource.id(), plantingResource.plantingDate(), plantingResource.actualHarvestDate(), plantingResource.status(), plantingResource.plotId()));
+
     }
 }

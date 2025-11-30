@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Repository
 public interface SensorRepository extends JpaRepository<Sensor, UUID> {
+    Optional<Sensor> findSensorById(UUID sensorId);
     Optional<List<Sensor>> findAllByPlotId(UUID plotId);
     Optional<Sensor> findSensorByIdAndPlotId(UUID sensorId, UUID plotId);
 }

@@ -1,17 +1,15 @@
 package com.agropapin.backend.cropManagement.interfaces.rest.resources;
 
-import com.agropapin.backend.cropManagement.domain.model.aggregates.CropType;
 import com.agropapin.backend.cropManagement.domain.model.enums.CropStatus;
 
 import java.util.Date;
 import java.util.UUID;
 
-public record PlantingResource(
+public record UpdatedPlantingResource(
         UUID id,
         Date plantingDate,
         Date actualHarvestDate,
         CropStatus status,
-        UUID plotId,
-        CropType croptype
+        UUID plotId
 ) {
 }

@@ -1,6 +1,7 @@
 package com.agropapin.backend.devicemanagement.interfaces.rest;
 
 import com.agropapin.backend.devicemanagement.domain.model.commands.CreateActuatorCommand;
+import com.agropapin.backend.devicemanagement.domain.model.commands.DeleteActuatorCommand;
 import com.agropapin.backend.devicemanagement.domain.model.commands.UpdateActuatorStatusCommand;
 import com.agropapin.backend.devicemanagement.domain.model.queries.GetAllActuatorsByPlotIdQuery;
 import com.agropapin.backend.devicemanagement.domain.services.DeviceCommandService;
@@ -17,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -71,5 +74,20 @@ public class ActuatorController {
 
         return updatedActuator.map(actuator -> ResponseEntity.ok(ActuatorResourceFromEntityAssembler.toResourceFromEntity(actuator)))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping(value = "/device/{actuatorId}")
+    public ResponseEntity<?> deleteActuator(@PathVariable UUID actuatorId) {
+
+        var deleteCommand = new DeleteActuatorCommand(actuatorId);
+
+        boolean isDeleted = deviceCommandService.handle(deleteCommand);
+
+        if (isDeleted) {
+            return ResponseEntity.ok()
+                    .body(Map.of("message", "El actuador ha sido eliminado satisfactoriamente."));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

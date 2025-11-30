@@ -4,6 +4,8 @@ import com.agropapin.backend.cropManagement.domain.model.valueObjects.GrowthProf
 import com.agropapin.backend.cropManagement.domain.model.valueObjects.IdealConditions;
 import com.agropapin.backend.cropManagement.domain.model.valueObjects.NutrientNeeds;
 import com.agropapin.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -57,5 +59,6 @@ public class CropType extends AuditableAbstractAggregateRoot<CropType> {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private List<Planting> planting = new ArrayList<>();
 }

@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Repository
 public interface ActuatorRepository extends JpaRepository<Actuator, UUID> {
+    Optional<Actuator> findActuatorById(UUID actuatorId);
     Optional<List<Actuator>> findAllByPlotId(UUID plotId);
     Optional<Actuator> findActuatorByIdAndPlotId(UUID actuatorId, UUID plotId);
 }

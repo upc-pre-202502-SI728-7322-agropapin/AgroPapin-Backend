@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class PlantingResourceFromEntityAssembler {
     public static PlantingResource toResourceFromEntity(Planting entity) {
-        return new PlantingResource(entity.getId(), entity.getPlantingDate(), entity.getActualHarvestDate(), entity.getStatus(), entity.getPlotId());
+        return new PlantingResource(entity.getId(), entity.getPlantingDate(), entity.getActualHarvestDate(), entity.getStatus(), entity.getPlotId(), entity.getCropType());
     }
 
     public static List<PlantingResource> toResourcesFromEntities(List<Planting> entities) {
