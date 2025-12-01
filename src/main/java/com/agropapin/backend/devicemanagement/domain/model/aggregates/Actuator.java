@@ -66,4 +66,8 @@ public class Actuator extends AuditableAbstractAggregateRoot<Actuator> {
         DeviceStatus oldStatus = this.status;
         this.status = newStatus;
     }
+
+    public UUID plotId() {
+        return plotId;
+    }
 }
