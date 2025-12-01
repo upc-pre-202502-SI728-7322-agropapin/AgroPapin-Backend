@@ -23,7 +23,7 @@ public class Cooperative extends AuditableAbstractAggregateRoot<Cooperative> {
     private String cooperativeName;
 
     // 0..* members — mappedBy debe existir en Farmer: private Cooperative cooperative;
-    @OneToMany(mappedBy = "cooperative", orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cooperative", fetch = FetchType.LAZY)
     private List<Farmer> members = new ArrayList<>();
 
     // 1..* administrators — usar @NotEmpty para forzar al menos uno

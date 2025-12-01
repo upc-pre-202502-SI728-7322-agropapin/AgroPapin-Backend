@@ -1,8 +1,9 @@
 package com.agropapin.backend.cropManagement.domain.model.aggregates;
 
-import com.agropapin.backend.cropManagement.domain.model.valueObjects.CropStatus;
-import com.agropapin.backend.cropManagement.domain.model.valueObjects.PlotStatus;
+import com.agropapin.backend.cropManagement.domain.model.enums.CropStatus;
 import com.agropapin.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -37,6 +38,7 @@ public class Planting extends AuditableAbstractAggregateRoot<Planting> {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "crop_type_id", nullable = false)
     @NotNull(message = "Crop type is mandatory")
+    @JsonIgnoreProperties("planting")
     private CropType cropType;
 
 
@@ -47,10 +49,9 @@ public class Planting extends AuditableAbstractAggregateRoot<Planting> {
         this.cropType = cropType;
     }
 
-    public void update(Date plantingDate, Date harvestDate, UUID plotId) {
+    public void update(Date plantingDate, Date harvestDate) {
         this.plantingDate = plantingDate;
         this.actualHarvestDate = harvestDate;
-        this.plotId = plotId;
     }
 
     public void updateStatus(CropStatus newStatus) {

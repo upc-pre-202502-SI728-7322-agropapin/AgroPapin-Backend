@@ -1,6 +1,6 @@
 package com.agropapin.backend.cropManagement.domain.model.commands;
 
-import com.agropapin.backend.cropManagement.domain.model.valueObjects.FieldStatus;
+import com.agropapin.backend.cropManagement.domain.model.enums.FieldStatus;
 
 import java.util.UUID;
 

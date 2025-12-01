@@ -11,4 +11,5 @@ public interface CooperativeCommandService {
     Optional<Cooperative> handle(DeleteCooperativeCommand deleteCooperativeCommand);
     Optional<Cooperative> handle(AddNewAdministratorInCooperativeCommand addNewAdministratorInCooperativeCommand);
     Optional<Cooperative> handle(AddNewMemberInCooperativeCommand addNewMemberInCooperativeCommand);
+    Boolean handle(RemoveMemberFromCooperativeCommand removeMemberFromCooperativeCommand);
 }

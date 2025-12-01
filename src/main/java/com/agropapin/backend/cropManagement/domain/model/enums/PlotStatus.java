@@ -1,4 +1,4 @@
-package com.agropapin.backend.cropManagement.domain.model.valueObjects;
+package com.agropapin.backend.cropManagement.domain.model.enums;
 
 public enum PlotStatus {
     EMPTY,

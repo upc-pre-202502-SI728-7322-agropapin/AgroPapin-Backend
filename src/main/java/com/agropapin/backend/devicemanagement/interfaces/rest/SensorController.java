@@ -1,6 +1,7 @@
 package com.agropapin.backend.devicemanagement.interfaces.rest;
 
 import com.agropapin.backend.devicemanagement.domain.model.commands.CreateSensorCommand;
+import com.agropapin.backend.devicemanagement.domain.model.commands.DeleteSensorCommand;
 import com.agropapin.backend.devicemanagement.domain.model.commands.UpdateSensorStatusCommand;
 import com.agropapin.backend.devicemanagement.domain.model.queries.GetAllSensorsByPlotIdQuery;
 import com.agropapin.backend.devicemanagement.domain.services.DeviceCommandService;
@@ -17,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -71,5 +73,20 @@ public class SensorController {
 
         return updatedActuator.map(actuator -> ResponseEntity.ok(SensorResourceFromEntityAssembler.toResourceFromEntity(actuator)))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping(value = "/device/{sensorId}")
+    public ResponseEntity<?> deleteSensor(@PathVariable UUID sensorId) {
+
+        var deleteSensorCommand = new DeleteSensorCommand(sensorId);
+
+        boolean isDeleted = deviceCommandService.handle(deleteSensorCommand);
+
+        if (isDeleted) {
+            return ResponseEntity.ok()
+                    .body(Map.of("message", "El sensor ha sido eliminado satisfactoriamente."));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

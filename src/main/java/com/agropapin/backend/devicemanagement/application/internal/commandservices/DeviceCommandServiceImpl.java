@@ -2,10 +2,7 @@ package com.agropapin.backend.devicemanagement.application.internal.commandservi
 
 import com.agropapin.backend.devicemanagement.domain.model.aggregates.Actuator;
 import com.agropapin.backend.devicemanagement.domain.model.aggregates.Sensor;
-import com.agropapin.backend.devicemanagement.domain.model.commands.CreateActuatorCommand;
-import com.agropapin.backend.devicemanagement.domain.model.commands.CreateSensorCommand;
-import com.agropapin.backend.devicemanagement.domain.model.commands.UpdateActuatorStatusCommand;
-import com.agropapin.backend.devicemanagement.domain.model.commands.UpdateSensorStatusCommand;
+import com.agropapin.backend.devicemanagement.domain.model.commands.*;
 import com.agropapin.backend.devicemanagement.domain.model.valueobjects.DeviceModel;
 import com.agropapin.backend.devicemanagement.domain.services.DeviceCommandService;
 import com.agropapin.backend.devicemanagement.infrastructure.persistence.jpa.repositories.ActuatorRepository;
@@ -64,5 +61,29 @@ public class DeviceCommandServiceImpl implements DeviceCommandService {
         var savedSensor = sensorRepository.save(sensor.get());
 
         return Optional.of(savedSensor);
+    }
+
+    @Override
+    public Boolean handle(DeleteActuatorCommand deleteActuatorCommand) {
+        var actuator = actuatorRepository.findActuatorById(deleteActuatorCommand.actuatorId());
+
+        if (actuator.isPresent()) {
+            actuatorRepository.delete(actuator.get());
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public Boolean handle(DeleteSensorCommand deleteSensorCommand) {
+        var sensor = sensorRepository.findSensorById(deleteSensorCommand.sensorId());
+
+        if (sensor.isPresent()) {
+            sensorRepository.delete(sensor.get());
+            return true;
+        }
+
+        return false;
     }
 }

@@ -1,6 +1,5 @@
 package com.agropapin.backend.devicemanagement.domain.model.aggregates;
 
-import com.agropapin.backend.cropManagement.domain.model.valueObjects.PlotStatus;
 import com.agropapin.backend.devicemanagement.domain.model.enums.ActuatorState;
 import com.agropapin.backend.devicemanagement.domain.model.enums.ActuatorType;
 import com.agropapin.backend.devicemanagement.domain.model.enums.DeviceStatus;
@@ -18,7 +17,7 @@ public class Actuator extends AuditableAbstractAggregateRoot<Actuator> {
     @Column(name = "serial_number", unique = true, nullable = false)
     private String serialNumber;
 
-    @Column(name = "plot_id", nullable = false, unique = true)
+    @Column(name = "plot_id", nullable = false)
     private UUID plotId;
 
     @Enumerated(EnumType.STRING)

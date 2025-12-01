@@ -4,6 +4,7 @@ import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
 import com.agropapin.backend.organizationManagement.domain.model.commands.*;
 import com.agropapin.backend.organizationManagement.domain.model.queries.GetCooperativeByIdQuery;
 import com.agropapin.backend.organizationManagement.domain.model.queries.GetCooperativeByUserIdQuery;
+import com.agropapin.backend.organizationManagement.domain.model.queries.GetMembersByCooperativeId;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeCommandService;
 import com.agropapin.backend.organizationManagement.domain.services.CooperativeQueryService;
 import com.agropapin.backend.organizationManagement.interfaces.rest.resources.*;
@@ -15,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -34,6 +37,7 @@ public class CooperativeController {
     }
 
     @PostMapping(value = "/")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     public ResponseEntity<CooperativeResource> createCooperative(@Valid @RequestBody CreateCooperativeResource resource) {
         if (resource.cooperativeName() == null) {
             return ResponseEntity.badRequest().build();
@@ -55,7 +59,6 @@ public class CooperativeController {
     }
 
     @GetMapping(value = "/me")
-    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     public ResponseEntity<CooperativeResource> getMyCooperative(){
         var userId = iamContextFacade.getCurrentUserId();
 
@@ -155,6 +158,41 @@ public class CooperativeController {
 
         var cooperativeResource = CooperativeResourceFromEntityAssembler.toResourceFromEntity(cooperative.get());
         return ResponseEntity.ok(cooperativeResource);
+    }
+
+    @DeleteMapping(value = "/{cooperativeId}/members/remove/{userId}")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
+    public ResponseEntity<?> removeMemberFromCooperative(
+            @PathVariable UUID cooperativeId,
+            @PathVariable String userId) {
+
+        String currentUserId = iamContextFacade.getCurrentUserId();
+
+        var removeMemberCommand = new RemoveMemberFromCooperativeCommand(
+                cooperativeId,
+                userId,
+                currentUserId
+        );
+
+        boolean cooperativeDeleted = cooperativeCommandService.handle(removeMemberCommand);
+
+        if (cooperativeDeleted) {
+            return ResponseEntity.ok()
+                    .body(Map.of("message", "Member removed successfully from cooperative"));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping(value = "/{cooperativeId}/members")
+    public ResponseEntity<List<MemberSummaryResource>> getMembers(@PathVariable UUID cooperativeId) {
+        var getMembersByCooperativeId = new GetCooperativeByIdQuery(cooperativeId);
+        var cooperative = cooperativeQueryService.handle(getMembersByCooperativeId);
+        if (cooperative.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var cooperativeResource = CooperativeResourceFromEntityAssembler.toResourceFromEntity(cooperative.get());
+        return ResponseEntity.ok(cooperativeResource.members());
     }
 
 }

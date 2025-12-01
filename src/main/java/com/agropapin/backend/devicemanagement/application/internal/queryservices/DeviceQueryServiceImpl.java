@@ -25,13 +25,13 @@ public class DeviceQueryServiceImpl implements DeviceQueryService {
 
     @Override
     public Optional<List<Sensor>> handle(GetAllSensorsByPlotIdQuery query) {
-        List<Sensor> sensors = sensorRepository.findAll();
-        return sensors.isEmpty() ? Optional.empty() : Optional.of(sensors);
+        Optional<List<Sensor>> sensors = sensorRepository.findAllByPlotId(query.plotId());
+        return sensors.isEmpty() ? Optional.empty() : sensors;
     }
 
     @Override
     public Optional<List<Actuator>> handle(GetAllActuatorsByPlotIdQuery query) {
-        List<Actuator> actuators = actuatorRepository.findAll();
-        return actuators.isEmpty() ? Optional.empty() : Optional.of(actuators);
+        Optional<List<Actuator>> actuators = actuatorRepository.findAllByPlotId(query.plotId());
+        return actuators.isEmpty() ? Optional.empty() : actuators;
     }
 }

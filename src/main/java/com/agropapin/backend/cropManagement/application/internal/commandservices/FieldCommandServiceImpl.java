@@ -7,7 +7,7 @@ import com.agropapin.backend.cropManagement.domain.model.commands.CreateFieldCom
 import com.agropapin.backend.cropManagement.domain.model.commands.UpdateFieldDataCommand;
 import com.agropapin.backend.cropManagement.domain.model.commands.UpdateFieldStatusCommand;
 import com.agropapin.backend.cropManagement.domain.model.services.FieldCommandService;
-import com.agropapin.backend.cropManagement.domain.model.valueObjects.FieldStatus;
+import com.agropapin.backend.cropManagement.domain.model.enums.FieldStatus;
 import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.FieldRepository;
 import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
 import jakarta.transaction.Transactional;

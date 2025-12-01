@@ -148,4 +148,52 @@ public class CooperativeCommandServiceImpl implements CooperativeCommandService 
                             " is not an administrator of cooperative id " + addNewMemberInCooperativeCommand.cooperativeId());
         }
     }
+
+    @Override
+    @Transactional
+    public Boolean handle(RemoveMemberFromCooperativeCommand removeMemberFromCooperativeCommand) {
+
+        if (cooperativeRepository.existsByIdAndAdministrators_UserId(
+                removeMemberFromCooperativeCommand.cooperativeId(),
+                removeMemberFromCooperativeCommand.removedByUserId())
+        ) {
+
+            var farmerOptional = farmerRepository.findFarmerByUserId(removeMemberFromCooperativeCommand.memberId());
+
+            if (farmerOptional.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "No Farmer found for user id " + removeMemberFromCooperativeCommand.memberId());
+            }
+
+            var farmerToRemove = farmerOptional.get();
+
+            var cooperativeOptional = cooperativeRepository.findById(removeMemberFromCooperativeCommand.cooperativeId());
+
+            if (cooperativeOptional.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "No Cooperative found with id " + removeMemberFromCooperativeCommand.cooperativeId());
+            }
+
+            var cooperativeData = cooperativeOptional.get();
+
+            if (cooperativeData.getMembers().contains(farmerToRemove) &&
+                    farmerToRemove.getCooperative() != null &&
+                    farmerToRemove.getCooperative().getId().equals(cooperativeData.getId())) {
+
+                cooperativeData.removeMember(farmerToRemove);
+
+                cooperativeRepository.save(cooperativeData);
+                farmerRepository.save(farmerToRemove);
+
+                return Boolean.TRUE;
+
+            } else {
+                return Boolean.FALSE;
+            }
+        } else {
+            throw new IllegalArgumentException(
+                    "User id " + removeMemberFromCooperativeCommand.removedByUserId() +
+                            " is not an administrator of cooperative id " + removeMemberFromCooperativeCommand.cooperativeId());
+        }
+    }
 }

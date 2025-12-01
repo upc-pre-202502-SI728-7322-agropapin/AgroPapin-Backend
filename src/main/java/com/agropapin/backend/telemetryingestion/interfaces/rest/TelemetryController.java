@@ -5,6 +5,7 @@ import com.agropapin.backend.telemetryingestion.domain.interfaces.TelemetryWrite
 import com.agropapin.backend.telemetryingestion.domain.model.commands.IngestTelemetryCommand;
 import com.agropapin.backend.telemetryingestion.domain.services.TelemetryCommandService;
 import com.agropapin.backend.telemetryingestion.interfaces.rest.resources.AvgReadingResource;
+import com.agropapin.backend.telemetryingestion.interfaces.rest.resources.ChartDataResource;
 import com.agropapin.backend.telemetryingestion.interfaces.rest.resources.PlotReadingResource;
 import com.agropapin.backend.telemetryingestion.interfaces.rest.transform.PlotReadingAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -63,6 +64,15 @@ public class TelemetryController {
     ) {
         // Llama al servicio para obtener la última agregación de datos
         List<AvgReadingResource> metrics = telemetryQueryService.getLatestAggregatedMetrics(plotId);
+        return ResponseEntity.ok(metrics);
+    }
+
+    @GetMapping("/historical/plot/{plotId}/days/{days}")
+    public ResponseEntity<List<ChartDataResource>> getHistoricalMetrics(
+            @PathVariable String plotId,
+            @PathVariable int days
+    ){
+        List<ChartDataResource> metrics = telemetryQueryService.getHistoricalMetrics(plotId, days);
         return ResponseEntity.ok(metrics);
     }
 }
