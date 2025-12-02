@@ -3,11 +3,16 @@ package com.agropapin.backend.cropManagement.interfaces.rest;
 import com.agropapin.backend.cropManagement.domain.model.commands.CreateFieldCommand;
 import com.agropapin.backend.cropManagement.domain.model.commands.UpdateFieldDataCommand;
 import com.agropapin.backend.cropManagement.domain.model.commands.UpdateFieldStatusCommand;
+import com.agropapin.backend.cropManagement.domain.model.queries.GetAllPlantingByPlotIdQuery;
+import com.agropapin.backend.cropManagement.domain.model.queries.GetAllPlotByFieldIdQuery;
 import com.agropapin.backend.cropManagement.domain.model.queries.GetFieldByFarmerIdQuery;
 import com.agropapin.backend.cropManagement.domain.model.services.FieldCommandService;
 import com.agropapin.backend.cropManagement.domain.model.services.FieldQueryService;
+import com.agropapin.backend.cropManagement.domain.model.services.PlantingQueryService;
+import com.agropapin.backend.cropManagement.domain.model.services.PlotQueryService;
 import com.agropapin.backend.cropManagement.interfaces.rest.resources.*;
 import com.agropapin.backend.cropManagement.interfaces.rest.transform.FieldResourceFromEntityAssembler;
+import com.agropapin.backend.cropManagement.interfaces.rest.transform.PlantingResourceFromEntityAssembler;
 import com.agropapin.backend.iam.interfaces.acl.IamContextFacade;
 import com.agropapin.backend.organizationManagement.interfaces.acl.OrganizationManagementFacade;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -32,11 +38,16 @@ public class FieldController {
     private final IamContextFacade iamContextFacade;
     private final OrganizationManagementFacade organizationManagementFacade;
 
-    public FieldController(FieldQueryService fieldQueryService, FieldCommandService fieldCommandService, IamContextFacade iamContextFacade, OrganizationManagementFacade organizationManagementFacade) {
+    private final PlotQueryService plotQueryService;
+    private final PlantingQueryService plantingQueryService;
+
+    public FieldController(FieldQueryService fieldQueryService, FieldCommandService fieldCommandService, IamContextFacade iamContextFacade, OrganizationManagementFacade organizationManagementFacade, PlotQueryService plotQueryService, PlantingQueryService plantingQueryService) {
         this.fieldQueryService = fieldQueryService;
         this.fieldCommandService = fieldCommandService;
         this.iamContextFacade = iamContextFacade;
         this.organizationManagementFacade = organizationManagementFacade;
+        this.plotQueryService = plotQueryService;
+        this.plantingQueryService = plantingQueryService;
     }
 
     @PostMapping(value = "/me")
@@ -160,6 +171,40 @@ public class FieldController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping(value = "/cropDistribution/me")
+    public ResponseEntity<List<PlantingResource>> getCropDistribution(){
+        var userId = iamContextFacade.getCurrentUserId();
 
+        var getFieldCommand = new GetFieldByFarmerIdQuery(userId);
+
+        var field = fieldQueryService.handle(getFieldCommand);
+
+        if (field.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        var getAllPlotByFieldIdQuery = new GetAllPlotByFieldIdQuery(field.get().getId());
+
+        var plots = plotQueryService.handle(getAllPlotByFieldIdQuery).get();
+
+        if (plots.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        var allPlantings = plots.stream()
+                .map(plot -> new GetAllPlantingByPlotIdQuery(plot.getId()))
+                .map(plantingQueryService::handle)
+                .filter(Objects::nonNull)
+                .flatMap(List::stream)
+                .toList();
+
+        if (allPlantings.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        var plantingResources = PlantingResourceFromEntityAssembler.toResourcesFromEntities(allPlantings);
+
+        return ResponseEntity.ok(plantingResources);
+    }
 
 }
