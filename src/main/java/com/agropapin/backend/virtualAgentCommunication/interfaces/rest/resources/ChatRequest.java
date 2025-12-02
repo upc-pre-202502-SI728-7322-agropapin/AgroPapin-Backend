@@ -5,6 +5,8 @@ import java.util.UUID;
 public record ChatRequest(
         String question,
         UUID plotId,
-        UUID fieldId
+        UUID fieldId,
+        String role,
+        String userId
 ) {
 }

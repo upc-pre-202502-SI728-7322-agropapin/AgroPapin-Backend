@@ -2,10 +2,12 @@ package com.agropapin.backend.cropManagement.interfaces.acl;
 
 import com.agropapin.backend.cropManagement.application.internal.queryservices.PlantingQueryServiceImpl;
 import com.agropapin.backend.cropManagement.application.internal.queryservices.PlotQueryServiceImpl;
+import com.agropapin.backend.cropManagement.domain.model.aggregates.Field;
 import com.agropapin.backend.cropManagement.domain.model.aggregates.Planting;
 import com.agropapin.backend.cropManagement.domain.model.aggregates.Plot;
 import com.agropapin.backend.cropManagement.domain.model.queries.GetActivePlantingByPlotIdQuery;
 import com.agropapin.backend.cropManagement.domain.model.queries.GetAllPlotByFieldIdQuery;
+import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.FieldRepository;
 import com.agropapin.backend.cropManagement.interfaces.acl.resources.PlotSummaryForAgent;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,16 @@ import java.util.UUID;
 public class PlotManagementFacade {
     private final PlotQueryServiceImpl plotQueryService;
     private final PlantingQueryServiceImpl plantingQueryService;
+    private final FieldRepository fieldRepository;
 
-    public PlotManagementFacade(PlotQueryServiceImpl plotQueryService, PlantingQueryServiceImpl plantingQueryService) {
+    public PlotManagementFacade(PlotQueryServiceImpl plotQueryService, PlantingQueryServiceImpl plantingQueryService, FieldRepository fieldRepository) {
         this.plotQueryService = plotQueryService;
         this.plantingQueryService = plantingQueryService;
+        this.fieldRepository = fieldRepository;
+    }
+
+    public UUID getFieldIdByFarmerUserId(String farmerUserId) {
+        return this.fieldRepository.findFieldByFarmerUserId(farmerUserId).get().getId();
     }
 
     public List<PlotSummaryForAgent> getPlotsSummaryByFieldId(UUID fieldId) {

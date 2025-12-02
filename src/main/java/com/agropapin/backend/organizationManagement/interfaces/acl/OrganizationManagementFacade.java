@@ -59,4 +59,17 @@ public class OrganizationManagementFacade {
 
         return cooperative.map(Cooperative::getMembers).orElse(null);
     }
+
+    public Cooperative getCooperativeByAdministratorUserId(String adminUserId) {
+        var adminQuery = new GetAdministratorByUserIdAsyncQuery(adminUserId);
+        var admin = this.administratorQueryService.handle(adminQuery)
+                .orElseThrow(() -> new RuntimeException("Administrator not found for User ID: " + adminUserId));
+
+        UUID coopId = admin.getCooperative().getId();
+
+        // 3. Buscamos la cooperativa
+        var coopQuery = new GetCooperativeByIdQuery(coopId);
+        return this.cooperativeQueryService.handle(coopQuery)
+                .orElseThrow(() -> new RuntimeException("Cooperative not found"));
+    }
 }
