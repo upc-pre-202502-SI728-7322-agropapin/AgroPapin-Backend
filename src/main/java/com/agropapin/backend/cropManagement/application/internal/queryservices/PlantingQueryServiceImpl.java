@@ -2,6 +2,7 @@ package com.agropapin.backend.cropManagement.application.internal.queryservices;
 
 import com.agropapin.backend.cropManagement.domain.model.aggregates.IrrigationPolicy;
 import com.agropapin.backend.cropManagement.domain.model.aggregates.Planting;
+import com.agropapin.backend.cropManagement.domain.model.queries.GetActivePlantingByPlotIdQuery;
 import com.agropapin.backend.cropManagement.domain.model.queries.GetAllPlantingByPlotIdQuery;
 import com.agropapin.backend.cropManagement.domain.model.queries.GetIrrigationRulesByPlotIdQuery;
 import com.agropapin.backend.cropManagement.domain.model.queries.GetPlantingByIdQuery;
@@ -32,6 +33,11 @@ public class PlantingQueryServiceImpl implements PlantingQueryService {
     @Override
     public Optional<Planting> handle(GetPlantingByIdQuery query) {
         return plantingRepository.findById(query.plantingId());
+    }
+
+    @Override
+    public Optional<Planting> handle(GetActivePlantingByPlotIdQuery query) {
+        return plantingRepository.findTopByPlotIdAndStatusGrowingOrderByPlantingDateDesc(query.plotId());
     }
 
     @Override

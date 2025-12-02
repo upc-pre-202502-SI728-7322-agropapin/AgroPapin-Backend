@@ -1,10 +1,16 @@
-package com.agropapin.backend.cropManagement.application.internal.outboundservices.acl;
+package com.agropapin.backend.cropManagement.interfaces.acl;
 
+import com.agropapin.backend.cropManagement.application.internal.queryservices.PlantingQueryServiceImpl;
+import com.agropapin.backend.cropManagement.domain.model.aggregates.Planting;
+import com.agropapin.backend.cropManagement.domain.model.queries.GetIrrigationRulesByPlotIdQuery;
+import com.agropapin.backend.cropManagement.domain.model.valueObjects.IrrigationRule;
+import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.PlantingRepository;
 import com.agropapin.backend.cropManagement.infraestructure.persistence.jpa.repositories.PlotRepository;
 import com.agropapin.backend.irrigationautomation.domain.model.services.CropManagementFacade;
 import com.agropapin.backend.irrigationautomation.domain.model.valueobjects.IrrigationPolicy;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -16,10 +22,14 @@ import java.util.UUID;
 public class ExternalCropManagementFacade implements CropManagementFacade {
 
     private final PlotRepository plotRepository;
+    private final PlantingQueryServiceImpl plantingQueryService;
+    private final PlantingRepository plantingRepository;
     // We would also inject PlantingRepository, CropRepository, etc.
 
-    public ExternalCropManagementFacade(PlotRepository plotRepository) {
+    public ExternalCropManagementFacade(PlotRepository plotRepository, PlantingQueryServiceImpl plantingQueryService, PlantingRepository plantingRepository) {
         this.plotRepository = plotRepository;
+        this.plantingQueryService = plantingQueryService;
+        this.plantingRepository = plantingRepository;
     }
 
     @Override
@@ -42,5 +52,20 @@ public class ExternalCropManagementFacade implements CropManagementFacade {
         UUID actuatorId = UUID.fromString("00000000-0000-0000-0000-000000000001"); 
 
         return new IrrigationPolicy(plotId, 35.0, 15, actuatorId); // Threshold: 35%, Duration: 15 mins
+    }
+
+    @Override
+    public List<IrrigationRule> getIrrigationRuleByPlotId(UUID plotId) {
+        var getIrrigationRulesByPlotIdQuery = new GetIrrigationRulesByPlotIdQuery(plotId);
+
+        var irrigationRules = plantingQueryService.handle(getIrrigationRulesByPlotIdQuery);
+
+        return irrigationRules.orElse(null);
+    }
+
+    @Override
+    public Planting getCropInfo(UUID plotId) {
+        var plantingObject = this.plantingRepository.findTopByPlotIdAndStatusGrowingOrderByPlantingDateDesc(plotId);
+        return plantingObject.get();
     }
 }

@@ -19,7 +19,7 @@ public class AgentAgronomistController {
     @PostMapping("/chat")
     public ResponseEntity<Map<String, String>> chatWithAgent(@RequestBody ChatRequest request) {
         // Asumimos que el request trae { "question": "...", "plotId": "..." }
-        String response = agentService.askAgent(request.question(), request.plotId());
+        String response = agentService.askAgent(request.question(), request.fieldId(), request.plotId());
 
         return ResponseEntity.ok(Map.of("response", response));
     }

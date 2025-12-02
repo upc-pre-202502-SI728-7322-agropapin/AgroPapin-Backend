@@ -1,7 +1,10 @@
 package com.agropapin.backend.virtualAgentCommunication.interfaces.rest.resources;
 
+import java.util.UUID;
+
 public record ChatRequest(
         String question,
-        String plotId
+        UUID plotId,
+        UUID fieldId
 ) {
 }
