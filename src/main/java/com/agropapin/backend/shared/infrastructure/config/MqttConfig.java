@@ -12,6 +12,8 @@ import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
+import java.util.UUID;
+
 @Configuration
 public class MqttConfig {
 
@@ -21,15 +23,32 @@ public class MqttConfig {
     @Value("${mqtt.client.id}")
     private String clientId;
 
+    @Value("${mqtt.username}")
+    private String username;
+
+    @Value("${mqtt.password}")
+    private String password;
+
     @Bean
     public MqttPahoClientFactory mqttClientFactory() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
         MqttConnectOptions options = new MqttConnectOptions();
+
         options.setServerURIs(new String[] { brokerUrl });
-        // Add username/password if your broker requires it
-        // options.setUserName("user");
-        // options.setPassword("password".toCharArray());
+        options.setUserName(username.trim());
+        options.setPassword(password.trim().toCharArray());
+
         options.setCleanSession(true);
+        options.setConnectionTimeout(10);
+        options.setKeepAliveInterval(60);
+        options.setAutomaticReconnect(true);
+
+        try {
+            options.setSocketFactory(javax.net.ssl.SSLSocketFactory.getDefault());
+        } catch (Exception e) {
+            System.err.println("Error configurando SSL: " + e.getMessage());
+        }
+
         factory.setConnectionOptions(options);
         return factory;
     }
@@ -42,9 +61,16 @@ public class MqttConfig {
     @Bean
     @ServiceActivator(inputChannel = "mqttOutboundChannel")
     public MessageHandler mqttOutbound() {
-        MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler(clientId + "_outbound", mqttClientFactory());
+        String uniqueClientId = clientId + "-" + UUID.randomUUID().toString().substring(0, 5);
+
+        System.out.println("Intentando conectar a MQTT con:");
+        System.out.println("URL: " + brokerUrl);
+        System.out.println("User: " + username);
+        System.out.println("ClientID: " + uniqueClientId);
+
+        MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler(uniqueClientId, mqttClientFactory());
         messageHandler.setAsync(true);
-        messageHandler.setDefaultTopic("default/topic");
+        messageHandler.setDefaultTopic("command/irrigation/default");
         return messageHandler;
     }
 }
