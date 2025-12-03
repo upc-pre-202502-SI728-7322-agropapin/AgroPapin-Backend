@@ -72,4 +72,8 @@ public class Farmer extends AuditableAbstractAggregateRoot<Farmer> {
     public void clearCooperative() {
         this.cooperative = null;
     }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
 }

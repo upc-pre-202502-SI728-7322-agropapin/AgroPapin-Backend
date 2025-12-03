@@ -1,25 +1,18 @@
 package com.agropapin.backend.irrigationautomation.domain.model.services;
 
+import com.agropapin.backend.cropManagement.domain.model.aggregates.Planting;
+import com.agropapin.backend.cropManagement.domain.model.valueObjects.IrrigationRule;
+import com.agropapin.backend.irrigationautomation.domain.model.valueobjects.IrrigationPolicy;
+
+import java.util.List;
 import java.util.UUID;
 
 /**
- * Facade interface defining the contract for what IrrigationAutomation needs from the CropManagement BC.
- * This acts as an Anti-Corruption Layer (ACL).
- * The implementation of this interface will live in the CropManagement BC.
+ * Facade providing a simplified view of the CropManagement Bounded Context
+ * for the needs of IrrigationAutomation.
  */
 public interface CropManagementFacade {
-    
-    /**
-     * Gets the configured humidity threshold for a specific plot.
-     * @param plotId The ID of the plot.
-     * @return The humidity threshold (e.g., 30.0 for 30%).
-     */
-    double getHumidityThresholdForPlot(UUID plotId);
-
-    /**
-     * Gets the actuator ID associated with a specific plot.
-     * @param plotId The ID of the plot.
-     * @return The ID of the actuator responsible for irrigating the plot.
-     */
-    UUID getActuatorIdForPlot(UUID plotId);
+    IrrigationPolicy getIrrigationPolicyForPlot(UUID plotId);
+    List<IrrigationRule> getIrrigationRuleByPlotId(UUID plotId);
+    Planting getCropInfo(UUID plotId);
 }

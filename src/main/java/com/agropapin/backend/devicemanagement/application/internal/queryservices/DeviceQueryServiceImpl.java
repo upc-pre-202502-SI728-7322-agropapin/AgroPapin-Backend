@@ -2,6 +2,7 @@ package com.agropapin.backend.devicemanagement.application.internal.queryservice
 
 import com.agropapin.backend.devicemanagement.domain.model.aggregates.Actuator;
 import com.agropapin.backend.devicemanagement.domain.model.aggregates.Sensor;
+import com.agropapin.backend.devicemanagement.domain.model.queries.GetActuatorByIdQuery;
 import com.agropapin.backend.devicemanagement.domain.model.queries.GetAllActuatorsByPlotIdQuery;
 import com.agropapin.backend.devicemanagement.domain.model.queries.GetAllSensorsByPlotIdQuery;
 import com.agropapin.backend.devicemanagement.domain.services.DeviceQueryService;
@@ -24,14 +25,17 @@ public class DeviceQueryServiceImpl implements DeviceQueryService {
     }
 
     @Override
+    public Optional<Actuator> handle(GetActuatorByIdQuery query) {
+        return actuatorRepository.findById(query.actuatorId());
+    }
+
+    @Override
     public Optional<List<Sensor>> handle(GetAllSensorsByPlotIdQuery query) {
-        Optional<List<Sensor>> sensors = sensorRepository.findAllByPlotId(query.plotId());
-        return sensors.isEmpty() ? Optional.empty() : sensors;
+        return sensorRepository.findAllByPlotId(query.plotId());
     }
 
     @Override
     public Optional<List<Actuator>> handle(GetAllActuatorsByPlotIdQuery query) {
-        Optional<List<Actuator>> actuators = actuatorRepository.findAllByPlotId(query.plotId());
-        return actuators.isEmpty() ? Optional.empty() : actuators;
+        return actuatorRepository.findAllByPlotId(query.plotId());
     }
 }
