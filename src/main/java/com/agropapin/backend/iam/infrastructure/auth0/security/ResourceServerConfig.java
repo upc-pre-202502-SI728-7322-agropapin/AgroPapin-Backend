@@ -21,7 +21,7 @@ public class ResourceServerConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors(configurer -> configurer.configurationSource(request  -> {
             var cors = new CorsConfiguration();
-            cors.setAllowedOrigins(List.of("http://localhost:5173"));
+            cors.setAllowedOrigins(List.of("https://agropapin.web.app/"));
             cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH",  "OPTIONS"));
             cors.setAllowedHeaders(List.of("*"));
             return cors;
